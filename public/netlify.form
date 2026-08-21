@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>IRMARO Form Definition</title>
+  </head>
+
+  <body>
+    <form
+      name="irmaro-contact"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
+      <input
+        type="hidden"
+        name="form-name"
+        value="irmaro-contact"
+      />
+
+      <input
+        type="text"
+        name="bot-field"
+      />
+
+      <select name="topic">
+        <option value="coaching-project">
+          Individual coaching project quotation
+        </option>
+
+        <option value="other">
+          Other
+        </option>
+      </select>
+
+      <input
+        type="text"
+        name="name"
+      />
+
+      <input
+        type="email"
+        name="email"
+      />
+
+      <input
+        type="tel"
+        name="phone"
+      />
+
+      <select name="preferred-contact-time">
+        <option value="morning">Morning</option>
+        <option value="afternoon">Afternoon</option>
+        <option value="evening">Evening</option>
+        <option value="no-preference">No preference</option>
+      </select>
+
+      <textarea name="message"></textarea>
+
+      <input
+        type="hidden"
+        name="language"
+      />
+    </form>
+  </body>
+</html>
