@@ -1,0 +1,328 @@
+---
+type PageKey =
+  | 'home'
+  | 'about'
+  | 'offer'
+  | 'booking'
+  | 'perspectives'
+  | 'contact'
+  | 'privacy'
+  | 'terms';
+
+interface Props {
+  lang: 'en' | 'pl';
+  pageKey: PageKey;
+}
+
+const { lang, pageKey } = Astro.props;
+const isEn = lang === 'en';
+
+const routes: Record<PageKey, { en: string; pl: string }> = {
+  home: { en: '/en/', pl: '/pl/' },
+  about: { en: '/en/about/', pl: '/pl/o-mnie/' },
+  offer: { en: '/en/offer/', pl: '/pl/oferta/' },
+  booking: { en: '/en/book-a-session/', pl: '/pl/umow-sesje/' },
+  perspectives: { en: '/en/perspectives/', pl: '/pl/perspektywy/' },
+  contact: { en: '/en/contact/', pl: '/pl/kontakt/' },
+  privacy: { en: '/en/privacy-policy/', pl: '/pl/polityka-prywatnosci/' },
+  terms: { en: '/en/terms/', pl: '/pl/regulamin/' },
+};
+
+const nav: Array<{ key: PageKey; label: string }> = isEn
+  ? [
+      { key: 'home', label: 'Home' },
+      { key: 'about', label: 'About' },
+      { key: 'offer', label: 'Offer' },
+      { key: 'booking', label: 'Book a session' },
+      { key: 'perspectives', label: 'Perspectives' },
+      { key: 'contact', label: 'Contact' },
+    ]
+  : [
+      { key: 'home', label: 'Start' },
+      { key: 'about', label: 'O mnie' },
+      { key: 'offer', label: 'Oferta' },
+      { key: 'booking', label: 'Umów sesję' },
+      { key: 'perspectives', label: 'Perspektywy' },
+      { key: 'contact', label: 'Kontakt' },
+    ];
+
+const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
+---
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href={routes.home[lang]}>IRMARO</a>
+
+    <div class="right">
+      <nav class="nav" data-nav aria-label={isEn ? 'Main navigation' : 'Główna nawigacja'}>
+        {
+          nav.map((item) => (
+            <a
+              href={routes[item.key][lang]}
+              class:list={{ active: item.key === pageKey }}
+              aria-current={item.key === pageKey ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="language-switch" aria-label={isEn ? 'Language switcher' : 'Przełącznik języka'}>
+        <a
+          href={isEn ? otherLangHref : routes[pageKey].pl}
+          class:list={{ active: !isEn }}
+          aria-current={!isEn ? 'page' : undefined}
+          aria-label="Polski"
+        >
+          <img src="/images/flag-pl.svg" alt="" aria-hidden="true" />
+          <span>PL</span>
+        </a>
+
+        <span class="separator">/</span>
+
+        <a
+          href={isEn ? routes[pageKey].en : otherLangHref}
+          class:list={{ active: isEn }}
+          aria-current={isEn ? 'page' : undefined}
+          aria-label="English"
+        >
+          <img src="/images/flag-gb.svg" alt="" aria-hidden="true" />
+          <span>EN</span>
+        </a>
+      </div>
+
+      <button
+        class="menu-button"
+        type="button"
+        aria-label={isEn ? 'Open menu' : 'Otwórz menu'}
+        aria-expanded="false"
+        data-menu-button
+      >
+        Menu
+      </button>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  const button = document.querySelector('[data-menu-button]');
+  const nav = document.querySelector('[data-nav]');
+
+  button?.addEventListener('click', () => {
+    const isOpen = nav?.classList.toggle('open');
+    button.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--bg) 95%, transparent);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-wrap {
+    position: relative;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .brand {
+    color: var(--text) !important;
+    text-decoration: none !important;
+    font-family: "Arial Narrow", "Aptos Narrow", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: .13em;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .nav a,
+  .nav a:link,
+  .nav a:visited {
+    position: relative;
+    padding: 22px 0 19px;
+    color: var(--muted) !important;
+    text-decoration: none !important;
+    font-size: .88rem;
+    font-weight: 600;
+  }
+
+  .nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    height: 1px;
+    background: transparent;
+  }
+
+  .nav a:hover,
+  .nav a.active,
+  .nav a:active {
+    color: var(--text) !important;
+  }
+
+  /* aktywna strona — ZAWSZE brąz */
+  .nav a.active::after,
+  .nav a[aria-current="page"]::after {
+    background: var(--brand-dark) !important;
+  }
+
+  .nav a:focus,
+  .nav a:focus-visible {
+    color: var(--text) !important;
+    outline: 2px solid var(--brand-dark) !important;
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  .language-switch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    font-size: .78rem;
+  }
+
+  .language-switch a,
+  .language-switch a:link,
+  .language-switch a:visited {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 0;
+    color: var(--muted) !important;
+    text-decoration: none !important;
+  }
+
+  .language-switch img {
+    width: 18px;
+    height: 12px;
+    object-fit: cover;
+    border: 1px solid rgba(39, 35, 28, .12);
+    border-radius: 1px;
+  }
+
+  /* aktywny język — ZAWSZE brąz */
+  .language-switch a.active,
+  .language-switch a[aria-current="page"] {
+    color: var(--text) !important;
+    font-weight: 800;
+    text-decoration-line: underline !important;
+    text-decoration-color: var(--brand-dark) !important;
+    text-decoration-thickness: 1px !important;
+    text-underline-offset: 4px;
+  }
+
+  .language-switch a:hover,
+  .language-switch a:active {
+    color: var(--brand-dark) !important;
+  }
+
+  .language-switch a:focus,
+  .language-switch a:focus-visible {
+    color: var(--text) !important;
+    outline: 2px solid var(--brand-dark) !important;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .language-switch .separator {
+    color: var(--border);
+  }
+
+  .menu-button {
+    display: none;
+    padding: 7px 11px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: .82rem;
+  }
+
+  .menu-button:hover {
+    border-color: var(--brand-dark);
+    color: var(--brand-dark);
+  }
+
+  .menu-button:focus,
+  .menu-button:focus-visible {
+    outline: 2px solid var(--brand-dark) !important;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 940px) {
+    .menu-button {
+      display: inline-flex;
+    }
+
+    .nav {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 16px;
+      right: 16px;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      box-shadow: 0 12px 30px rgba(39,35,28,.08);
+    }
+
+    .nav.open {
+      display: flex;
+    }
+
+    .nav a {
+      padding: 9px 0;
+    }
+
+    .nav a::after {
+      bottom: 4px;
+    }
+
+    .language-switch {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .right {
+      gap: 10px;
+    }
+
+    .language-switch {
+      gap: 4px;
+      font-size: .74rem;
+    }
+
+    .language-switch img {
+      width: 16px;
+      height: 11px;
+    }
+  }
+</style>

@@ -1,0 +1,49 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+type PageKey =
+  | 'home'
+  | 'about'
+  | 'offer'
+  | 'booking'
+  | 'perspectives'
+  | 'contact'
+  | 'privacy'
+  | 'terms';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang: 'en' | 'pl';
+  pageKey: PageKey;
+}
+
+const {
+  title,
+  description = 'IRMARO — Life & Career Coach & Mentor',
+  lang,
+  pageKey,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    <link rel="icon" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <Header lang={lang} pageKey={pageKey} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

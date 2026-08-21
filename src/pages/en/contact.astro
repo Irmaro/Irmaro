@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<BaseLayout
+  title="Contact | IRMARO"
+  description="Contact IRMARO."
+  lang="en"
+  pageKey="contact"
+>
+  <section class="page-hero contact-intro">
+    <div class="container">
+      <p class="eyebrow">CONTACT</p>
+      <h1>Let’s talk.</h1>
+      <p class="lead">
+        Ask about an individual coaching process or leave your contact details and tell me briefly what you would like to discuss.
+      </p>
+    </div>
+  </section>
+
+  <section class="section contact-section">
+    <div class="container">
+      <ContactForm lang="en" />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-intro {
+    padding-bottom: 34px;
+  }
+
+  .contact-section {
+    padding-top: 28px;
+  }
+</style>

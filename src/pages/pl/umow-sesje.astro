@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SessionCards from '../../components/SessionCards.astro';
+---
+<BaseLayout title="Umów sesję | IRMARO" lang="pl" pageKey="booking">
+  <section class="page-hero"><div class="container">
+    <p class="eyebrow">UMÓW SESJĘ</p>
+    <h1>Wybierz formę spotkania dopasowaną do sytuacji.</h1>
+    <p class="lead">Możesz zacząć od rozmowy wstępnej, umówić indywidualną sesję 1:1 albo zapytać o dłuższy proces.</p>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <SessionCards lang="pl" />
+  </div></section>
+</BaseLayout>

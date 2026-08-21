@@ -1,0 +1,791 @@
+---
+interface Props {
+  lang: 'en' | 'pl';
+}
+
+const { lang } = Astro.props;
+const isEn = lang === 'en';
+
+const c = isEn
+  ? {
+      topic: 'Topic*',
+      topicPlaceholder: 'Choose a topic',
+      quote: 'Individual coaching project quotation',
+      other: 'Other topic / leave your contact details',
+
+      name: 'Name*',
+      email: 'Email*',
+
+      phone: 'Phone (optional)',
+      phonePlaceholder: '+358 40 000 0000',
+
+      contactTime: 'Preferred contact time',
+      contactTimePlaceholder: 'Choose a time',
+      morning: 'Morning',
+      afternoon: 'Afternoon',
+      evening: 'Evening',
+      noPreference: 'No preference',
+
+      message: 'Additional comment',
+      messagePlaceholder:
+        'Share a few sentences about what brings you here and what you need at this stage. That is enough to give our first conversation a meaningful starting point.',
+
+      privacy:
+        'I will use your data only to respond to your enquiry. Please do not include health information or other special-category personal data in this form.',
+
+      privacyLabel: 'Privacy Policy',
+      privacyHref: '/en/privacy-policy/',
+
+      submit: 'Send enquiry',
+      sending: 'Sending…',
+      success: 'Thank you. Your message has been sent.',
+      error: 'The message could not be sent. Please try again in a moment.',
+
+      subject: 'New enquiry from IRMARO website',
+    }
+  : {
+      topic: 'Temat*',
+      topicPlaceholder: 'Wybierz temat',
+      quote: 'Indywidualna wycena projektu coachingowego',
+      other: 'Inny temat / zostaw dane kontaktowe',
+
+      name: 'Imię*',
+      email: 'E-mail*',
+
+      phone: 'Telefon (opcjonalnie)',
+      phonePlaceholder: '+48 500 000 000',
+
+      contactTime: 'Preferowana pora kontaktu',
+      contactTimePlaceholder: 'Wybierz przedział',
+      morning: 'Rano',
+      afternoon: 'Popołudnie',
+      evening: 'Wieczór',
+      noPreference: 'Bez preferencji',
+
+      message: 'Dodatkowy komentarz',
+      messagePlaceholder:
+        'Napisz kilka zdań o tym, z czym przychodzisz i czego potrzebujesz na tym etapie. To wystarczy, żeby dobrze rozpocząć rozmowę.',
+
+      privacy:
+        'Dane wykorzystam wyłącznie do odpowiedzi na Twoje zapytanie. Nie podawaj w formularzu danych o zdrowiu ani innych szczególnych kategorii danych.',
+
+      privacyLabel: 'Polityka prywatności',
+      privacyHref: '/pl/polityka-prywatnosci/',
+
+      submit: 'Wyślij formularz',
+      sending: 'Wysyłanie…',
+      success: 'Dziękuję. Wiadomość została wysłana.',
+      error: 'Nie udało się wysłać formularza. Spróbuj ponownie za chwilę.',
+
+      subject: 'Nowe zapytanie ze strony IRMARO',
+    };
+---
+
+<div class="contact-form-wrapper">
+  <form
+    id="contact-form"
+    class="contact-form"
+    name="irmaro-contact"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    data-success={c.success}
+    data-error={c.error}
+    data-sending={c.sending}
+  >
+    <input
+      type="hidden"
+      name="form-name"
+      value="irmaro-contact"
+    />
+
+    <input
+      type="hidden"
+      name="language"
+      value={lang}
+    />
+
+    <input
+      type="hidden"
+      name="subject"
+      value={c.subject}
+    />
+
+    <p class="honeypot">
+      <label>
+        Do not fill this field:
+        <input name="bot-field" />
+      </label>
+    </p>
+
+    <!-- TOPIC -->
+    <div class="field field-full">
+      <label for={`topic-${lang}`}>
+        {c.topic}
+      </label>
+
+      <div class="select-wrap">
+        <select
+          id={`topic-${lang}`}
+          name="topic"
+          required
+          data-topic-select
+        >
+          <option
+            value=""
+            selected
+            disabled
+          >
+            {c.topicPlaceholder}
+          </option>
+
+          <option value="coaching-project">
+            {c.quote}
+          </option>
+
+          <option value="other">
+            {c.other}
+          </option>
+        </select>
+
+        <span
+          class="select-arrow"
+          aria-hidden="true"
+        >
+          ↓
+        </span>
+      </div>
+    </div>
+
+    <!-- NAME + EMAIL -->
+    <div class="form-grid">
+      <div class="field">
+        <label for={`name-${lang}`}>
+          {c.name}
+        </label>
+
+        <input
+          id={`name-${lang}`}
+          name="name"
+          type="text"
+          autocomplete="name"
+          required
+        />
+      </div>
+
+      <div class="field">
+        <label for={`email-${lang}`}>
+          {c.email}
+        </label>
+
+        <input
+          id={`email-${lang}`}
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+        />
+      </div>
+    </div>
+
+    <!-- PHONE + CONTACT TIME -->
+    <div class="form-grid">
+      <div class="field">
+        <label for={`phone-${lang}`}>
+          {c.phone}
+        </label>
+
+        <input
+          id={`phone-${lang}`}
+          name="phone"
+          type="tel"
+          autocomplete="tel"
+          inputmode="tel"
+          placeholder={c.phonePlaceholder}
+        />
+      </div>
+
+      <div class="field">
+        <label for={`contact-time-${lang}`}>
+          {c.contactTime}
+        </label>
+
+        <div class="select-wrap">
+          <select
+            id={`contact-time-${lang}`}
+            name="preferred-contact-time"
+          >
+            <option value="" selected>
+              {c.contactTimePlaceholder}
+            </option>
+
+            <option value="morning">
+              {c.morning}
+            </option>
+
+            <option value="afternoon">
+              {c.afternoon}
+            </option>
+
+            <option value="evening">
+              {c.evening}
+            </option>
+
+            <option value="no-preference">
+              {c.noPreference}
+            </option>
+          </select>
+
+          <span
+            class="select-arrow"
+            aria-hidden="true"
+          >
+            ↓
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MESSAGE -->
+    <div class="field field-full message-field">
+      <label for={`message-${lang}`}>
+        {c.message}
+      </label>
+
+      <textarea
+        id={`message-${lang}`}
+        name="message"
+        rows="6"
+        placeholder={c.messagePlaceholder}
+      ></textarea>
+    </div>
+
+    <!-- PRIVACY -->
+    <p class="privacy-note">
+      {c.privacy}
+
+      <a href={c.privacyHref}>
+        {c.privacyLabel}
+      </a>.
+    </p>
+
+    <!-- SUBMIT -->
+    <div class="form-actions">
+      <button
+        class="submit-button"
+        type="submit"
+      >
+        {c.submit}
+      </button>
+    </div>
+
+    <p
+      class="form-status"
+      role="status"
+      aria-live="polite"
+      data-form-status
+    ></p>
+  </form>
+</div>
+
+<script is:inline>
+  const form = document.querySelector('#contact-form');
+
+  const topicSelect =
+    form?.querySelector('[data-topic-select]');
+
+  const status =
+    form?.querySelector('[data-form-status]');
+
+  const submitButton =
+    form?.querySelector('button[type="submit"]');
+
+  /*
+   * Jeżeli użytkownik przyszedł z:
+   * Dłuższy proces / Longer process
+   *
+   * np.
+   * /pl/kontakt/?topic=coaching-project#contact-form
+   *
+   * temat zostanie automatycznie wybrany.
+   */
+  const params =
+    new URLSearchParams(window.location.search);
+
+  const topic =
+    params.get('topic');
+
+  if (
+    topic === 'coaching-project' &&
+    topicSelect
+  ) {
+    topicSelect.value = 'coaching-project';
+  }
+
+  form?.addEventListener(
+    'submit',
+    async (event) => {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const originalButtonText =
+        submitButton?.textContent || '';
+
+      if (submitButton) {
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+          form.dataset.sending || 'Sending…';
+      }
+
+      if (status) {
+        status.textContent = '';
+        status.className = 'form-status';
+      }
+
+      try {
+        const formData =
+          new FormData(form);
+
+        const body =
+          new URLSearchParams();
+
+        for (
+          const [key, value]
+          of formData.entries()
+        ) {
+          body.append(
+            key,
+            String(value)
+          );
+        }
+
+        const response =
+          await fetch('/', {
+            method: 'POST',
+
+            headers: {
+              'Content-Type':
+                'application/x-www-form-urlencoded',
+            },
+
+            body: body.toString(),
+          });
+
+        if (!response.ok) {
+          throw new Error(
+            'Form submission failed'
+          );
+        }
+
+        form.reset();
+
+        /*
+         * Po wysłaniu nadal pozostawiamy
+         * wybrany temat wyceny,
+         * jeżeli użytkownik przyszedł
+         * właśnie z tej karty.
+         */
+        if (
+          topic === 'coaching-project' &&
+          topicSelect
+        ) {
+          topicSelect.value =
+            'coaching-project';
+        }
+
+        if (status) {
+          status.textContent =
+            form.dataset.success || 'Sent.';
+
+          status.className =
+            'form-status success';
+        }
+      } catch (error) {
+        if (status) {
+          status.textContent =
+            form.dataset.error ||
+            'Something went wrong.';
+
+          status.className =
+            'form-status error';
+        }
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+
+          submitButton.textContent =
+            originalButtonText;
+        }
+      }
+    }
+  );
+</script>
+
+<style>
+  /*
+   * FORM WIDTH
+   *
+   * Desktop:
+   * około połowy szerokości strony.
+   *
+   * Nie daję dokładnie 50%,
+   * tylko max-width, żeby formularz
+   * pozostał wygodny przy różnych
+   * rozdzielczościach.
+   */
+  .contact-form-wrapper {
+    width: 100%;
+    max-width: 680px;
+    margin-inline: auto;
+  }
+
+  .contact-form {
+    width: 100%;
+    padding:
+      clamp(24px, 3vw, 36px);
+
+    border:
+      1px solid
+      var(--border);
+
+    border-radius:
+      var(--radius);
+
+    background:
+      var(--surface);
+  }
+
+  .honeypot {
+    position: absolute;
+
+    left: -9999px;
+
+    width: 1px;
+    height: 1px;
+
+    overflow: hidden;
+  }
+
+  /*
+   * Imię + email
+   * oraz
+   * telefon + pora kontaktu
+   *
+   * są w jednej linii desktop.
+   */
+  .form-grid {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    gap:
+      24px;
+  }
+
+  .field {
+    min-width: 0;
+  }
+
+  .field-full {
+    width: 100%;
+  }
+
+  .field + .form-grid,
+  .form-grid + .form-grid,
+  .form-grid + .field {
+    margin-top:
+      28px;
+  }
+
+  .field label {
+    display: block;
+
+    margin-bottom:
+      10px;
+
+    color:
+      var(--text);
+
+    font-family:
+      "Arial Narrow",
+      "Aptos Narrow",
+      sans-serif;
+
+    font-size:
+      .76rem;
+
+    font-weight:
+      700;
+
+    letter-spacing:
+      .08em;
+
+    text-transform:
+      uppercase;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+
+    margin: 0;
+
+    padding:
+      8px 0 11px;
+
+    border: 0;
+
+    border-bottom:
+      1px solid
+      var(--border);
+
+    border-radius:
+      0;
+
+    outline:
+      none;
+
+    background:
+      transparent;
+
+    color:
+      var(--text);
+
+    font:
+      inherit;
+
+    font-size:
+      .96rem;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color:
+      color-mix(
+        in srgb,
+        var(--muted) 62%,
+        transparent
+      );
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-bottom-color:
+      var(--brand-dark);
+  }
+
+  .select-wrap {
+    position: relative;
+  }
+
+  .select-wrap select {
+    padding-right:
+      30px;
+
+    appearance:
+      none;
+
+    cursor:
+      pointer;
+  }
+
+  .select-arrow {
+    position:
+      absolute;
+
+    top:
+      50%;
+
+    right:
+      4px;
+
+    transform:
+      translateY(-50%);
+
+    color:
+      var(--brand-dark);
+
+    pointer-events:
+      none;
+
+    font-size:
+      .85rem;
+  }
+
+  .message-field {
+    margin-top:
+      28px;
+  }
+
+  .message-field textarea {
+    min-height:
+      135px;
+
+    resize:
+      vertical;
+
+    line-height:
+      1.55;
+  }
+
+  .privacy-note {
+    margin:
+      26px 0 0;
+
+    color:
+      var(--muted);
+
+    font-size:
+      .78rem;
+
+    line-height:
+      1.55;
+  }
+
+  .privacy-note a {
+    color:
+      var(--brand-dark);
+
+    text-underline-offset:
+      3px;
+  }
+
+  .form-actions {
+    display: flex;
+
+    justify-content:
+      flex-end;
+
+    margin-top:
+      22px;
+  }
+
+  .submit-button {
+    min-width:
+      180px;
+
+    min-height:
+      46px;
+
+    padding:
+      0 22px;
+
+    border:
+      1px solid
+      var(--brand-dark);
+
+    border-radius:
+      4px;
+
+    background:
+      var(--brand-dark);
+
+    color:
+      #fff;
+
+    cursor:
+      pointer;
+
+    font:
+      inherit;
+
+    font-size:
+      .9rem;
+
+    font-weight:
+      700;
+
+    transition:
+      background-color .18s ease,
+      border-color .18s ease;
+  }
+
+  .submit-button:hover {
+    border-color:
+      var(--brand);
+
+    background:
+      var(--brand);
+  }
+
+  .submit-button:focus-visible {
+    outline:
+      2px solid
+      var(--brand-dark);
+
+    outline-offset:
+      3px;
+  }
+
+  .submit-button:disabled {
+    cursor:
+      wait;
+
+    opacity:
+      .65;
+  }
+
+  .form-status {
+    min-height:
+      1.4em;
+
+    margin:
+      14px 0 0;
+
+    font-size:
+      .82rem;
+  }
+
+  .form-status.success {
+    color:
+      var(--moss-dark, #505846);
+  }
+
+  .form-status.error {
+    color:
+      #8a4338;
+  }
+
+  /*
+   * Mobile:
+   * formularz pełna szerokość,
+   * pola jedno pod drugim.
+   */
+  @media (max-width: 720px) {
+    .contact-form-wrapper {
+      max-width: none;
+    }
+
+    .form-grid {
+      grid-template-columns:
+        1fr;
+
+      gap:
+        24px;
+    }
+
+    .contact-form {
+      padding:
+        22px 18px;
+    }
+
+    .form-actions {
+      justify-content:
+        stretch;
+    }
+
+    .submit-button {
+      width:
+        100%;
+    }
+  }
+</style>

@@ -1,0 +1,129 @@
+---
+import { site } from '../config/site';
+
+interface Props {
+  lang: 'en' | 'pl';
+}
+
+const { lang } = Astro.props;
+const isEn = lang === 'en';
+---
+
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="logo-block">
+      <img
+        src={site.logoPath}
+        alt="IRMARO"
+        class="footer-logo"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="footer-links">
+      <a
+        href={site.linkedInUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
+
+      <a href={isEn ? '/en/privacy-policy/' : '/pl/polityka-prywatnosci/'}>
+        {isEn ? 'Privacy Policy' : 'Polityka prywatności'}
+      </a>
+
+      <a href={isEn ? '/en/terms/' : '/pl/regulamin/'}>
+        {isEn ? 'Terms' : 'Regulamin'}
+      </a>
+
+      <div class="footer-lang">
+        <a href="/pl/">PL</a>
+        <span>/</span>
+        <a href="/en/">EN</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>www.irmaro.com</span>
+    <span>© {new Date().getFullYear()} IRMARO</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: 32px 0 20px;
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .footer-main {
+    display: grid;
+    grid-template-columns: minmax(180px, 280px) 1fr;
+    gap: 30px;
+    align-items: end;
+  }
+
+  .footer-logo {
+    width: min(240px, 100%);
+    height: auto;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: .82rem;
+    font-weight: 600;
+  }
+
+  .footer-links a:hover {
+    color: var(--text);
+  }
+
+  .footer-lang {
+    display: flex;
+    gap: 5px;
+    color: var(--muted);
+    font-size: .82rem;
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: .72rem;
+  }
+
+  @media (max-width: 700px) {
+    .footer-main {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .footer-logo {
+      width: 180px;
+    }
+
+    .footer-links {
+      justify-content: flex-start;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+</style>

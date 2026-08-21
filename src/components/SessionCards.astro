@@ -1,0 +1,87 @@
+---
+import { site } from '../config/site';
+
+interface Props {
+  lang: 'en' | 'pl';
+}
+
+const { lang } = Astro.props;
+const isEn = lang === 'en';
+
+const cards = isEn
+  ? [
+      {
+        meta: '25 min · online',
+        title: 'Intro call',
+        text: 'A short first conversation to get to know each other, talk about your topic and see whether this way of working is the right fit.',
+        action: 'Book intro call',
+        href: site.booking.intro,
+        external: true,
+      },
+      {
+        meta: '60 min · online / onsite in Oulu',
+        title: '1:1 session',
+        text: 'A focused individual coaching session for a specific topic, decision, change or challenge. The session can take place online or, when agreed, onsite in Oulu.',
+        action: 'Book 1:1 session',
+        href: site.booking.session,
+        external: true,
+      },
+      {
+        meta: 'longer process · individual quotation',
+        title: 'Longer process',
+        text: 'If your topic calls for a longer process, several sessions or a tailored way of working, we will define the scope, format and quotation individually.',
+        action: 'Ask for an individual quote',
+        href: '/en/contact/?topic=coaching-project#contact-form',
+        external: false,
+      },
+    ]
+  : [
+      {
+        meta: '25 min · online',
+        title: 'Rozmowa wstępna',
+        text: 'Krótka pierwsza rozmowa, żeby się poznać, porozmawiać o Twoim temacie i sprawdzić, czy ten sposób pracy będzie dla Ciebie odpowiedni.',
+        action: 'Umów rozmowę wstępną',
+        href: site.booking.intro,
+        external: true,
+      },
+      {
+        meta: '60 min · online / stacjonarnie w Oulu',
+        title: 'Sesja 1:1',
+        text: 'Indywidualna sesja coachingowa poświęcona konkretnemu tematowi, decyzji, zmianie lub wyzwaniu. Spotkanie może odbyć się online lub, po uzgodnieniu, stacjonarnie w Oulu.',
+        action: 'Umów sesję 1:1',
+        href: site.booking.session,
+        external: true,
+      },
+      {
+        meta: 'dłuższy proces · wycena indywidualna',
+        title: 'Dłuższy proces',
+        text: 'Jeśli temat wymaga dłuższej współpracy, kilku spotkań albo bardziej indywidualnej formuły, wspólnie ustalimy zakres, sposób pracy i wycenę.',
+        action: 'Zapytaj o indywidualną wycenę',
+        href: '/pl/kontakt/?topic=coaching-project#contact-form',
+        external: false,
+      },
+    ];
+---
+
+<div class="session-grid">
+  {
+    cards.map((card) => (
+      <article class="session-card">
+        <p class="session-meta">{card.meta}</p>
+        <h2>{card.title}</h2>
+        <p>{card.text}</p>
+
+        <div class="session-action">
+          <a
+            class="button"
+            href={card.href}
+            target={card.external ? '_blank' : undefined}
+            rel={card.external ? 'noopener noreferrer' : undefined}
+          >
+            {card.action}
+          </a>
+        </div>
+      </article>
+    ))
+  }
+</div>
