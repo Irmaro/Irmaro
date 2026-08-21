@@ -1,70 +1,124 @@
-# Friend Website Starter — EN default / PL switch
+# IRMARO Website
 
-Minimalny starter Astro do wdrożenia podczas spotkania.
+Official website for **IRMARO — Life & Career Coach & Mentor**.
 
-## Domyślny język
+The website is built with Astro and designed as a lightweight, responsive bilingual website with English as the default language and Polish as the second language.
 
-- `/` przekierowuje do `/en/`
-- wersja angielska: `/en/...`
-- wersja polska: `/pl/...`
-- w nagłówku jest przełącznik `PL` / `EN`
-- przełącznik prowadzi do odpowiednika tej samej podstrony
+## Website structure
 
-## Start lokalny
+The current website includes:
 
-```bash
-npm install
-npm run dev
-```
+### English
 
-Astro zwykle pokaże:
+- Home
+- About
+- Offer
+- Book a session
+- Perspectives
+- Contact
+- Privacy Policy
+- Terms
 
-`http://localhost:4321`
+### Polish
 
-## Build
+- Start
+- O mnie
+- Oferta
+- Umów sesję
+- Perspektywy
+- Kontakt
+- Polityka prywatności
+- Regulamin
 
-```bash
-npm run build
-```
+The root URL `/` redirects to the English version:
 
-Katalog publikowany przez Netlify:
+`/en/`
 
-`dist`
+The Polish version is available under:
 
-## Netlify
+`/pl/`
 
-- Production branch: `main`
-- Base directory: puste
-- Build command: `npm run build`
-- Publish directory: `dist`
-- Environment variables: brak na tym etapie
+A language switcher is available in the main navigation and allows users to move between corresponding English and Polish pages.
 
-## Najszybsze zmiany podczas spotkania
+---
 
-Następnie ustal:
-- menu / podstrony,
-- kolory w `src/styles/global.css`,
-- główny nagłówek,
-- czy potrzebny jest blog,
-- kalendarz,
-- formularz,
-- które funkcje będą płatne,
-- social media.
+## Current implementation
 
-## Po zakupie domeny
+The following elements are already implemented:
 
-Zastąp `https://example.com` właściwą domeną w:
-- `astro.config.mjs`
-- `public/robots.txt`
-- `public/sitemap.xml`
+- bilingual EN / PL website structure
+- English version as the default language
+- responsive desktop, tablet and mobile layout
+- responsive navigation
+- PL / EN language switcher with flags
+- active-page indication in the navigation
+- IRMARO visual identity and colour palette
+- responsive Home page
+- Offer section
+- Book a session page
+- Perspectives section
+- Contact page
+- bilingual contact form
+- individual coaching project enquiry flow
+- responsive footer
+- IRMARO logo in the footer
+- LinkedIn link
+- Privacy Policy and Terms links
+- `robots.txt`
+- `llms.txt`
+- XML sitemap structure
+- Netlify-compatible build configuration
+- Netlify Forms-compatible contact form
 
-## Do zrobienia po szkielecie
+### Booking flow
 
-- właściwe treści i zdjęcia,
-- finalny formularz,
-- Cal.com,
-- Stripe, jeśli potrzebny,
-- finalne Privacy Policy i Terms,
-- SEO/meta/schema,
-- Google Search Console,
-- Bing Webmaster Tools.
+The Book a session / Umów sesję page currently contains three options:
+
+1. Intro call
+2. 1:1 session — online or onsite in Oulu
+3. Longer coaching process — individual quotation
+
+The longer-process option redirects directly to the Contact page and automatically selects:
+
+**Individual coaching project quotation**
+
+or:
+
+**Indywidualna wycena projektu coachingowego**
+
+in the contact form.
+
+---
+
+## Technology
+
+The website uses:
+
+- Astro
+- HTML
+- CSS
+- TypeScript
+- Git / GitHub
+- Netlify for deployment and hosting
+
+The project intentionally uses a lightweight architecture without a traditional CMS.
+
+---
+
+## Remaining implementation
+
+The main remaining items are:
+
+final page content
+final photos and visual assets
+Cal.com booking links
+Netlify deployment
+Netlify Forms email notifications
+custom domain connection
+final Privacy Policy
+final Terms
+final SEO metadata and structured data
+Google Search Console
+Bing Webmaster Tools
+
+Additional functionality can be introduced later if required.
