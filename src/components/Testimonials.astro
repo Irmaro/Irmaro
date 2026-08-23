@@ -1,0 +1,124 @@
+---
+import { testimonials } from '../content/testimonials';
+
+interface Props {
+  lang: 'en' | 'pl';
+}
+
+const { lang } = Astro.props;
+const isEn = lang === 'en';
+
+const c = isEn
+  ? {
+      eyebrow: 'WHAT PEOPLE SAY',
+      title: 'A few words from people I have worked with',
+      empty:
+        'Client reflections will be added here as they become available for publication.',
+    }
+  : {
+      eyebrow: 'OPINIE O MNIE',
+      title: 'Kilka słów od osób, z którymi pracowałam',
+      empty:
+        'Opinie klientów pojawią się tutaj po uzyskaniu zgody na ich publikację.',
+    };
+---
+
+<section class="testimonials-section" aria-labelledby={`testimonials-title-${lang}`}>
+  <div class="testimonials-heading">
+    <p class="eyebrow">{c.eyebrow}</p>
+    <h2 id={`testimonials-title-${lang}`}>{c.title}</h2>
+  </div>
+
+  {
+    testimonials.length > 0 ? (
+      <div class="testimonial-grid">
+        {testimonials.map((item) => (
+          <blockquote class="testimonial-card">
+            <p class="testimonial-quote">
+              <em>“{item.quote}”</em>
+            </p>
+
+            {(item.author || item.context) && (
+              <footer>
+                {item.author && <strong>{item.author}</strong>}
+                {item.context && <span>{item.context}</span>}
+              </footer>
+            )}
+          </blockquote>
+        ))}
+      </div>
+    ) : (
+      <div class="testimonial-empty">
+        <p><em>{c.empty}</em></p>
+      </div>
+    )
+  }
+</section>
+
+<style>
+  .testimonials-section {
+    margin-top: 54px;
+    padding-top: 38px;
+    border-top: 1px solid var(--border);
+  }
+
+  .testimonials-heading {
+    max-width: 680px;
+    margin-bottom: 22px;
+  }
+
+  .testimonials-heading h2 {
+    margin-bottom: 0;
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .testimonial-card {
+    margin: 0;
+    padding: 24px;
+    border: 1px solid color-mix(in srgb, var(--moss) 34%, var(--border));
+    border-radius: var(--radius);
+    background: var(--moss-extra-light);
+  }
+
+  .testimonial-quote {
+    margin: 0;
+    line-height: 1.68;
+  }
+
+  .testimonial-card footer {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: .8rem;
+  }
+
+  .testimonial-empty {
+    padding: 22px 24px;
+    border: 1px dashed color-mix(in srgb, var(--moss) 34%, var(--border));
+    border-radius: var(--radius);
+    background: var(--moss-extra-light);
+  }
+
+  .testimonial-empty p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  @media (max-width: 860px) {
+    .testimonial-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .testimonials-section {
+      margin-top: 42px;
+      padding-top: 30px;
+    }
+  }
+</style>

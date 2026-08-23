@@ -1,0 +1,44 @@
+---
+interface Props {
+  text: string;
+  tone?: 'green' | 'beige';
+}
+
+const { text, tone = 'green' } = Astro.props;
+---
+
+<aside class:list={['golden-thought', `tone-${tone}`]}>
+  <p><strong><em>{text}</em></strong></p>
+</aside>
+
+<style>
+  .golden-thought {
+    max-width: 860px;
+    margin: 34px 0;
+    padding: 28px 32px;
+    border-left: 3px solid var(--moss-dark);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+
+  .tone-green {
+    background: var(--moss-light);
+  }
+
+  .tone-beige {
+    background: var(--surface-2);
+    border-left-color: var(--brand-dark);
+  }
+
+  .golden-thought p {
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(1.08rem, 2vw, 1.32rem);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 600px) {
+    .golden-thought {
+      padding: 22px 20px;
+    }
+  }
+</style>

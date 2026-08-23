@@ -1,15 +1,52 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import SessionCards from '../../components/SessionCards.astro';
+import BookingOptions from '../../components/BookingOptions.astro';
 ---
-<BaseLayout title="Book a session | IRMARO" lang="en" pageKey="booking">
-  <section class="page-hero"><div class="container">
-    <p class="eyebrow">BOOK A SESSION</p>
-    <h1>Choose the format that fits your situation.</h1>
-    <p class="lead">Select a first conversation, an individual 1:1 session or ask about a longer process.</p>
-  </div></section>
 
-  <section class="section"><div class="container">
-    <SessionCards lang="en" />
-  </div></section>
+<BaseLayout
+  title="Book a Session | Coaching & Mentoring | IRMARO"
+  description="Book coaching or mentoring, choose a session package, or get support with your CV, LinkedIn profile or interview preparation."
+  lang="en"
+  pageKey="booking"
+>
+  <section class="page-hero booking-hero">
+    <div class="container narrow-copy">
+      <p class="eyebrow">BOOK A SESSION</p>
+      <h1><strong><em>Choose the kind of support that fits what you need right now</em></strong></h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <BookingOptions lang="en" />
+    </div>
+  </section>
 </BaseLayout>
+
+
+<style>
+  .booking-hero {
+    padding-top: 26px;
+    padding-bottom: 18px;
+  }
+
+  .booking-hero .eyebrow {
+    margin-bottom: 8px;
+  }
+
+  .booking-hero h1 {
+    margin-bottom: 0;
+    line-height: 1.02;
+  }
+
+  @media (max-width: 700px) {
+    .booking-hero {
+      padding-top: 18px;
+      padding-bottom: 14px;
+    }
+
+    .booking-hero .eyebrow {
+      margin-bottom: 6px;
+    }
+  }
+</style>

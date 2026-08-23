@@ -1,10 +1,79 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import GoldenThought from '../../components/GoldenThought.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import AboutPortrait from '../../components/AboutPortrait.astro';
+import { site } from '../../config/site';
 ---
-<BaseLayout title="About | IRMARO" lang="en" pageKey="about">
-  <section class="page-hero"><div class="container">
-    <p class="eyebrow">ABOUT</p>
-    <h1>About</h1>
-    <p class="lead">Story, experience and approach will go here.</p>
-  </div></section>
+
+<BaseLayout
+  title="About Irma Rosenvik | Coach, Mentor & HR Professional"
+  description="Meet Irma Rosenvik, a certified coach, mentor and HR professional based in Finland."
+  lang="en"
+  pageKey="about"
+>
+  <section class="page-hero">
+    <div class="container narrow-copy">
+      <p class="eyebrow">ABOUT</p>
+      <h1><strong><em>I know what change feels like — and I know how much good can unfold along the way.</em></strong></h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container about-intro-grid">
+      <div class="source-copy">
+        <p><em>My name is Irma and I am a certified coach. I completed my coach training at Meritum Coaching School through a programme accredited by the International Coaching Federation (ICF). I also work as an HR professional.</em></p>
+
+        <p><em>These two parts of my professional life naturally belong together because, for me, the person always comes first — their story, needs, values, emotions and their right to build a life that feels true to who they are. I believe there is far more potential in us than we sometimes recognise. At certain moments, what we need most is a safe space, an attentive conversation and another person who can help us see what is already there.</em></p>
+      </div>
+
+      <AboutPortrait lang="en" />
+    </div>
+
+    <div class="container narrow-copy source-copy about-rest">
+      <div class="green-panel editorial-panel">
+        <p><em>My own path has been long, searching and, at times, very uneven. I grew up in a state of constant alertness and later came to understand my experience as an Adult Child of an Alcoholic (ACoA). I built my own family, raised my son — including what I jokingly call the most demanding extreme sport of all: parenting a teenager — and went through both individual and family therapy.</em></p>
+      </div>
+
+      <p><em>There was also emigration: learning to live in a new reality and rebuilding my career from the ground up in another country. There were moments of doubt, exhaustion and having to begin again. There was sweat, there were tears and there was depression. But there was also strength, rediscovering myself, learning to treat myself with more kindness and finding a deeper sense of inner balance.</em></p>
+
+      <p><em>Today I know how to celebrate life — not because it is perfect, but because I know how much can happen along the way. That is one of the reasons I genuinely love change.</em></p>
+
+      <div class="green-panel editorial-panel">
+        <p><em>This is the perspective I bring to my work with clients. No judgement. No ready-made answers. Just curiosity, attention and a deep belief that you are the expert on your own life.</em></p>
+      </div>
+
+      <GoldenThought text="Some things need time before their meaning can truly settle." tone="beige" />
+
+      <p><em>If you would like to know me beyond my professional role, visit <strong><a href="/en/perspectives/">Perspectives</a></strong>, where I share more about how I see life and the values that guide me.</em></p>
+
+      <p><em>If you would like to learn more about my professional background, you are also welcome to visit my <strong><a href={site.linkedInUrl} target="_blank" rel="noopener noreferrer">LinkedIn profile</a></strong>.</em></p>
+
+      <Testimonials lang="en" />
+    </div>
+  </section>
 </BaseLayout>
+
+
+<style>
+  .about-intro-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(250px, .75fr);
+    gap: clamp(30px, 5vw, 68px);
+    align-items: start;
+  }
+
+  .about-rest {
+    margin-top: 38px;
+  }
+
+  @media (max-width: 820px) {
+    .about-intro-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about-rest {
+      margin-top: 30px;
+    }
+  }
+</style>

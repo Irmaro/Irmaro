@@ -69,6 +69,7 @@ The following elements are already implemented:
 - XML sitemap structure
 - Netlify-compatible build configuration
 - Netlify Forms-compatible contact form
+- Netlify Forms email notifications
 
 ### Booking flow
 
@@ -111,9 +112,8 @@ The main remaining items are:
 
 final page content
 final photos and visual assets
-Cal.com booking links
+Cal.com booking links - WiP
 Netlify deployment
-Netlify Forms email notifications
 custom domain connection
 final Privacy Policy
 final Terms

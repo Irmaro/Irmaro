@@ -6,17 +6,17 @@
   --text: #27231C;
   --muted: #6F685D;
 
-  /* IRMARO — kolory marki */
   --brand: #B48643;
   --brand-dark: #896832;
   --brand-light: #E7DAC6;
 
-  /* zieleń tylko do hover na kaflach */
+  /* More green, as requested by Irma */
   --moss: #68705A;
   --moss-dark: #505846;
   --moss-light: #DDE0D4;
+  --moss-extra-light: #E8EAE3;
 
-  /* aliasy zgodności */
+  /* Backwards-compatible aliases — deliberately brown to prevent blue defaults */
   --accent: #B48643;
   --accent-dark: #896832;
   --accent-light: #E7DAC6;
@@ -24,6 +24,7 @@
   --border: #D8D0C3;
 
   --max: 1160px;
+  --copy: 820px;
   --radius: 10px;
   --space-page: clamp(44px, 6vw, 76px);
   --space-section: clamp(38px, 5vw, 64px);
@@ -50,7 +51,7 @@ body {
     "Segoe UI",
     sans-serif;
   font-size: 16px;
-  line-height: 1.58;
+  line-height: 1.62;
 }
 
 a,
@@ -71,19 +72,21 @@ img {
   margin-inline: auto;
 }
 
+.narrow-copy {
+  max-width: var(--copy);
+}
+
 main {
   min-height: 68vh;
 }
 
-.hero,
-.page-hero {
+.page-hero,
+.hero {
   padding: var(--space-page) 0;
 }
 
-.hero {
-  min-height: 58vh;
-  display: grid;
-  align-items: center;
+.editorial-hero {
+  padding-bottom: clamp(36px, 5vw, 58px);
 }
 
 .eyebrow {
@@ -98,49 +101,69 @@ main {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   margin-top: 0;
   color: var(--text);
   font-family: "Arial Narrow", "Aptos Narrow", "Helvetica Neue", sans-serif;
-  font-weight: 600;
-  letter-spacing: .025em;
-  line-height: 1.12;
+  letter-spacing: .022em;
+  line-height: 1.16;
 }
 
 h1 {
-  max-width: 880px;
-  margin-bottom: 16px;
-  font-size: clamp(2.3rem, 5vw, 4.4rem);
-}
-
-.page-hero h1 {
-  font-size: clamp(2.1rem, 4vw, 3.6rem);
+  max-width: 920px;
+  margin-bottom: 20px;
+  font-size: clamp(2rem, 4.2vw, 3.55rem);
+  font-weight: 600;
 }
 
 h2 {
-  font-size: clamp(1.7rem, 3vw, 2.45rem);
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
 }
 
 h3 {
-  font-size: clamp(1.18rem, 2vw, 1.45rem);
+  font-size: clamp(1.18rem, 2vw, 1.48rem);
 }
 
-.lead {
-  max-width: 720px;
-  margin: 0;
-  color: var(--muted);
-  font-size: clamp(1rem, 1.8vw, 1.15rem);
-  line-height: 1.62;
+h4 {
+  margin: 28px 0 12px;
+  font-size: 1.05rem;
+}
+
+p {
+  margin-top: 0;
+}
+
+.editorial-lead {
+  margin-bottom: 18px;
+  color: var(--text);
+  font-size: clamp(1.08rem, 2vw, 1.28rem);
+  line-height: 1.66;
+}
+
+.source-copy > p,
+.editorial-panel p,
+.green-panel p {
+  line-height: 1.72;
+}
+
+.source-copy > p {
+  margin-bottom: 20px;
+}
+
+.source-copy a {
+  color: var(--brand-dark);
+  text-underline-offset: 3px;
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 24px;
+  margin-top: 26px;
 }
 
-/* BUTTONS — zostają brązowe */
+/* Brown remains the primary brand/CTA colour */
 .button,
 a.button,
 a.button:link,
@@ -202,32 +225,67 @@ a.button:focus-visible {
   color: var(--muted);
 }
 
-.link-grid,
-.session-grid {
+/* Green editorial areas: intentionally more visible than v0.3.x */
+.green-panel {
+  padding: clamp(24px, 4vw, 34px);
+  border: 1px solid color-mix(in srgb, var(--moss) 32%, var(--border));
+  border-radius: var(--radius);
+  background: var(--moss-extra-light);
+}
+
+.editorial-panel {
+  margin: 28px 0;
+}
+
+.editorial-panel:not(.green-panel) {
+  padding: clamp(22px, 3vw, 30px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.editorial-panel p:last-child,
+.green-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.service-heading {
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+  margin-bottom: 24px;
+}
+
+.service-heading .eyebrow {
+  margin: 0;
+}
+
+.service-heading h2 {
+  margin: 0;
+}
+
+/* Home and other interactive tiles */
+.link-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
 }
 
 .link-card,
-.session-card {
+.interactive-card {
   border: 1px solid var(--border) !important;
   border-radius: var(--radius);
   background: var(--surface);
   transition:
     background-color .18s ease,
     border-color .18s ease,
-    color .18s ease,
-    box-shadow .18s ease;
+    box-shadow .18s ease,
+    transform .18s ease;
 }
 
-/* HOME CARDS */
-.link-card,
-a.link-card,
-a.link-card:link,
-a.link-card:visited {
+.link-card {
   display: flex;
-  min-height: 210px;
+  min-height: 190px;
   padding: 24px;
   flex-direction: column;
   justify-content: space-between;
@@ -236,70 +294,47 @@ a.link-card:visited {
 }
 
 .link-card:hover,
-.link-card:active,
-a.link-card:hover,
-a.link-card:active {
+.interactive-card:hover {
   border-color: var(--moss-dark) !important;
   background: var(--moss-light) !important;
-  color: var(--text) !important;
-  box-shadow: 0 10px 24px rgba(80, 88, 70, 0.06);
+  box-shadow: 0 10px 24px rgba(80, 88, 70, .07);
 }
 
-.link-card .arrow,
-.link-card:hover .arrow,
-.link-card:active .arrow {
+.link-card:hover {
+  transform: translateY(-2px);
+}
+
+.link-card .arrow {
   color: var(--brand-dark) !important;
   font-size: 1.4rem;
-  text-decoration: none !important;
 }
 
-.link-card:focus-visible {
+.link-card:focus-visible,
+.interactive-card:focus-within {
   outline: 2px solid var(--brand-dark) !important;
   outline-offset: 3px;
 }
 
-/* SESSION CARDS */
+/* Legacy session styles kept for compatibility */
+.session-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
 .session-card {
   min-height: 390px;
   padding: 24px;
   display: flex;
   flex-direction: column;
-}
-
-/* środkowa karta 1:1 nadal delikatnie wyróżniona brązem */
-.session-card:nth-child(2) {
-  border-color: var(--brand-dark) !important;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 
 .session-card:hover {
-  border-color: var(--moss-dark) !important;
-  background: var(--moss-light) !important;
-  box-shadow: 0 10px 24px rgba(80, 88, 70, 0.06);
-}
-
-.session-meta {
-  margin: 0 0 38px;
-  color: var(--brand-dark) !important;
-  font-family: "Arial Narrow", "Aptos Narrow", sans-serif;
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
-
-.session-card h2 {
-  margin-bottom: 14px;
-  font-size: clamp(1.55rem, 2.5vw, 2.15rem);
-}
-
-.session-card p {
-  margin: 0 0 20px;
-  color: var(--muted);
-}
-
-.session-card .session-action {
-  margin-top: auto;
-  padding-top: 20px;
+  border-color: var(--moss-dark);
+  background: var(--moss-light);
 }
 
 .prose {
@@ -325,14 +360,6 @@ a.link-card:active {
   .session-grid {
     grid-template-columns: 1fr;
   }
-
-  .hero {
-    min-height: auto;
-  }
-
-  .session-card {
-    min-height: 0;
-  }
 }
 
 @media (max-width: 600px) {
@@ -346,11 +373,17 @@ a.link-card:active {
   }
 
   h1 {
-    font-size: clamp(2rem, 10vw, 2.8rem);
+    font-size: clamp(1.85rem, 9vw, 2.6rem);
   }
 
+  .green-panel,
+  .editorial-panel:not(.green-panel),
   .link-card,
   .session-card {
     padding: 20px;
+  }
+
+  .service-heading {
+    gap: 10px;
   }
 }

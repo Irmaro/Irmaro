@@ -1,0 +1,48 @@
+---
+import { media } from '../config/media';
+
+interface Props {
+  lang: 'en' | 'pl';
+}
+
+const { lang } = Astro.props;
+---
+
+<figure class="about-portrait">
+  <div class="portrait-frame">
+    <img
+      src={media.aboutPortrait}
+      alt={lang === 'en' ? 'Irma Rosenvik' : 'Irma Rosenvik'}
+      loading="eager"
+      decoding="async"
+    />
+  </div>
+</figure>
+
+<style>
+  .about-portrait {
+    margin: 0;
+    align-self: start;
+  }
+
+  .portrait-frame {
+    padding: 10px;
+    border: 1px solid color-mix(in srgb, var(--moss) 36%, var(--border));
+    border-radius: var(--radius);
+    background: var(--moss-extra-light);
+  }
+
+  .portrait-frame img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center;
+    border-radius: calc(var(--radius) - 4px);
+  }
+
+  @media (max-width: 820px) {
+    .about-portrait {
+      width: min(420px, 100%);
+    }
+  }
+</style>

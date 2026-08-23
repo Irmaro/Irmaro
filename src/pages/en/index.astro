@@ -1,25 +1,62 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import GoldenThought from '../../components/GoldenThought.astro';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Irma Rosenvik',
+  jobTitle: 'Life & Career Coach & Mentor',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Oulu',
+    addressCountry: 'FI',
+  },
+  knowsAbout: [
+    'Life Coaching',
+    'Career Coaching',
+    'Mentoring',
+    'Career Mentoring',
+    'Interview Preparation',
+    'Career Development',
+  ],
+};
 ---
 
 <BaseLayout
-  title="IRMARO | Life & Career Coach & Mentor"
-  description="IRMARO — Life & Career Coach & Mentor."
+  title="Irma Rosenvik | Life & Career Coach & Mentor | Oulu"
+  description="Life coaching, career coaching and mentoring for change, decisions and personal growth. Online and in person in Oulu."
   lang="en"
   pageKey="home"
+  schema={personSchema}
 >
-  <section class="hero">
-    <div class="container">
-      <p class="eyebrow">Life & Career Coach & Mentor</p>
-      <h1>Change begins here.</h1>
-      <p class="lead">
-        A calm space for reflection, decisions and meaningful change — in life and career.
+  <section class="page-hero editorial-hero">
+    <div class="container narrow-copy">
+      <p class="eyebrow">LIFE &amp; CAREER COACH · MENTOR · OULU &amp; ONLINE</p>
+
+      <p class="editorial-lead">
+        <em>Sometimes you reach a point where you feel stuck. You may sense that you want something more, but not yet know how to name it. Your personal or professional goals can feel far away, and the idea of change seems to bring more questions than answers. Perhaps you are unsure where to begin, or simply need a little more trust in yourself and someone who can help you see your situation from a different perspective.</em>
       </p>
 
-      <div class="actions">
-        <a class="button primary" href="/en/book-a-session/">Book a session</a>
-        <a class="button" href="/en/about/">About</a>
+      <p><em>That is often when it helps to create some space — to pause, talk, and explore what genuinely matters to you.</em></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow-copy">
+      <div class="green-panel editorial-panel">
+        <p><em>As a coach, I walk alongside you with attention, empathy and trust in your ability to find your own way forward. Through thoughtful conversation in a safe and supportive space, I help you listen more closely to yourself, name what may be holding you back, recognise your strengths and turn uncertainty into the first meaningful steps.</em></p>
       </div>
+
+      <p><em>Whether you are thinking about career growth, looking for more confidence in your decisions, seeking greater balance, or simply wanting to feel that you have a say in your own life again, I will offer you a calm and trusting space for change.</em></p>
+
+      <p><em>You do not need to have all the answers. You do not need to know exactly where you are going. You only need to be willing to take the first step.</em></p>
+
+      <GoldenThought text="This is your path. Your time. And you are the person who knows your needs best." />
+
+      <p><em>You are welcome to book a coaching session — at your pace, with space for what matters to you. Sometimes one first step is enough to begin a meaningful change.</em></p>
+
+      <GoldenThought text="Sometimes a new path appears only after you take the first step." tone="beige" />
     </div>
   </section>
 
@@ -27,33 +64,30 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <div class="container">
       <div class="section-heading">
         <p class="eyebrow">EXPLORE</p>
-        <h2>Start where it feels most useful.</h2>
+        <h2>Choose where you would like to begin.</h2>
       </div>
 
       <div class="link-grid">
-        <a class="link-card" href="/en/offer/">
+        <a class="link-card interactive-card" href="/en/about/">
           <div>
             <p class="eyebrow">01</p>
-            <h3>Offer</h3>
-            <p>Ways we can work together.</p>
+            <h3>Meet me</h3>
           </div>
           <span class="arrow">→</span>
         </a>
 
-        <a class="link-card" href="/en/book-a-session/">
+        <a class="link-card interactive-card" href="/en/offer/">
           <div>
             <p class="eyebrow">02</p>
-            <h3>Book a session</h3>
-            <p>Choose the format that fits your situation.</p>
+            <h3>Explore how I can support you</h3>
           </div>
           <span class="arrow">→</span>
         </a>
 
-        <a class="link-card" href="/en/perspectives/">
+        <a class="link-card interactive-card" href="/en/contact/">
           <div>
             <p class="eyebrow">03</p>
-            <h3>Perspectives</h3>
-            <p>Reflections on change, work, decisions and development.</p>
+            <h3>Get in touch</h3>
           </div>
           <span class="arrow">→</span>
         </a>

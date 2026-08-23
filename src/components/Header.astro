@@ -51,7 +51,10 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
 
 <header class="site-header">
   <div class="container nav-wrap">
-    <a class="brand" href={routes.home[lang]}>IRMARO</a>
+    <a class="brand" href={routes.home[lang]}>
+      <strong>Irma Rosenvik</strong>
+      <span>Life &amp; Career Coach &amp; Mentor</span>
+    </a>
 
     <div class="right">
       <nav class="nav" data-nav aria-label={isEn ? 'Main navigation' : 'Główna nawigacja'}>
@@ -78,9 +81,7 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
           <img src="/images/flag-pl.svg" alt="" aria-hidden="true" />
           <span>PL</span>
         </a>
-
         <span class="separator">/</span>
-
         <a
           href={isEn ? routes[pageKey].en : otherLangHref}
           class:list={{ active: isEn }}
@@ -127,7 +128,7 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
 
   .nav-wrap {
     position: relative;
-    min-height: 64px;
+    min-height: 68px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -135,12 +136,24 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
   }
 
   .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
     color: var(--text) !important;
     text-decoration: none !important;
+    line-height: 1.05;
+  }
+
+  .brand strong {
     font-family: "Arial Narrow", "Aptos Narrow", sans-serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    letter-spacing: .13em;
+    font-size: 1rem;
+    letter-spacing: .035em;
+  }
+
+  .brand span {
+    color: var(--muted);
+    font-size: .62rem;
+    letter-spacing: .04em;
   }
 
   .right {
@@ -159,7 +172,7 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
   .nav a:link,
   .nav a:visited {
     position: relative;
-    padding: 22px 0 19px;
+    padding: 23px 0 20px;
     color: var(--muted) !important;
     text-decoration: none !important;
     font-size: .88rem;
@@ -177,23 +190,13 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
   }
 
   .nav a:hover,
-  .nav a.active,
-  .nav a:active {
+  .nav a.active {
     color: var(--text) !important;
   }
 
-  /* aktywna strona — ZAWSZE brąz */
   .nav a.active::after,
   .nav a[aria-current="page"]::after {
     background: var(--brand-dark) !important;
-  }
-
-  .nav a:focus,
-  .nav a:focus-visible {
-    color: var(--text) !important;
-    outline: 2px solid var(--brand-dark) !important;
-    outline-offset: 4px;
-    border-radius: 2px;
   }
 
   .language-switch {
@@ -204,13 +207,10 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
     font-size: .78rem;
   }
 
-  .language-switch a,
-  .language-switch a:link,
-  .language-switch a:visited {
+  .language-switch a {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    padding: 4px 0;
     color: var(--muted) !important;
     text-decoration: none !important;
   }
@@ -219,35 +219,23 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
     width: 18px;
     height: 12px;
     object-fit: cover;
-    border: 1px solid rgba(39, 35, 28, .12);
+    border: 1px solid rgba(39,35,28,.12);
     border-radius: 1px;
   }
 
-  /* aktywny język — ZAWSZE brąz */
-  .language-switch a.active,
-  .language-switch a[aria-current="page"] {
+  .language-switch a.active {
     color: var(--text) !important;
     font-weight: 800;
-    text-decoration-line: underline !important;
+    text-decoration: underline !important;
     text-decoration-color: var(--brand-dark) !important;
-    text-decoration-thickness: 1px !important;
     text-underline-offset: 4px;
   }
 
-  .language-switch a:hover,
-  .language-switch a:active {
+  .language-switch a:hover {
     color: var(--brand-dark) !important;
   }
 
-  .language-switch a:focus,
-  .language-switch a:focus-visible {
-    color: var(--text) !important;
-    outline: 2px solid var(--brand-dark) !important;
-    outline-offset: 3px;
-    border-radius: 2px;
-  }
-
-  .language-switch .separator {
+  .separator {
     color: var(--border);
   }
 
@@ -262,18 +250,7 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
     font-size: .82rem;
   }
 
-  .menu-button:hover {
-    border-color: var(--brand-dark);
-    color: var(--brand-dark);
-  }
-
-  .menu-button:focus,
-  .menu-button:focus-visible {
-    outline: 2px solid var(--brand-dark) !important;
-    outline-offset: 3px;
-  }
-
-  @media (max-width: 940px) {
+  @media (max-width: 980px) {
     .menu-button {
       display: inline-flex;
     }
@@ -281,12 +258,13 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
     .nav {
       display: none;
       position: absolute;
-      top: 64px;
+      top: 68px;
       left: 16px;
       right: 16px;
       flex-direction: column;
       align-items: stretch;
-      padding: 14px 18px;
+      gap: 0;
+      padding: 5px 14px;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       background: var(--bg);
@@ -297,22 +275,24 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
       display: flex;
     }
 
-    .nav a {
-      padding: 9px 0;
+    .nav a,
+    .nav a:link,
+    .nav a:visited {
+      padding: 3px 0;
     }
 
     .nav a::after {
-      bottom: 4px;
-    }
-
-    .language-switch {
-      display: flex;
+      bottom: 0;
     }
   }
 
-  @media (max-width: 520px) {
+  @media (max-width: 560px) {
+    .brand span {
+      display: none;
+    }
+
     .right {
-      gap: 10px;
+      gap: 9px;
     }
 
     .language-switch {

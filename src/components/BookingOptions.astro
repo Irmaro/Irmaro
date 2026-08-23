@@ -1,0 +1,244 @@
+---
+import { site } from '../config/site';
+import { bookingContent } from '../content/booking';
+
+interface Props {
+  lang: 'en' | 'pl';
+}
+
+const { lang } = Astro.props;
+const c = bookingContent[lang];
+
+const topicByKey: Record<string, string> = {
+  mentoring: 'mentoring-session',
+  cv: 'cv-review',
+  linkedin: 'linkedin-review',
+  interview: 'interview-preparation',
+};
+
+const contactBase = lang === 'en'
+  ? '/en/contact/'
+  : '/pl/kontakt/';
+
+const packageHref = `${contactBase}?topic=session-package#contact-form`;
+
+const getHref = (actionType: string, key: string) => {
+  if (actionType === 'intro') return site.booking.intro;
+  if (actionType === 'session') return site.booking.session;
+
+  const topic = topicByKey[key] ?? 'other';
+  return `${contactBase}?topic=${topic}#contact-form`;
+};
+
+const isExternal = (actionType: string) =>
+  actionType === 'intro' || actionType === 'session';
+
+const sessionCountLabel = (count: number) => {
+  if (lang === 'en') return 'sessions';
+  return count === 5 ? 'sesji' : 'sesje';
+};
+---
+
+<div class="booking-grid">
+  {
+    c.cards.map((card, index) => (
+      <article class="booking-card interactive-card">
+        <div>
+          <p class="booking-number">{String(index + 1).padStart(2, '0')}</p>
+          <p class="booking-meta"><em>{card.meta}</em></p>
+          <h2><strong><em>{card.title}</em></strong></h2>
+          <p class="booking-copy"><em>{card.description}</em></p>
+        </div>
+
+        <a
+          class="button booking-action"
+          href={getHref(card.actionType, card.key)}
+          target={isExternal(card.actionType) ? '_blank' : undefined}
+          rel={isExternal(card.actionType) ? 'noopener noreferrer' : undefined}
+        >
+          {card.action}
+        </a>
+      </article>
+    ))
+  }
+</div>
+
+<section class="package-section">
+  <div class="package-intro green-panel">
+    <p class="eyebrow">PACKAGES</p>
+    <h2><strong><em>{c.packages.title}</em></strong></h2>
+    <p><em>{c.packages.description}</em></p>
+  </div>
+
+  <div class="package-grid">
+    <article class="package-card interactive-card" data-package-card>
+      <h3><strong><em>{c.packages.coachingLabel}</em></strong></h3>
+
+      <label>
+        <span>{lang === 'en' ? 'Number of sessions' : 'Liczba sesji'}</span>
+        <select data-package-select>
+          {c.packages.coaching.map((item) => (
+            <option value={item.price}>
+              {item.count} {sessionCountLabel(item.count)}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <p class="package-price">
+        <span data-package-price>{c.packages.coaching[0].price}</span> EUR
+      </p>
+
+      <a class="button" href={packageHref}>{c.packages.action}</a>
+    </article>
+
+    <article class="package-card interactive-card" data-package-card>
+      <h3><strong><em>{c.packages.mentoringLabel}</em></strong></h3>
+
+      <label>
+        <span>{lang === 'en' ? 'Number of sessions' : 'Liczba sesji'}</span>
+        <select data-package-select>
+          {c.packages.mentoring.map((item) => (
+            <option value={item.price}>
+              {item.count} {sessionCountLabel(item.count)}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <p class="package-price">
+        <span data-package-price>{c.packages.mentoring[0].price}</span> EUR
+      </p>
+
+      <a class="button" href={packageHref}>{c.packages.action}</a>
+    </article>
+  </div>
+</section>
+
+<script is:inline>
+  document.querySelectorAll('[data-package-card]').forEach((card) => {
+    const select = card.querySelector('[data-package-select]');
+    const price = card.querySelector('[data-package-price]');
+
+    select?.addEventListener('change', () => {
+      if (price) price.textContent = select.value;
+    });
+  });
+</script>
+
+<style>
+  .booking-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .booking-card,
+  .package-card {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  .booking-card {
+    min-height: 420px;
+  }
+
+  .booking-number {
+    margin: 0 0 24px;
+    color: var(--brand-dark);
+    font-family: "Arial Narrow", "Aptos Narrow", sans-serif;
+    font-weight: 800;
+    letter-spacing: .14em;
+  }
+
+  .booking-meta {
+    margin: 0 0 10px;
+    color: var(--brand-dark);
+    font-size: .82rem;
+  }
+
+  .booking-card h2 {
+    margin-bottom: 16px;
+    font-size: clamp(1.3rem, 2vw, 1.7rem);
+  }
+
+  .booking-copy {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .booking-action {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+
+  .package-section {
+    margin-top: 48px;
+  }
+
+  .package-intro {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 16px;
+  }
+
+  .package-intro p:last-child {
+    margin-bottom: 0;
+  }
+
+  .package-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .package-card {
+    gap: 18px;
+  }
+
+  .package-card label {
+    display: grid;
+    gap: 8px;
+    color: var(--muted);
+    font-size: .85rem;
+  }
+
+  .package-card select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+  }
+
+  .package-price {
+    margin: 0;
+    color: var(--moss-dark);
+    font-family: "Arial Narrow", "Aptos Narrow", sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  @media (max-width: 900px) {
+    .booking-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .booking-grid,
+    .package-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .booking-card {
+      min-height: 0;
+    }
+  }
+</style>
