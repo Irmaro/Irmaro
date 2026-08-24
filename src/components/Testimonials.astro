@@ -35,7 +35,7 @@ const c = isEn
         {testimonials.map((item) => (
           <blockquote class="testimonial-card">
             <p class="testimonial-quote">
-              <em>“{item.quote}”</em>
+              “{item.quote}”
             </p>
 
             {(item.author || item.context) && (
@@ -49,7 +49,7 @@ const c = isEn
       </div>
     ) : (
       <div class="testimonial-empty">
-        <p><em>{c.empty}</em></p>
+        <p>{c.empty}</p>
       </div>
     )
   }
@@ -57,8 +57,8 @@ const c = isEn
 
 <style>
   .testimonials-section {
-    margin-top: 54px;
-    padding-top: 38px;
+    margin-top: 18px;
+    padding-top: 16px;
     border-top: 1px solid var(--border);
   }
 
@@ -117,8 +117,8 @@ const c = isEn
     }
 
     .testimonials-section {
-      margin-top: 42px;
-      padding-top: 30px;
+      margin-top: 16px;
+      padding-top: 14px;
     }
   }
 </style>

@@ -28,22 +28,40 @@ const routes: Record<PageKey, { en: string; pl: string }> = {
   terms: { en: '/en/terms/', pl: '/pl/regulamin/' },
 };
 
-const nav: Array<{ key: PageKey; label: string }> = isEn
+const navBeforeOffer = isEn
   ? [
-      { key: 'home', label: 'Home' },
-      { key: 'about', label: 'About' },
-      { key: 'offer', label: 'Offer' },
-      { key: 'booking', label: 'Book a session' },
-      { key: 'perspectives', label: 'Perspectives' },
-      { key: 'contact', label: 'Contact' },
+      { key: 'home' as PageKey, label: 'Home' },
+      { key: 'about' as PageKey, label: 'About' },
     ]
   : [
-      { key: 'home', label: 'Start' },
-      { key: 'about', label: 'O mnie' },
-      { key: 'offer', label: 'Oferta' },
-      { key: 'booking', label: 'Umów sesję' },
-      { key: 'perspectives', label: 'Perspektywy' },
-      { key: 'contact', label: 'Kontakt' },
+      { key: 'home' as PageKey, label: 'Start' },
+      { key: 'about' as PageKey, label: 'O mnie' },
+    ];
+
+const navAfterOffer = isEn
+  ? [
+      { key: 'booking' as PageKey, label: 'Book a session' },
+      { key: 'perspectives' as PageKey, label: 'Perspectives' },
+      { key: 'contact' as PageKey, label: 'Contact' },
+    ]
+  : [
+      { key: 'booking' as PageKey, label: 'Umów sesję' },
+      { key: 'perspectives' as PageKey, label: 'Perspektywy' },
+      { key: 'contact' as PageKey, label: 'Kontakt' },
+    ];
+
+const offerItems = isEn
+  ? [
+      { label: 'Coaching', href: '/en/offer/#coaching' },
+      { label: 'Career mentoring', href: '/en/offer/#career-mentoring' },
+      { label: 'Life mentoring', href: '/en/offer/#life-mentoring' },
+      { label: 'Interview preparation', href: '/en/offer/#interview-preparation' },
+    ]
+  : [
+      { label: 'Coaching', href: '/pl/oferta/#coaching' },
+      { label: 'Mentoring kariery zawodowej', href: '/pl/oferta/#career-mentoring' },
+      { label: 'Mentoring życia', href: '/pl/oferta/#life-mentoring' },
+      { label: 'Przygotowanie do rozmowy rekrutacyjnej', href: '/pl/oferta/#interview-preparation' },
     ];
 
 const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
@@ -59,7 +77,49 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
     <div class="right">
       <nav class="nav" data-nav aria-label={isEn ? 'Main navigation' : 'Główna nawigacja'}>
         {
-          nav.map((item) => (
+          navBeforeOffer.map((item) => (
+            <a
+              href={routes[item.key][lang]}
+              class:list={{ active: item.key === pageKey }}
+              aria-current={item.key === pageKey ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+
+        <div class:list={['nav-offer', { active: pageKey === 'offer' }]} data-offer-menu>
+          <div class="offer-trigger">
+            <a
+              href={routes.offer[lang]}
+              class:list={{ active: pageKey === 'offer' }}
+              aria-current={pageKey === 'offer' ? 'page' : undefined}
+            >
+              {isEn ? 'Offer' : 'Oferta'}
+            </a>
+
+            <button
+              class="offer-toggle"
+              type="button"
+              aria-label={isEn ? 'Show Offer sections' : 'Pokaż sekcje Oferty'}
+              aria-expanded="false"
+              data-offer-toggle
+            >
+              <span aria-hidden="true">⌄</span>
+            </button>
+          </div>
+
+          <div class="offer-submenu" data-offer-submenu>
+            {
+              offerItems.map((item) => (
+                <a href={item.href}>{item.label}</a>
+              ))
+            }
+          </div>
+        </div>
+
+        {
+          navAfterOffer.map((item) => (
             <a
               href={routes[item.key][lang]}
               class:list={{ active: item.key === pageKey }}
@@ -81,7 +141,9 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
           <img src="/images/flag-pl.svg" alt="" aria-hidden="true" />
           <span>PL</span>
         </a>
+
         <span class="separator">/</span>
+
         <a
           href={isEn ? routes[pageKey].en : otherLangHref}
           class:list={{ active: isEn }}
@@ -107,12 +169,22 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
 </header>
 
 <script is:inline>
-  const button = document.querySelector('[data-menu-button]');
+  const menuButton = document.querySelector('[data-menu-button]');
   const nav = document.querySelector('[data-nav]');
+  const offerToggle = document.querySelector('[data-offer-toggle]');
+  const offerMenu = document.querySelector('[data-offer-menu]');
 
-  button?.addEventListener('click', () => {
+  menuButton?.addEventListener('click', () => {
     const isOpen = nav?.classList.toggle('open');
-    button.setAttribute('aria-expanded', String(Boolean(isOpen)));
+    menuButton.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+
+  offerToggle?.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const isOpen = offerMenu?.classList.toggle('submenu-open');
+    offerToggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
   });
 </script>
 
@@ -168,9 +240,8 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
     gap: 18px;
   }
 
-  .nav a,
-  .nav a:link,
-  .nav a:visited {
+  .nav > a,
+  .offer-trigger > a {
     position: relative;
     padding: 23px 0 20px;
     color: var(--muted) !important;
@@ -179,7 +250,8 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
     font-weight: 600;
   }
 
-  .nav a::after {
+  .nav > a::after,
+  .offer-trigger > a::after {
     content: "";
     position: absolute;
     left: 0;
@@ -189,14 +261,83 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
     background: transparent;
   }
 
-  .nav a:hover,
-  .nav a.active {
+  .nav > a:hover,
+  .nav > a.active,
+  .offer-trigger > a:hover,
+  .offer-trigger > a.active {
     color: var(--text) !important;
   }
 
-  .nav a.active::after,
-  .nav a[aria-current="page"]::after {
+  .nav > a.active::after,
+  .nav > a[aria-current="page"]::after,
+  .offer-trigger > a.active::after,
+  .offer-trigger > a[aria-current="page"]::after {
     background: var(--brand-dark) !important;
+  }
+
+  .nav-offer {
+    position: relative;
+  }
+
+  .offer-trigger {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .offer-toggle {
+    display: inline-flex;
+    width: 20px;
+    height: 28px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    color: var(--brand-dark);
+    cursor: pointer;
+    font: inherit;
+    font-size: .9rem;
+    line-height: 1;
+  }
+
+  .offer-submenu {
+    display: none;
+    position: absolute;
+    top: calc(100% - 7px);
+    left: -14px;
+    z-index: 30;
+    width: max-content;
+    min-width: 260px;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    box-shadow: 0 12px 30px rgba(39,35,28,.09);
+  }
+
+  .offer-submenu a {
+    display: block;
+    padding: 7px 10px;
+    border-radius: 4px;
+    color: var(--muted) !important;
+    text-decoration: none !important;
+    font-size: .82rem;
+    line-height: 1.25;
+  }
+
+  .offer-submenu a:hover,
+  .offer-submenu a:focus-visible {
+    background: var(--moss-extra-light);
+    color: var(--moss-dark) !important;
+  }
+
+  @media (min-width: 981px) {
+    .nav-offer:hover .offer-submenu,
+    .nav-offer:focus-within .offer-submenu,
+    .nav-offer.submenu-open .offer-submenu {
+      display: block;
+    }
   }
 
   .language-switch {
@@ -275,14 +416,55 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
       display: flex;
     }
 
-    .nav a,
-    .nav a:link,
-    .nav a:visited {
+    .nav > a,
+    .offer-trigger > a {
       padding: 3px 0;
     }
 
-    .nav a::after {
+    .nav > a::after,
+    .offer-trigger > a::after {
       bottom: 0;
+    }
+
+    .nav-offer {
+      width: 100%;
+    }
+
+    .offer-trigger {
+      justify-content: space-between;
+    }
+
+    .offer-toggle {
+      width: 32px;
+      height: 26px;
+    }
+
+    .offer-submenu {
+      position: static;
+      width: 100%;
+      min-width: 0;
+      margin: 2px 0 3px;
+      padding: 2px 0 2px 12px;
+      border: 0;
+      border-left: 1px solid var(--brand-light);
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .nav-offer.submenu-open .offer-submenu {
+      display: block;
+    }
+
+    .offer-submenu a {
+      padding: 3px 0;
+      font-size: .79rem;
+    }
+
+    .offer-submenu a:hover,
+    .offer-submenu a:focus-visible {
+      background: transparent;
+      color: var(--moss-dark) !important;
     }
   }
 

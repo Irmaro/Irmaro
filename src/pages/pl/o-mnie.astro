@@ -21,24 +21,24 @@ import { site } from '../../config/site';
 
   <section class="section">
     <div class="container about-intro-grid">
-      <div class="source-copy">
+      <div class="source-copy about-intro-copy">
         <p><em>Mam na imię Irma i jestem certyfikowaną coachką. Ukończyłam program szkoleniowy z coachingu w Meritum Coaching School, akredytowany przez International Coaching Federation (ICF). Jestem również specjalistką do spraw HR.</em></p>
 
         <p><em>Te dwa obszary mojej pracy łączą się ze sobą, bo w centrum moich zainteresowań jest człowiek – jego historia, potrzeby, wartości, emocje i prawo do życia w zgodzie ze sobą. Wierzę, że każdy z nas ma w sobie ogromny potencjał, choć czasem potrzebujemy bezpiecznej przestrzeni, uważnej rozmowy i drugiego człowieka, który pomoże nam go dostrzec.</em></p>
+
+        <div class="green-panel editorial-panel">
+        <p><em>Sama przeszłam długą i momentami bardzo wyboistą drogę poszukiwania siebie i budowania siebie na nowo. Od dzieciństwa i dorastania w trybie „bądź czujny”, przez doświadczenie dorosłego dziecka alkoholika (DDA), budowanie własnej rodziny i wychowywanie syna – w tym, jak żartobliwie mówię, najbardziej wymagającą dyscyplinę sportów ekstremalnych, czyli wychowanie nastolatka – aż po własną terapię i terapię rodzinną.</em></p>
+      </div>
+
+        <p><em>Była też emigracja, życie w nowej rzeczywistości i ponowne budowanie kariery zawodowej od zera, w obcym kraju. Były momenty zwątpienia, zmęczenia i konieczności zaczynania od początku. Był pot, łzy i depresja, ale była też ogromna siła, odkrywanie siebie na nowo, uczenie się łagodności wobec samej siebie i odnajdywanie wewnętrznej równowagi.</em></p>
+
+        <p><em>Dziś jestem w miejscu, w którym potrafię celebrować życie – nie dlatego, że jest idealne, ale właśnie dlatego, że wiem, jak wiele może się wydarzyć po drodze. Dlatego naprawdę kocham zmiany!</em></p>
       </div>
 
       <AboutPortrait lang="pl" />
     </div>
 
     <div class="container narrow-copy source-copy about-rest">
-      <div class="green-panel editorial-panel">
-        <p><em>Sama przeszłam długą i momentami bardzo wyboistą drogę poszukiwania siebie i budowania siebie na nowo. Od dzieciństwa i dorastania w trybie „bądź czujny”, przez doświadczenie dorosłego dziecka alkoholika (DDA), budowanie własnej rodziny i wychowywanie syna – w tym, jak żartobliwie mówię, najbardziej wymagającą dyscyplinę sportów ekstremalnych, czyli wychowanie nastolatka – aż po własną terapię i terapię rodzinną.</em></p>
-      </div>
-
-      <p><em>Była też emigracja, życie w nowej rzeczywistości i ponowne budowanie kariery zawodowej od zera, w obcym kraju. Były momenty zwątpienia, zmęczenia i konieczności zaczynania od początku. Był pot, łzy i depresja, ale była też ogromna siła, odkrywanie siebie na nowo, uczenie się łagodności wobec samej siebie i odnajdywanie wewnętrznej równowagi.</em></p>
-
-      <p><em>Dziś jestem w miejscu, w którym potrafię celebrować życie – nie dlatego, że jest idealne, ale właśnie dlatego, że wiem, jak wiele może się wydarzyć po drodze. Dlatego naprawdę kocham zmiany!</em></p>
-
       <div class="green-panel editorial-panel">
         <p><em>I właśnie z tej perspektywy spotykam się z moimi klientami. Bez oceniania. Bez gotowych recept. Z ciekawością, uważnością i przekonaniem, że to Ty jesteś ekspertem od swojego życia.</em></p>
       </div>
@@ -58,22 +58,31 @@ import { site } from '../../config/site';
 <style>
   .about-intro-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(250px, .75fr);
-    gap: clamp(30px, 5vw, 68px);
+    grid-template-columns: minmax(0, 1.55fr) minmax(300px, .85fr);
+    gap: clamp(28px, 4vw, 54px);
     align-items: start;
   }
 
+  .about-intro-copy {
+    max-width: none;
+  }
+
+  .about-intro-copy p:last-child {
+    margin-bottom: 0;
+  }
+
   .about-rest {
-    margin-top: 38px;
+    margin-top: 22px;
   }
 
   @media (max-width: 820px) {
     .about-intro-grid {
       grid-template-columns: 1fr;
+      gap: 24px;
     }
 
     .about-rest {
-      margin-top: 30px;
+      margin-top: 22px;
     }
   }
 </style>

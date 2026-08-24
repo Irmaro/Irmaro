@@ -16,7 +16,7 @@ import GoldenThought from '../../components/GoldenThought.astro';
     </div>
   </section>
 
-  <section class="section">
+  <section class="section offer-anchor" id="coaching">
     <div class="container narrow-copy source-copy">
       <div class="service-heading">
         <p class="eyebrow">01</p>
@@ -44,6 +44,12 @@ import GoldenThought from '../../components/GoldenThought.astro';
       </div>
 
       <div class="key-direction"><GoldenThought text="You choose the direction. I help you see the road more clearly." /></div>
+
+      <div class="offer-booking-cta">
+        <a class="button" href="/en/book-a-session/#booking-coaching">
+          Book a coaching session
+        </a>
+      </div>
     </div>
   </section>
 
@@ -60,7 +66,7 @@ import GoldenThought from '../../components/GoldenThought.astro';
 
       <p><em>I am not a mentor because I have an answer to every question. I am a mentor because I have lived through situations that may, in some way, resemble parts of your story today. If something I have learned can make your path a little easier, calmer or simply less lonely, I am glad to share it.</em></p>
 
-      <div class="green-panel editorial-panel">
+      <div class="green-panel editorial-panel offer-anchor" id="career-mentoring">
         <h3><em><span class="text-underline">Career mentoring — especially for immigrants in Finland</span></em></h3>
 
         <p><em>Moving to another country and rebuilding a career can be an enormous challenge. I know that from experience.</em></p>
@@ -74,9 +80,15 @@ import GoldenThought from '../../components/GoldenThought.astro';
         <p><em>My career mentoring also draws on my HR background. I can help you strengthen your CV and cover letter and show you how to shape your LinkedIn profile so that it becomes a useful part of your job-search strategy.</em></p>
 
         <p><em>I do not promise shortcuts or magic solutions. What I can offer is perspective, practical experience and a thoughtful conversation about options that make sense for you.</em></p>
+
+        <div class="offer-booking-cta">
+          <a class="button" href="/en/book-a-session/#booking-mentoring">
+            Book a mentoring session
+          </a>
+        </div>
       </div>
 
-      <div class="editorial-panel">
+      <div class="editorial-panel offer-anchor" id="interview-preparation">
         <h3><em><span class="text-underline">Interview preparation</span></em></h3>
 
         <p><em>Being invited to an interview is already an achievement. Out of many applicants, someone saw potential in your profile and decided they want to know more.</em></p>
@@ -90,7 +102,13 @@ import GoldenThought from '../../components/GoldenThought.astro';
         <p><em>On the other, I bring my HR and recruitment experience. I share practical guidance on what to pay attention to, how to prepare for common questions, how to talk about your competencies and experience, and how to avoid typical interview traps.</em></p>
       </div>
 
-      <div class="green-panel editorial-panel">
+      <div class="offer-booking-cta offer-booking-cta-between">
+        <a class="button" href="/en/book-a-session/#booking-interview">
+          Book individual interview preparation
+        </a>
+      </div>
+
+      <div class="green-panel editorial-panel offer-anchor" id="life-mentoring">
         <h3><em><span class="text-underline">Life mentoring</span></em></h3>
 
         <p><em>Some of life’s most important lessons cannot be found in a textbook. We can, however, learn from what we have lived through — and sometimes pass that learning on.</em></p>
@@ -112,6 +130,11 @@ import GoldenThought from '../../components/GoldenThought.astro';
         <p><em>My son is now a wonderful, wise and valuable man. I do not know how much of that is because of me, but I know how much he has shaped the person I am today.</em></p>
 
         <p><em>If you want to talk about building a close, respectful and meaningful relationship with your child, I can share what my own experience has taught me.</em></p>
+        <div class="offer-booking-cta">
+          <a class="button" href="/en/book-a-session/#booking-mentoring">
+            Book a mentoring session
+          </a>
+        </div>
       </div>
 
       <GoldenThought text="I do not want to tell you how to live. I want to share what life has taught me — through its turns, mistakes, difficult moments and beautiful discoveries." />
@@ -122,10 +145,35 @@ import GoldenThought from '../../components/GoldenThought.astro';
 </BaseLayout>
 
 <style>
+  .offer-anchor {
+    scroll-margin-top: 92px;
+  }
+
   .text-underline {
     text-decoration: underline;
     text-decoration-color: var(--brand-dark);
     text-decoration-thickness: 1px;
     text-underline-offset: 4px;
   }
+
+  .offer-booking-cta {
+    display: flex;
+    margin-top: 18px;
+  }
+
+  .offer-booking-cta-between {
+    margin: 6px 0 22px;
+  }
+
+  .offer-booking-cta .button {
+    width: fit-content;
+  }
+
+  @media (max-width: 600px) {
+    .offer-booking-cta .button {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
 </style>

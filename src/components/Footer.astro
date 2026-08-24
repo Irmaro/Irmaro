@@ -27,8 +27,7 @@ const nav = isEn
 
 <footer class="site-footer">
   <div class="container footer-main">
-
-    <div class="footer-brand-block">
+    <div class="footer-brand">
       <div class="footer-logo-crop">
         <img
           src={site.logoPath}
@@ -44,11 +43,7 @@ const nav = isEn
         class="footer-nav"
         aria-label={isEn ? 'Footer navigation' : 'Nawigacja w stopce'}
       >
-        {
-          nav.map((item) => (
-            <a href={item.href}>{item.label}</a>
-          ))
-        }
+        {nav.map((item) => <a href={item.href}>{item.label}</a>)}
       </nav>
 
       <div class="footer-meta">
@@ -60,23 +55,11 @@ const nav = isEn
           LinkedIn
         </a>
 
-        <a
-          href={
-            isEn
-              ? '/en/privacy-policy/'
-              : '/pl/polityka-prywatnosci/'
-          }
-        >
+        <a href={isEn ? '/en/privacy-policy/' : '/pl/polityka-prywatnosci/'}>
           {isEn ? 'Privacy Policy' : 'Polityka prywatności'}
         </a>
 
-        <a
-          href={
-            isEn
-              ? '/en/terms/'
-              : '/pl/regulamin/'
-          }
-        >
+        <a href={isEn ? '/en/terms/' : '/pl/regulamin/'}>
           {isEn ? 'Terms' : 'Regulamin'}
         </a>
 
@@ -95,7 +78,6 @@ const nav = isEn
     <div class="footer-copyright">
       © {new Date().getFullYear()} irmaro
     </div>
-
   </div>
 </footer>
 
@@ -108,102 +90,60 @@ const nav = isEn
 
   .footer-main {
     display: grid;
-
-    grid-template-columns:
-      minmax(255px, 390px)
-      1fr;
-
+    grid-template-columns: minmax(220px, 350px) 1fr;
     grid-template-areas:
       "brand nav"
       "tagline copyright";
-
     column-gap: 28px;
-    row-gap: 8px;
-
+    row-gap: 6px;
+    padding-top: 8px;
     align-items: start;
-
-    /* bardzo mały odstęp od kreski */
-    padding-top: 3px;
   }
 
-  /* =========================
-     LOGO
-     ========================= */
-
-  .footer-brand-block {
+  .footer-brand {
     grid-area: brand;
-
     display: flex;
     align-items: flex-start;
-
-    min-width: 0;
   }
 
   /*
-    Oryginalny PNG ma sporo pustego miejsca.
-
-    Kontener usuwa wizualnie ten pusty margines,
-    ale zostawia pełne koło logo.
+    Uses the ORIGINAL logo from site.logoPath.
+    The wrapper crops only the blank pixels inside that PNG.
+    Visible artwork is approx. 25% smaller than the earlier footer version.
   */
-
   .footer-logo-crop {
     position: relative;
-
-    width: 252px;
-    height: 176px;
-
+    width: 156px;
+    height: 112px;
     overflow: hidden;
-
-    /* podciąga całe logo bliżej kreski */
-    margin-top: -14px;
   }
 
   .footer-logo {
     position: absolute;
-
-    top: -12px;
-    left: -43px;
-
-    width: 230px;
+    width: 189px;
     max-width: none;
     height: auto;
-
+    left: -24px;
+    top: -12px;
     display: block;
-    margin: 0;
-
-    transform: translateY(16px);
   }
-
-  /* =========================
-     PRAWA STRONA
-     ========================= */
 
   .footer-right {
     grid-area: nav;
-
     display: flex;
     flex-direction: column;
-
     align-items: flex-end;
     justify-content: flex-start;
-
     gap: 8px;
-
-    /*
-      Menu zaczyna się mniej więcej
-      na wysokości początku widocznego logo.
-    */
-    padding-top: 6px;
+    padding-top: 0;
   }
 
   .footer-nav,
   .footer-meta {
     display: flex;
     flex-wrap: wrap;
-
     justify-content: flex-end;
     align-items: center;
-
     gap: 6px 15px;
   }
 
@@ -211,8 +151,7 @@ const nav = isEn
   .footer-meta a {
     color: var(--muted) !important;
     text-decoration: none !important;
-
-    font-size: 0.78rem;
+    font-size: .78rem;
     font-weight: 600;
     line-height: 1.15;
   }
@@ -225,24 +164,16 @@ const nav = isEn
   .footer-language {
     display: inline-flex;
     align-items: center;
-
     gap: 5px;
-
     color: var(--muted);
-    font-size: 0.78rem;
+    font-size: .78rem;
   }
-
-  /* =========================
-     DOLNA LINIA
-     ========================= */
 
   .footer-tagline,
   .footer-copyright {
     margin: 0;
-
     color: var(--muted);
-
-    font-size: 0.94rem;
+    font-size: .94rem;
     font-weight: 500;
     line-height: 1.15;
   }
@@ -254,67 +185,47 @@ const nav = isEn
 
   .footer-copyright {
     grid-area: copyright;
-
     justify-self: end;
-
     text-align: right;
   }
 
-  /* =========================
-     MOBILE
-     ========================= */
-
   @media (max-width: 900px) {
-    .site-footer {
-      padding-bottom: 6px;
-    }
-
     .footer-main {
       grid-template-columns: 1fr;
-
       grid-template-areas:
         "brand"
         "tagline"
         "nav"
         "copyright";
-
-      row-gap: 8px;
-
-      padding-top: 4px;
+      row-gap: 7px;
+      padding-top: 7px;
     }
 
     .footer-logo-crop {
-      width: 196px;
-      height: 140px;
-
-      margin-top: -10px;
+      width: 126px;
+      height: 81px;
     }
 
     .footer-logo {
+      width: 153px;
+      left: -18px;
       top: -9px;
-      left: -33px;
-
-      width: 240px;
     }
 
     .footer-right {
       align-items: flex-start;
-
-      padding-top: 0;
-
       gap: 6px;
     }
 
     .footer-nav,
     .footer-meta {
       justify-content: flex-start;
-
       gap: 5px 12px;
     }
 
     .footer-tagline,
     .footer-copyright {
-      font-size: 0.9rem;
+      font-size: .9rem;
     }
 
     .footer-copyright {
@@ -325,17 +236,14 @@ const nav = isEn
 
   @media (max-width: 560px) {
     .footer-logo-crop {
-      width: 172px;
-      height: 124px;
-
-      margin-top: -8px;
+      width: 113px;
+      height: 90px;
     }
 
     .footer-logo {
-      top: -7px;
-      left: -29px;
-
-      width: 210px;
+      width: 137px;
+      left: -20px;
+      top: -10px;
     }
   }
 </style>

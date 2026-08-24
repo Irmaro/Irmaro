@@ -21,24 +21,24 @@ import { site } from '../../config/site';
 
   <section class="section">
     <div class="container about-intro-grid">
-      <div class="source-copy">
+      <div class="source-copy about-intro-copy">
         <p><em>My name is Irma and I am a certified coach. I completed my coach training at Meritum Coaching School through a programme accredited by the International Coaching Federation (ICF). I also work as an HR professional.</em></p>
 
         <p><em>These two parts of my professional life naturally belong together because, for me, the person always comes first — their story, needs, values, emotions and their right to build a life that feels true to who they are. I believe there is far more potential in us than we sometimes recognise. At certain moments, what we need most is a safe space, an attentive conversation and another person who can help us see what is already there.</em></p>
+
+        <div class="green-panel editorial-panel">
+        <p><em>My own path has been long, searching and, at times, very uneven. I grew up in a state of constant alertness and later came to understand my experience as an Adult Child of an Alcoholic (ACoA). I built my own family, raised my son — including what I jokingly call the most demanding extreme sport of all: parenting a teenager — and went through both individual and family therapy.</em></p>
+      </div>
+
+        <p><em>There was also emigration: learning to live in a new reality and rebuilding my career from the ground up in another country. There were moments of doubt, exhaustion and having to begin again. There was sweat, there were tears and there was depression. But there was also strength, rediscovering myself, learning to treat myself with more kindness and finding a deeper sense of inner balance.</em></p>
+
+        <p><em>Today I know how to celebrate life — not because it is perfect, but because I know how much can happen along the way. That is one of the reasons I genuinely love change.</em></p>
       </div>
 
       <AboutPortrait lang="en" />
     </div>
 
     <div class="container narrow-copy source-copy about-rest">
-      <div class="green-panel editorial-panel">
-        <p><em>My own path has been long, searching and, at times, very uneven. I grew up in a state of constant alertness and later came to understand my experience as an Adult Child of an Alcoholic (ACoA). I built my own family, raised my son — including what I jokingly call the most demanding extreme sport of all: parenting a teenager — and went through both individual and family therapy.</em></p>
-      </div>
-
-      <p><em>There was also emigration: learning to live in a new reality and rebuilding my career from the ground up in another country. There were moments of doubt, exhaustion and having to begin again. There was sweat, there were tears and there was depression. But there was also strength, rediscovering myself, learning to treat myself with more kindness and finding a deeper sense of inner balance.</em></p>
-
-      <p><em>Today I know how to celebrate life — not because it is perfect, but because I know how much can happen along the way. That is one of the reasons I genuinely love change.</em></p>
-
       <div class="green-panel editorial-panel">
         <p><em>This is the perspective I bring to my work with clients. No judgement. No ready-made answers. Just curiosity, attention and a deep belief that you are the expert on your own life.</em></p>
       </div>
@@ -58,22 +58,31 @@ import { site } from '../../config/site';
 <style>
   .about-intro-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(250px, .75fr);
-    gap: clamp(30px, 5vw, 68px);
+    grid-template-columns: minmax(0, 1.55fr) minmax(300px, .85fr);
+    gap: clamp(28px, 4vw, 54px);
     align-items: start;
   }
 
+  .about-intro-copy {
+    max-width: none;
+  }
+
+  .about-intro-copy p:last-child {
+    margin-bottom: 0;
+  }
+
   .about-rest {
-    margin-top: 38px;
+    margin-top: 22px;
   }
 
   @media (max-width: 820px) {
     .about-intro-grid {
       grid-template-columns: 1fr;
+      gap: 24px;
     }
 
     .about-rest {
-      margin-top: 30px;
+      margin-top: 22px;
     }
   }
 </style>

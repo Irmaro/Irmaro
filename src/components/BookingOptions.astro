@@ -42,7 +42,10 @@ const sessionCountLabel = (count: number) => {
 <div class="booking-grid">
   {
     c.cards.map((card, index) => (
-      <article class="booking-card interactive-card">
+      <article
+        class="booking-card interactive-card booking-anchor"
+        id={`booking-${card.key}`}
+      >
         <div>
           <p class="booking-number">{String(index + 1).padStart(2, '0')}</p>
           <p class="booking-meta"><em>{card.meta}</em></p>
@@ -63,7 +66,7 @@ const sessionCountLabel = (count: number) => {
   }
 </div>
 
-<section class="package-section">
+<section class="package-section booking-anchor" id="booking-packages">
   <div class="package-intro green-panel">
     <p class="eyebrow">PACKAGES</p>
     <h2><strong><em>{c.packages.title}</em></strong></h2>
@@ -127,6 +130,10 @@ const sessionCountLabel = (count: number) => {
 </script>
 
 <style>
+  .booking-anchor {
+    scroll-margin-top: 96px;
+  }
+
   .booking-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
