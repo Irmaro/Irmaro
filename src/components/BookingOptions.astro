@@ -1,7 +1,5 @@
 ---
-import { site } from '../config/site';
 import { bookingContent } from '../content/booking';
-import { bookingLinks } from '../config/bookingLinks';
 
 interface Props {
   lang: 'en' | 'pl';
@@ -10,86 +8,66 @@ interface Props {
 const { lang } = Astro.props;
 const c = bookingContent[lang];
 
+const contactBase = lang === 'en'
+  ? '/en/contact/'
+  : '/pl/kontakt/';
+
 const topicByKey: Record<string, string> = {
+  intro: 'intro-call',
+  coaching: 'coaching-session',
+  mentoring: 'mentoring-session',
   cv: 'cv-review',
   linkedin: 'linkedin-review',
   interview: 'interview-preparation',
 };
 
-const contactBase = lang === 'en'
-  ? '/en/contact/'
-  : '/pl/kontakt/';
+const contactHref = (topic: string, sessions?: number) => {
+  const params = new URLSearchParams({ topic });
 
-const contactHrefFor = (key: string) => {
-  const topic = topicByKey[key] ?? 'other';
-  return `${contactBase}?topic=${topic}#contact-form`;
-};
-
-const directHrefFor = (key: string) => {
-  if (key === 'intro') return site.booking.intro;
-  if (key === 'coaching') return site.booking.session;
-
-  if (key === 'mentoring') {
-    return bookingLinks.mentoringSession || `${contactBase}?topic=mentoring-project#contact-form`;
+  if (sessions) {
+    params.set('sessions', String(sessions));
   }
 
-  return contactHrefFor(key);
+  return `${contactBase}?${params.toString()}#contact-form`;
 };
 
-const isExternalHref = (href: string) =>
-  /^https?:\/\//i.test(href);
+const cardHref = (key: string) =>
+  contactHref(topicByKey[key] ?? 'other');
+
+const packageHref = (
+  kind: 'coaching' | 'mentoring',
+  count: number
+) => contactHref(`${kind}-package`, count);
 
 const sessionCountLabel = (count: number) => {
   if (lang === 'en') return 'sessions';
   return count === 5 ? 'sesji' : 'sesje';
 };
-
-const packageFallback = (kind: 'coaching' | 'mentoring') =>
-  kind === 'coaching'
-    ? `${contactBase}?topic=coaching-project#contact-form`
-    : `${contactBase}?topic=mentoring-project#contact-form`;
-
-const packageHref = (
-  kind: 'coaching' | 'mentoring',
-  count: number
-) => {
-  const links = bookingLinks.packages[kind] as Record<number, string>;
-  return links[count] || packageFallback(kind);
-};
 ---
 
 <div class="booking-grid">
   {
-    c.cards.map((card, index) => {
-      const href = directHrefFor(card.key);
+    c.cards.map((card, index) => (
+      <article
+        class="booking-card interactive-card booking-anchor"
+        id={`booking-${card.key}`}
+      >
+        <div class="booking-card-content">
+          <p class="booking-number">{String(index + 1).padStart(2, '0')}</p>
+          <p class="booking-meta">{card.meta}</p>
+          <h2><strong>{card.title}</strong></h2>
+          <p class="booking-copy">{card.description}</p>
 
-      return (
-        <article
-          class="booking-card interactive-card booking-anchor"
-          id={`booking-${card.key}`}
-        >
-          <div>
-            <p class="booking-number">{String(index + 1).padStart(2, '0')}</p>
-            <p class="booking-meta">{card.meta}</p>
-            <h2><strong>{card.title}</strong></h2>
-            <p class="booking-copy">{card.description}</p>
+          {'note' in card && card.note && (
+            <p class="booking-note">{card.note}</p>
+          )}
+        </div>
 
-            {'note' in card && card.note && (
-              <p class="booking-note">{card.note}</p>
-            )}
-          </div>
-
-          <a
-            class="button booking-action"
-            href={href}
-            target={isExternalHref(href) ? '_blank' : undefined}
-            rel={isExternalHref(href) ? 'noopener noreferrer' : undefined}
-          >
-            {card.action}
-          </a>
-        </article>
-      );
-    })
+        <a class="button booking-action" href={cardHref(card.key)}>
+          {card.action}
+        </a>
+      </article>
+    ))
   }
 </div>
 
@@ -127,10 +105,8 @@ const packageHref = (
         <span data-package-price>{c.packages.coaching[0].price}</span> EUR
       </p>
 
-      <p class="package-payment-note">{c.packages.paymentNote}</p>
-
       <a
-        class="button"
+        class="button package-action"
         data-package-link
         href={packageHref('coaching', c.packages.coaching[0].count)}
       >
@@ -164,10 +140,8 @@ const packageHref = (
         <span data-package-price>{c.packages.mentoring[0].price}</span> EUR
       </p>
 
-      <p class="package-payment-note">{c.packages.paymentNote}</p>
-
       <a
-        class="button"
+        class="button package-action"
         data-package-link
         href={packageHref('mentoring', c.packages.mentoring[0].count)}
       >
@@ -192,14 +166,6 @@ const packageHref = (
 
       if (link && option?.dataset.href) {
         link.setAttribute('href', option.dataset.href);
-
-        if (/^https?:\/\//i.test(option.dataset.href)) {
-          link.setAttribute('target', '_blank');
-          link.setAttribute('rel', 'noopener noreferrer');
-        } else {
-          link.removeAttribute('target');
-          link.removeAttribute('rel');
-        }
       }
     };
 
@@ -213,9 +179,10 @@ const packageHref = (
     scroll-margin-top: 96px;
   }
 
-  .booking-grid {
+  .booking-grid,
+  .package-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 14px;
   }
 
@@ -233,10 +200,10 @@ const packageHref = (
     min-height: 420px;
   }
 
-  .booking-card > div {
+  .booking-card-content {
     display: flex;
-    flex-direction: column;
     flex: 1;
+    flex-direction: column;
   }
 
   .booking-number {
@@ -247,32 +214,38 @@ const packageHref = (
     letter-spacing: .14em;
   }
 
-  .booking-meta {
+  .booking-meta,
+  .package-price {
     margin: 0 0 10px;
     color: var(--brand-dark);
+    font-family: inherit;
     font-size: .82rem;
+    font-weight: 600;
+    line-height: 1.35;
   }
 
   .booking-card h2 {
+    min-height: clamp(4.8rem, 8vw, 6.8rem);
     margin-bottom: 16px;
     font-size: clamp(1.3rem, 2vw, 1.7rem);
   }
 
   .booking-copy {
+    flex: 1;
     margin: 0;
     color: var(--muted);
   }
 
   .booking-note {
-    margin-top: auto;
-    padding-top: 16px;
+    margin: 18px 0 0;
     color: var(--moss-dark);
-    font-size: .8rem;
-    font-weight: 650;
+    font-size: .78rem;
+    font-weight: 500;
+    line-height: 1.5;
   }
 
   .booking-action {
-    margin-top: 16px;
+    margin-top: 18px;
     align-self: flex-start;
   }
 
@@ -283,21 +256,16 @@ const packageHref = (
   .package-intro {
     width: 100%;
     max-width: none;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
   .package-intro p:last-child {
     margin-bottom: 0;
   }
 
-  .package-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-
   .package-card {
     gap: 16px;
+    min-height: 0;
   }
 
   .package-card label {
@@ -317,27 +285,18 @@ const packageHref = (
     font: inherit;
   }
 
-  /* Smaller and less aggressive than before */
   .package-price {
-    margin: 0;
-    color: var(--moss-dark);
-    font-family: inherit;
-    font-size: 1.15rem;
-    font-weight: 700;
-    line-height: 1.25;
+    margin-bottom: 0;
   }
 
-  .package-payment-note {
-    margin: -4px 0 2px;
-    color: var(--moss-dark);
-    font-size: .8rem;
-    line-height: 1.45;
-    font-weight: 700;
+  .package-action {
+    margin-top: auto;
   }
 
   @media (max-width: 900px) {
-    .booking-grid {
-      grid-template-columns: 1fr 1fr;
+    .booking-grid,
+    .package-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
@@ -348,6 +307,10 @@ const packageHref = (
     }
 
     .booking-card {
+      min-height: 0;
+    }
+
+    .booking-card h2 {
       min-height: 0;
     }
   }

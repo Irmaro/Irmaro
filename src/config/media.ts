@@ -1,3 +1,3 @@
 export const media = {
-  aboutPortrait: '/images/o-mnie.jpg',
+  aboutPortrait: '/images/o-mnie.jpeg',
 };

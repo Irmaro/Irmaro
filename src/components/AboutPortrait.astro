@@ -1,43 +1,17 @@
 ---
-import { existsSync, readdirSync } from 'node:fs';
-import { extname, join } from 'node:path';
 import { media } from '../config/media';
 
-const configuredSrc = media.aboutPortrait;
-const normalizedSrc = configuredSrc.replace(/^\/+/, '');
-const configuredFile = join(process.cwd(), 'public', normalizedSrc);
-
-const ignoredNames = /logo|flag|favicon|icon|tree|banner|baner/i;
-
-let portraitSrc = configuredSrc;
-
-if (!existsSync(configuredFile)) {
-  const imagesDir = join(process.cwd(), 'public', 'images');
-
-  try {
-    const files = readdirSync(imagesDir).filter((file) => {
-      const ext = extname(file).toLowerCase();
-      const isImage = ['.jpg', '.jpeg', '.png', '.webp', '.avif'].includes(ext);
-      return isImage && !ignoredNames.test(file);
-    });
-
-    const preferred =
-      files.find((file) => /irma.*(about|portrait)|(?:about|portrait).*irma/i.test(file)) ??
-      files.find((file) => /irma/i.test(file)) ??
-      files.find((file) => /(about|portrait)/i.test(file)) ??
-      files[0];
-
-    if (preferred) {
-      portraitSrc = encodeURI(`/images/${preferred}`);
-    }
-  } catch {
-    portraitSrc = configuredSrc;
-  }
+interface Props {
+  lang: 'en' | 'pl';
 }
+
+Astro.props as Props;
+
+const portraitSrc = media.aboutPortrait;
 ---
 
 <figure class="about-portrait">
-  <div class="portrait-crop">
+  <div class="portrait-circle">
     <img
       src={portraitSrc}
       alt="Irma Rosenvik"
@@ -49,39 +23,32 @@ if (!existsSync(configuredFile)) {
 
 <style>
   .about-portrait {
-    width: 74%;
+    width: 210px;
+    max-width: 100%;
     margin: 0 auto;
-    align-self: start;
   }
 
-  /*
-    Longer portrait: preserve the full head and the lower part
-    of the original photo, including folded arms.
-    Only a small amount of empty wall above the head is removed.
-  */
-  .portrait-crop {
+  .portrait-circle {
     width: 100%;
+    aspect-ratio: 1;
     overflow: hidden;
+    border-radius: 50%;
+    background: var(--surface);
   }
 
-  .portrait-crop img {
+  .portrait-circle img {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
+    object-fit: cover;
 
-    /*
-      Approx. 8% top crop:
-      enough to reduce the empty wall,
-      but much less aggressive than the previous 20% crop.
-    */
-    clip-path: inset(22% 0 0 0);
-    margin-top: -22%;
+    /* LinkedIn-style crop: full head + shoulders, without the large empty wall. */
+    object-position: center 38%;
   }
 
   @media (max-width: 820px) {
     .about-portrait {
-      width: min(340px, 82%);
-      margin: 0 auto;
+      width: 190px;
     }
   }
 </style>
