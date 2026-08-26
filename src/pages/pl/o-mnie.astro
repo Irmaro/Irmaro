@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import GoldenThought from '../../components/GoldenThought.astro';
 import Testimonials from '../../components/Testimonials.astro';
 import AboutPortrait from '../../components/AboutPortrait.astro';
+import LinkedInBanner from '../../components/LinkedInBanner.astro';
 import { site } from '../../config/site';
 ---
 
@@ -15,74 +16,234 @@ import { site } from '../../config/site';
   <section class="page-hero">
     <div class="container narrow-copy">
       <p class="eyebrow">O MNIE</p>
-      <h1><strong><em>Znam smak zmian – i wiem, jak wiele dobrego może się wydarzyć po drodze.</em></strong></h1>
+      <h1>
+        <strong>
+          <em>
+            Znam smak zmian – i wiem, jak wiele dobrego może się wydarzyć po drodze.
+          </em>
+        </strong>
+      </h1>
     </div>
   </section>
 
   <section class="section">
-    <div class="container about-intro-grid">
-      <div class="source-copy about-intro-copy">
-        <p><em>Mam na imię Irma i jestem certyfikowaną coachką. Ukończyłam program szkoleniowy z coachingu w Meritum Coaching School, akredytowany przez International Coaching Federation (ICF). Jestem również specjalistką do spraw HR.</em></p>
+    <div class="container about-layout">
 
-        <p><em>Te dwa obszary mojej pracy łączą się ze sobą, bo w centrum moich zainteresowań jest człowiek – jego historia, potrzeby, wartości, emocje i prawo do życia w zgodzie ze sobą. Wierzę, że każdy z nas ma w sobie ogromny potencjał, choć czasem potrzebujemy bezpiecznej przestrzeni, uważnej rozmowy i drugiego człowieka, który pomoże nam go dostrzec.</em></p>
+      <div class="source-copy about-intro-copy">
+        <p>
+          <em>
+            Mam na imię Irma i jestem certyfikowaną coachką. Ukończyłam program szkoleniowy
+            z coachingu w Meritum Coaching School, akredytowany przez International
+            Coaching Federation (ICF). Jestem również specjalistką do spraw HR.
+          </em>
+        </p>
+
+        <p>
+          <em>
+            Te dwa obszary mojej pracy łączą się ze sobą, bo w centrum moich zainteresowań
+            jest człowiek – jego historia, potrzeby, wartości, emocje i prawo do życia w
+            zgodzie ze sobą. Wierzę, że każdy z nas ma w sobie ogromny potencjał, choć czasem
+            potrzebujemy bezpiecznej przestrzeni, uważnej rozmowy i drugiego człowieka,
+            który pomoże nam go dostrzec.
+          </em>
+        </p>
 
         <div class="green-panel editorial-panel">
-        <p><em>Sama przeszłam długą i momentami bardzo wyboistą drogę poszukiwania siebie i budowania siebie na nowo. Od dzieciństwa i dorastania w trybie „bądź czujny”, przez doświadczenie dorosłego dziecka alkoholika (DDA), budowanie własnej rodziny i wychowywanie syna – w tym, jak żartobliwie mówię, najbardziej wymagającą dyscyplinę sportów ekstremalnych, czyli wychowanie nastolatka – aż po własną terapię i terapię rodzinną.</em></p>
+          <p>
+            <em>
+              Sama przeszłam długą i momentami bardzo wyboistą drogę poszukiwania siebie i
+              budowania siebie na nowo. Od dzieciństwa i dorastania w trybie „bądź czujna”,
+              przez doświadczenie dorosłego dziecka alkoholika (DDA), budowanie własnej
+              rodziny i wychowywanie syna – w tym, jak żartobliwie mówię, najbardziej
+              wymagającą dyscyplinę sportów ekstremalnych, czyli wychowanie nastolatka – aż
+              po własną terapię i terapię rodzinną.
+            </em>
+          </p>
+        </div>
+
+        <p>
+          <em>
+            Była też emigracja, życie w nowej rzeczywistości i ponowne budowanie kariery
+            zawodowej od zera, w obcym kraju. Były momenty zwątpienia, zmęczenia i
+            konieczności zaczynania od początku. Był pot, łzy i depresja, ale była też
+            ogromna siła, odkrywanie siebie na nowo, uczenie się łagodności wobec samej
+            siebie i odnajdywanie wewnętrznej równowagi.
+          </em>
+        </p>
+
+        <p>
+          <em>
+            Dziś jestem w miejscu, w którym potrafię celebrować życie – nie dlatego, że jest
+            idealne, ale właśnie dlatego, że wiem, jak wiele może się wydarzyć po drodze.
+            Dlatego naprawdę kocham zmiany!
+          </em>
+        </p>
       </div>
 
-        <p><em>Była też emigracja, życie w nowej rzeczywistości i ponowne budowanie kariery zawodowej od zera, w obcym kraju. Były momenty zwątpienia, zmęczenia i konieczności zaczynania od początku. Był pot, łzy i depresja, ale była też ogromna siła, odkrywanie siebie na nowo, uczenie się łagodności wobec samej siebie i odnajdywanie wewnętrznej równowagi.</em></p>
-
-        <p><em>Dziś jestem w miejscu, w którym potrafię celebrować życie – nie dlatego, że jest idealne, ale właśnie dlatego, że wiem, jak wiele może się wydarzyć po drodze. Dlatego naprawdę kocham zmiany!</em></p>
+      <div class="about-photo">
+        <AboutPortrait lang="pl" />
       </div>
 
-      <AboutPortrait lang="pl" />
-    </div>
+      <div class="source-copy about-rest">
+        <div class="green-panel editorial-panel">
+          <p>
+            <em>
+              I właśnie z tej perspektywy spotykam się z moimi klientami. Bez oceniania.
+              Bez gotowych recept. Z ciekawością, uważnością i przekonaniem, że to Ty jesteś
+              ekspertem od swojego życia.
+            </em>
+          </p>
+        </div>
 
-    <div class="container narrow-copy source-copy about-rest">
-      <div class="green-panel editorial-panel">
-        <p><em>I właśnie z tej perspektywy spotykam się z moimi klientami. Bez oceniania. Bez gotowych recept. Z ciekawością, uważnością i przekonaniem, że to Ty jesteś ekspertem od swojego życia.</em></p>
+        <GoldenThought
+          text="Niektóre wiadomości potrzebują czasu, żeby wybrzmieć."
+          tone="beige"
+        />
+
+        <p>
+          <em>
+            Jeśli chcesz bliżej mnie poznać, zajrzyj do sekcji
+            <strong><a href="/pl/perspektywy/">„Perspektywy”</a></strong>, aby zobaczyć,
+            jak patrzę na życie i jakimi wartościami kieruję się na co dzień.
+          </em>
+        </p>
+
+        <p>
+          <em>
+            A jeśli chcesz dowiedzieć się więcej o mojej drodze zawodowej, zapraszam Cię
+            również na mój
+            <strong>
+              <a
+                href={site.linkedInUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                profil na LinkedIn
+              </a>
+            </strong>.
+          </em>
+        </p>
+
+        <LinkedInBanner lang="pl" />
+
+        <Testimonials lang="pl" />
       </div>
 
-      <GoldenThought text="Niektóre wiadomości potrzebują czasu, żeby wybrzmieć." tone="beige" />
-
-      <p><em>Jeśli chcesz bliżej mnie poznać, zajrzyj do sekcji <strong><a href="/pl/perspektywy/">„Perspektywy”</a></strong>, aby zobaczyć, jak patrzę na życie i jakimi wartościami kieruję się na co dzień.</em></p>
-
-      <p><em>A jeśli chcesz dowiedzieć się więcej o mojej drodze zawodowej, zapraszam Cię również na mój <strong><a href={site.linkedInUrl} target="_blank" rel="noopener noreferrer">profil na LinkedIn</a></strong>.</em></p>
-
-      <Testimonials lang="pl" />
     </div>
   </section>
 </BaseLayout>
 
-
 <style>
-  .about-intro-grid {
+  /*
+    Jeden grid kontroluje całą sekcję O mnie.
+
+    Desktop:
+    tekst | zdjęcie
+    reszta| pusto
+
+    Dzięki temu dalsza treść zaczyna się dokładnie
+    w tym samym miejscu co tekst powyżej.
+  */
+  .about-layout {
+    --about-photo-width: 290px;
+    --about-gap: clamp(28px, 3vw, 44px);
+
     display: grid;
-    grid-template-columns: minmax(0, 1.55fr) minmax(300px, .85fr);
-    gap: clamp(28px, 4vw, 54px);
+    grid-template-columns: minmax(0, 1fr) var(--about-photo-width);
+    grid-template-areas:
+      "intro photo"
+      "rest  .";
+    column-gap: var(--about-gap);
+    row-gap: 34px;
     align-items: start;
   }
 
   .about-intro-copy {
-    max-width: none;
+    grid-area: intro;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
   }
 
-  .about-intro-copy p:last-child {
-    margin-bottom: 0;
+  .about-photo {
+    grid-area: photo;
+    min-width: 0;
+    align-self: start;
   }
 
   .about-rest {
-    margin-top: 22px;
+    grid-area: rest;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .about-intro-copy > p,
+  .about-intro-copy > .green-panel,
+  .about-rest > p,
+  .about-rest > .green-panel {
+    margin: 0;
+  }
+
+  .about-intro-copy .green-panel p,
+  .about-rest .green-panel p {
+    margin: 0;
+  }
+
+  /*
+    Baner pozostaje wyrównany do lewej krawędzi tekstu.
+    Jego komponent odpowiada za szerokość 75%.
+  */
+  .about-rest :global(.linkedin-banner) {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  /*
+    Złota myśl ma być częścią tej samej kolumny tekstowej,
+    a nie osobnym blokiem uciekającym do środka.
+  */
+  .about-rest :global(.golden-thought) {
+    width: 100%;
+    max-width: none;
+    margin: 10px 0;
+  }
+
+  /*
+    Opinie zachowują większy odstęp od historii O mnie.
+  */
+  .about-rest :global(.testimonials-section) {
+    margin-top: 30px;
+  }
+
+  @media (max-width: 980px) {
+    .about-layout {
+      --about-photo-width: 250px;
+      --about-gap: 30px;
+    }
   }
 
   @media (max-width: 820px) {
-    .about-intro-grid {
+    .about-layout {
       grid-template-columns: 1fr;
-      gap: 24px;
+      grid-template-areas:
+        "intro"
+        "photo"
+        "rest";
+      gap: 28px;
+    }
+
+    .about-photo {
+      justify-self: center;
+      width: 100%;
     }
 
     .about-rest {
-      margin-top: 22px;
+      gap: 24px;
     }
   }
 </style>

@@ -100,12 +100,13 @@ import GoldenThought from '../../components/GoldenThought.astro';
         <p><em>On one side, we work on you: your confidence, the way you talk about your strengths and experience, and how you communicate your value without trying to become someone you are not.</em></p>
 
         <p><em>On the other, I bring my HR and recruitment experience. I share practical guidance on what to pay attention to, how to prepare for common questions, how to talk about your competencies and experience, and how to avoid typical interview traps.</em></p>
-      </div>
 
-      <div class="offer-booking-cta offer-booking-cta-between">
-        <a class="button" href="/en/book-a-session/#booking-interview">
-          Book individual interview preparation
-        </a>
+
+        <div class="offer-booking-cta offer-booking-cta-inline">
+          <a class="button" href="/en/book-a-session/#booking-interview">
+            Book individual interview preparation
+          </a>
+        </div>
       </div>
 
       <div class="green-panel editorial-panel offer-anchor" id="life-mentoring">
@@ -150,10 +151,7 @@ import GoldenThought from '../../components/GoldenThought.astro';
   }
 
   .text-underline {
-    text-decoration: underline;
-    text-decoration-color: var(--brand-dark);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 4px;
+    text-decoration: none;
   }
 
   .offer-booking-cta {
@@ -163,6 +161,10 @@ import GoldenThought from '../../components/GoldenThought.astro';
 
   .offer-booking-cta-between {
     margin: 6px 0 22px;
+  }
+
+  .offer-booking-cta-inline {
+    margin-top: 18px;
   }
 
   .offer-booking-cta .button {

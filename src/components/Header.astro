@@ -40,12 +40,12 @@ const navBeforeOffer = isEn
 
 const navAfterOffer = isEn
   ? [
-      { key: 'booking' as PageKey, label: 'Book a session' },
+      { key: 'booking' as PageKey, label: 'Work with me' },
       { key: 'perspectives' as PageKey, label: 'Perspectives' },
       { key: 'contact' as PageKey, label: 'Contact' },
     ]
   : [
-      { key: 'booking' as PageKey, label: 'Umów sesję' },
+      { key: 'booking' as PageKey, label: 'Współpraca' },
       { key: 'perspectives' as PageKey, label: 'Perspektywy' },
       { key: 'contact' as PageKey, label: 'Kontakt' },
     ];
@@ -71,7 +71,7 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
   <div class="container nav-wrap">
     <a class="brand" href={routes.home[lang]}>
       <strong>Irma Rosenvik</strong>
-      <span>Life &amp; Career Coach &amp; Mentor</span>
+      <span>Life &amp; Career Coach · Mentor</span>
     </a>
 
     <div class="right">
@@ -246,7 +246,7 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
     padding: 23px 0 20px;
     color: var(--muted) !important;
     text-decoration: none !important;
-    font-size: .88rem;
+    font-size: .84rem;
     font-weight: 600;
   }
 

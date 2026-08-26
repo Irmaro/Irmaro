@@ -13,32 +13,40 @@ const { text, tone = 'green' } = Astro.props;
 
 <style>
   .golden-thought {
-    max-width: 860px;
-    margin: 34px 0;
-    padding: 28px 32px;
-    border-left: 3px solid var(--moss-dark);
-    border-radius: 0 var(--radius) var(--radius) 0;
+    width: min(100%, 920px);
+    margin: 40px auto;
+    padding: 30px 36px;
+
+    border: 1px solid color-mix(in srgb, var(--moss) 42%, var(--border));
+    border-left: 4px solid var(--moss-dark);
+    border-radius: var(--radius);
+
+    box-shadow: 0 8px 24px rgba(39, 35, 28, .045);
   }
 
   .tone-green {
-    background: var(--moss-light);
+    background: color-mix(in srgb, var(--moss-light) 78%, var(--bg));
   }
 
   .tone-beige {
-    background: var(--surface-2);
+    background: color-mix(in srgb, var(--surface-2) 84%, var(--bg));
+    border-color: color-mix(in srgb, var(--brand) 38%, var(--border));
     border-left-color: var(--brand-dark);
   }
 
   .golden-thought p {
     margin: 0;
     color: var(--text);
-    font-size: clamp(1.08rem, 2vw, 1.32rem);
-    line-height: 1.55;
+    font-size: clamp(1.08rem, 2vw, 1.3rem);
+    line-height: 1.6;
+    text-align: left;
+    text-wrap: balance;
   }
 
   @media (max-width: 600px) {
     .golden-thought {
-      padding: 22px 20px;
+      margin: 30px auto;
+      padding: 24px 22px;
     }
   }
 </style>

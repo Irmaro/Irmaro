@@ -1,0 +1,54 @@
+---
+import { site } from '../config/site';
+
+interface Props {
+  lang: 'en' | 'pl';
+}
+
+const { lang } = Astro.props;
+const isEn = lang === 'en';
+---
+
+<a
+  class="linkedin-banner"
+  href={site.linkedInUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={isEn ? 'Visit Irma Rosenvik on LinkedIn' : 'Zobacz profil Irmy Rosenvik na LinkedIn'}
+>
+  <img
+    src="/images/LI%20baner.png"
+    alt={isEn ? 'Irma Rosenvik — LinkedIn banner' : 'Irma Rosenvik — baner LinkedIn'}
+    loading="lazy"
+  />
+</a>
+
+<style>
+  .linkedin-banner {
+    display: block;
+    width: 75%;
+    max-width: 760px;
+    margin: 34px 0 0;
+    overflow: hidden;
+    border-radius: 6px;
+    text-decoration: none;
+  }
+
+  .linkedin-banner img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+
+  .linkedin-banner:hover img {
+    transform: scale(1.008);
+    opacity: .97;
+  }
+
+  @media (max-width: 700px) {
+    .linkedin-banner {
+      width: 100%;
+    }
+  }
+</style>

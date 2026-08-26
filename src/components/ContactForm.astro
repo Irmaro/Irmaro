@@ -12,8 +12,8 @@ const c = isEn
       topicPlaceholder: 'Choose a topic',
 
       coachingProject: 'Individual coaching project quotation',
-      mentoringSession: 'Mentoring session enquiry',
-      sessionPackage: 'Coaching or mentoring session package',
+      mentoringProject: 'Individual mentoring project quotation',
+      
       cvReview: 'CV and cover letter review',
       linkedinReview: 'LinkedIn profile review',
       interviewPreparation: 'Individual interview preparation',
@@ -52,11 +52,11 @@ const c = isEn
       topicPlaceholder: 'Wybierz temat',
 
       coachingProject: 'Indywidualna wycena projektu coachingowego',
-      mentoringSession: 'Zapytanie o sesję mentoringową',
-      sessionPackage: 'Pakiet sesji coachingowych lub mentoringowych',
+      mentoringProject: 'Indywidualna wycena projektu mentoringowego',
+      
       cvReview: 'Analiza CV i listu motywacyjnego',
       linkedinReview: 'Analiza profilu na LinkedIn',
-      interviewPreparation: 'Indywidualne przygotowanie do interview',
+      interviewPreparation: 'Indywidualne przygotowanie do rozmowy kwalifikacyjnej',
       other: 'Inny temat / zostaw dane kontaktowe',
 
       name: 'Imię*',
@@ -90,8 +90,7 @@ const c = isEn
 
 const topicOptions = [
   { value: 'coaching-project', label: c.coachingProject },
-  { value: 'mentoring-session', label: c.mentoringSession },
-  { value: 'session-package', label: c.sessionPackage },
+  { value: 'mentoring-project', label: c.mentoringProject },
   { value: 'cv-review', label: c.cvReview },
   { value: 'linkedin-review', label: c.linkedinReview },
   { value: 'interview-preparation', label: c.interviewPreparation },
@@ -248,8 +247,7 @@ const topicOptions = [
 
   const allowedTopics = new Set([
     'coaching-project',
-    'mentoring-session',
-    'session-package',
+    'mentoring-project',
     'cv-review',
     'linkedin-review',
     'interview-preparation',

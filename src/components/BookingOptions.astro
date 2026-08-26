@@ -1,6 +1,7 @@
 ---
 import { site } from '../config/site';
 import { bookingContent } from '../content/booking';
+import { bookingLinks } from '../config/bookingLinks';
 
 interface Props {
   lang: 'en' | 'pl';
@@ -10,7 +11,6 @@ const { lang } = Astro.props;
 const c = bookingContent[lang];
 
 const topicByKey: Record<string, string> = {
-  mentoring: 'mentoring-session',
   cv: 'cv-review',
   linkedin: 'linkedin-review',
   interview: 'interview-preparation',
@@ -20,68 +20,103 @@ const contactBase = lang === 'en'
   ? '/en/contact/'
   : '/pl/kontakt/';
 
-const packageHref = `${contactBase}?topic=session-package#contact-form`;
-
-const getHref = (actionType: string, key: string) => {
-  if (actionType === 'intro') return site.booking.intro;
-  if (actionType === 'session') return site.booking.session;
-
+const contactHrefFor = (key: string) => {
   const topic = topicByKey[key] ?? 'other';
   return `${contactBase}?topic=${topic}#contact-form`;
 };
 
-const isExternal = (actionType: string) =>
-  actionType === 'intro' || actionType === 'session';
+const directHrefFor = (key: string) => {
+  if (key === 'intro') return site.booking.intro;
+  if (key === 'coaching') return site.booking.session;
+
+  if (key === 'mentoring') {
+    return bookingLinks.mentoringSession || `${contactBase}?topic=mentoring-project#contact-form`;
+  }
+
+  return contactHrefFor(key);
+};
+
+const isExternalHref = (href: string) =>
+  /^https?:\/\//i.test(href);
 
 const sessionCountLabel = (count: number) => {
   if (lang === 'en') return 'sessions';
   return count === 5 ? 'sesji' : 'sesje';
 };
+
+const packageFallback = (kind: 'coaching' | 'mentoring') =>
+  kind === 'coaching'
+    ? `${contactBase}?topic=coaching-project#contact-form`
+    : `${contactBase}?topic=mentoring-project#contact-form`;
+
+const packageHref = (
+  kind: 'coaching' | 'mentoring',
+  count: number
+) => {
+  const links = bookingLinks.packages[kind] as Record<number, string>;
+  return links[count] || packageFallback(kind);
+};
 ---
 
 <div class="booking-grid">
   {
-    c.cards.map((card, index) => (
-      <article
-        class="booking-card interactive-card booking-anchor"
-        id={`booking-${card.key}`}
-      >
-        <div>
-          <p class="booking-number">{String(index + 1).padStart(2, '0')}</p>
-          <p class="booking-meta"><em>{card.meta}</em></p>
-          <h2><strong><em>{card.title}</em></strong></h2>
-          <p class="booking-copy"><em>{card.description}</em></p>
-        </div>
+    c.cards.map((card, index) => {
+      const href = directHrefFor(card.key);
 
-        <a
-          class="button booking-action"
-          href={getHref(card.actionType, card.key)}
-          target={isExternal(card.actionType) ? '_blank' : undefined}
-          rel={isExternal(card.actionType) ? 'noopener noreferrer' : undefined}
+      return (
+        <article
+          class="booking-card interactive-card booking-anchor"
+          id={`booking-${card.key}`}
         >
-          {card.action}
-        </a>
-      </article>
-    ))
+          <div>
+            <p class="booking-number">{String(index + 1).padStart(2, '0')}</p>
+            <p class="booking-meta">{card.meta}</p>
+            <h2><strong>{card.title}</strong></h2>
+            <p class="booking-copy">{card.description}</p>
+
+            {'note' in card && card.note && (
+              <p class="booking-note">{card.note}</p>
+            )}
+          </div>
+
+          <a
+            class="button booking-action"
+            href={href}
+            target={isExternalHref(href) ? '_blank' : undefined}
+            rel={isExternalHref(href) ? 'noopener noreferrer' : undefined}
+          >
+            {card.action}
+          </a>
+        </article>
+      );
+    })
   }
 </div>
 
 <section class="package-section booking-anchor" id="booking-packages">
   <div class="package-intro green-panel">
-    <p class="eyebrow">PACKAGES</p>
-    <h2><strong><em>{c.packages.title}</em></strong></h2>
-    <p><em>{c.packages.description}</em></p>
+    <p class="eyebrow">{c.packages.eyebrow}</p>
+    <h2><strong>{c.packages.title}</strong></h2>
+    <p>{c.packages.description}</p>
   </div>
 
   <div class="package-grid">
-    <article class="package-card interactive-card" data-package-card>
-      <h3><strong><em>{c.packages.coachingLabel}</em></strong></h3>
+    <article
+      class="package-card interactive-card"
+      data-package-card
+      data-kind="coaching"
+    >
+      <h3><strong>{c.packages.coachingLabel}</strong></h3>
 
       <label>
         <span>{lang === 'en' ? 'Number of sessions' : 'Liczba sesji'}</span>
         <select data-package-select>
           {c.packages.coaching.map((item) => (
-            <option value={item.price}>
+            <option
+              value={item.count}
+              data-price={item.price}
+              data-href={packageHref('coaching', item.count)}
+            >
               {item.count} {sessionCountLabel(item.count)}
             </option>
           ))}
@@ -92,17 +127,33 @@ const sessionCountLabel = (count: number) => {
         <span data-package-price>{c.packages.coaching[0].price}</span> EUR
       </p>
 
-      <a class="button" href={packageHref}>{c.packages.action}</a>
+      <p class="package-payment-note">{c.packages.paymentNote}</p>
+
+      <a
+        class="button"
+        data-package-link
+        href={packageHref('coaching', c.packages.coaching[0].count)}
+      >
+        {c.packages.action}
+      </a>
     </article>
 
-    <article class="package-card interactive-card" data-package-card>
-      <h3><strong><em>{c.packages.mentoringLabel}</em></strong></h3>
+    <article
+      class="package-card interactive-card"
+      data-package-card
+      data-kind="mentoring"
+    >
+      <h3><strong>{c.packages.mentoringLabel}</strong></h3>
 
       <label>
         <span>{lang === 'en' ? 'Number of sessions' : 'Liczba sesji'}</span>
         <select data-package-select>
           {c.packages.mentoring.map((item) => (
-            <option value={item.price}>
+            <option
+              value={item.count}
+              data-price={item.price}
+              data-href={packageHref('mentoring', item.count)}
+            >
               {item.count} {sessionCountLabel(item.count)}
             </option>
           ))}
@@ -113,7 +164,15 @@ const sessionCountLabel = (count: number) => {
         <span data-package-price>{c.packages.mentoring[0].price}</span> EUR
       </p>
 
-      <a class="button" href={packageHref}>{c.packages.action}</a>
+      <p class="package-payment-note">{c.packages.paymentNote}</p>
+
+      <a
+        class="button"
+        data-package-link
+        href={packageHref('mentoring', c.packages.mentoring[0].count)}
+      >
+        {c.packages.action}
+      </a>
     </article>
   </div>
 </section>
@@ -122,10 +181,30 @@ const sessionCountLabel = (count: number) => {
   document.querySelectorAll('[data-package-card]').forEach((card) => {
     const select = card.querySelector('[data-package-select]');
     const price = card.querySelector('[data-package-price]');
+    const link = card.querySelector('[data-package-link]');
 
-    select?.addEventListener('change', () => {
-      if (price) price.textContent = select.value;
-    });
+    const updatePackage = () => {
+      const option = select?.selectedOptions?.[0];
+
+      if (price && option?.dataset.price) {
+        price.textContent = option.dataset.price;
+      }
+
+      if (link && option?.dataset.href) {
+        link.setAttribute('href', option.dataset.href);
+
+        if (/^https?:\/\//i.test(option.dataset.href)) {
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+        } else {
+          link.removeAttribute('target');
+          link.removeAttribute('rel');
+        }
+      }
+    };
+
+    select?.addEventListener('change', updatePackage);
+    updatePackage();
   });
 </script>
 
@@ -154,6 +233,12 @@ const sessionCountLabel = (count: number) => {
     min-height: 420px;
   }
 
+  .booking-card > div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
   .booking-number {
     margin: 0 0 24px;
     color: var(--brand-dark);
@@ -178,8 +263,16 @@ const sessionCountLabel = (count: number) => {
     color: var(--muted);
   }
 
-  .booking-action {
+  .booking-note {
     margin-top: auto;
+    padding-top: 16px;
+    color: var(--moss-dark);
+    font-size: .8rem;
+    font-weight: 650;
+  }
+
+  .booking-action {
+    margin-top: 16px;
     align-self: flex-start;
   }
 
@@ -204,7 +297,7 @@ const sessionCountLabel = (count: number) => {
   }
 
   .package-card {
-    gap: 18px;
+    gap: 16px;
   }
 
   .package-card label {
@@ -224,12 +317,22 @@ const sessionCountLabel = (count: number) => {
     font: inherit;
   }
 
+  /* Smaller and less aggressive than before */
   .package-price {
     margin: 0;
     color: var(--moss-dark);
-    font-family: "Arial Narrow", "Aptos Narrow", sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
+    font-family: inherit;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .package-payment-note {
+    margin: -4px 0 2px;
+    color: var(--moss-dark);
+    font-size: .8rem;
+    line-height: 1.45;
+    font-weight: 700;
   }
 
   @media (max-width: 900px) {

@@ -100,12 +100,13 @@ import GoldenThought from '../../components/GoldenThought.astro';
         <p><em>Z jednej strony pracujemy nad Tobą – Twoją pewnością siebie, sposobem mówienia o swoich mocnych stronach i doświadczeniu oraz nad tym, jak pokazać swoją wartość.</em></p>
 
         <p><em>Z drugiej strony dzielę się moim doświadczeniem z obszaru HR i rekrutacji. Podpowiadam, na co zwrócić uwagę podczas rozmowy, jak przygotować się do typowych pytań, jak mówić o swoich kompetencjach i doświadczeniu oraz jak uniknąć najczęstszych pułapek.</em></p>
-      </div>
 
-      <div class="offer-booking-cta offer-booking-cta-between">
-        <a class="button" href="/pl/umow-sesje/#booking-interview">
-          Umów indywidualne przygotowanie do rozmowy kwalifikacyjnej
-        </a>
+
+        <div class="offer-booking-cta offer-booking-cta-inline">
+          <a class="button" href="/pl/umow-sesje/#booking-interview">
+            Umów indywidualne przygotowanie do rozmowy kwalifikacyjnej
+          </a>
+        </div>
       </div>
 
       <div class="green-panel editorial-panel offer-anchor" id="life-mentoring">
@@ -119,13 +120,13 @@ import GoldenThought from '../../components/GoldenThought.astro';
 
         <p><em>To ważna część mojej historii, ale dziś wiem, że nie jest całą moją historią i nie definiuje ani mnie, ani mojego życia.</em></p>
 
-        <p><em>Chcę tutaj podkreślić bardzo ważną rzecz: ani coaching, ani mentoring nie zastępują psychoterapii, która może być Ci potrzebna, a dla mnie była niezbędna i kluczowa na drodze zdrowienia. Jeśli potrzebujesz psychoterapii, zachęcam Cię do skorzystania z profesjonalnej pomocy lekarza.</em></p>
+        <p><em>Chcę tutaj podkreślić bardzo ważną rzecz: ani coaching, ani mentoring nie zastępują psychoterapii, która może być Ci potrzebna, a dla mnie była niezbędna i kluczowa na drodze zdrowienia. Jeśli potrzebujesz psychoterapii, zachęcam Cię do skorzystania z profesjonalnego wsparcia wykwalifikowanego specjalisty.</em></p>
 
         <p><em>To, co ja mogę Ci w tym obszarze zaoferować, to zrozumienie z perspektywy kogoś, kto sam przeszedł tę drogę i podzielenie się moim doświadczeniem. Opowiem Ci o tym, jak krok po kroku budowałam siebie na nowo i jak doszłam do miejsca, w którym DDA jest ważną częścią mojej historii, ale tylko częścią, oraz jak nauczyłam się celebrować moje życie.</em></p>
 
         <h4><em><span class="text-underline">- Mądre rodzicielstwo</span></em></h4>
 
-        <p><em>Rodzicielstwo, szczególnie w okresie nastoletnim, to prawdziwa jazda bez trzymanki. Życie w trybie „przetrwać i nie zwariować”, z całą masą zasad i granic wciąż stawianych od nowa i regularnie przekraczanych przez wyprowadzanych z równowagi emocjonalnej członków rodziny. Ale to też budowanie relacji, która albo może być źródłem stresu, frustracji, samotności i cierpienia, albo może być źródłem czegoś niezwykle pięknego: bliskości, zaufania, wzajemnego szacunku, czerpania z siebie nawzajem, bezwarunkowej, czystej miłości i przyjaźni na długo po „opuszczeniu gniazda”.</em></p>
+        <p><em>Rodzicielstwo, szczególnie w okresie nastoletnim, to prawdziwa jazda bez trzymanki. Życie w trybie „przetrwać i nie zwariować”, z całą masą zasad i granic wciąż stawianych od nowa i regularnie przekraczanych przez wyprowadzanych z równowagi emocjonalnej członków rodziny. Ale to też budowanie relacji, która albo może być źródłem stresu, frustracji, samotności i cierpienia, albo może być źródłem czegoś niezwykle pięknego: bliskości, zaufania, wzajemnego szacunku, czerpania od siebie nawzajem, bezwarunkowej, czystej miłości i przyjaźni na długo po „opuszczeniu gniazda”.</em></p>
 
         <p><em>Mój syn jest dzisiaj wspaniałym, mądrym i wartościowym mężczyzną. Nie wiem, jak wielki mam w tym udział, ale wiem, jak wielki udział On ma w tym, kim ja jestem dzisiaj.</em></p>
 
@@ -151,10 +152,7 @@ import GoldenThought from '../../components/GoldenThought.astro';
   }
 
   .text-underline {
-    text-decoration: underline;
-    text-decoration-color: var(--brand-dark);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 4px;
+    text-decoration: none;
   }
 
   .offer-booking-cta {
@@ -164,6 +162,10 @@ import GoldenThought from '../../components/GoldenThought.astro';
 
   .offer-booking-cta-between {
     margin: 6px 0 22px;
+  }
+
+  .offer-booking-cta-inline {
+    margin-top: 18px;
   }
 
   .offer-booking-cta .button {
