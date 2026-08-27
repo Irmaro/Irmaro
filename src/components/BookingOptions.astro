@@ -41,7 +41,10 @@ const packageHref = (
 
 const sessionCountLabel = (count: number) => {
   if (lang === 'en') return 'sessions';
-  return count === 5 ? 'sesji' : 'sesje';
+
+  return count === 5
+    ? 'sesji'
+    : 'sesje';
 };
 ---
 
@@ -53,17 +56,33 @@ const sessionCountLabel = (count: number) => {
         id={`booking-${card.key}`}
       >
         <div class="booking-card-content">
-          <p class="booking-number">{String(index + 1).padStart(2, '0')}</p>
-          <p class="booking-meta">{card.meta}</p>
-          <h2><strong>{card.title}</strong></h2>
-          <p class="booking-copy">{card.description}</p>
+          <p class="booking-number">
+            {String(index + 1).padStart(2, '0')}
+          </p>
+
+          <p class="booking-meta">
+            {card.meta}
+          </p>
+
+          <h2>
+            <strong>{card.title}</strong>
+          </h2>
+
+          <p class="booking-copy">
+            {card.description}
+          </p>
 
           {'note' in card && card.note && (
-            <p class="booking-note">{card.note}</p>
+            <p class="booking-note">
+              {card.note}
+            </p>
           )}
         </div>
 
-        <a class="button booking-action" href={cardHref(card.key)}>
+        <a
+          class="button booking-action"
+          href={cardHref(card.key)}
+        >
           {card.action}
         </a>
       </article>
@@ -71,134 +90,231 @@ const sessionCountLabel = (count: number) => {
   }
 </div>
 
-<section class="package-section booking-anchor" id="booking-packages">
+
+<section
+  class="package-section booking-anchor"
+  id="booking-packages"
+>
   <div class="package-intro green-panel">
-    <p class="eyebrow">{c.packages.eyebrow}</p>
-    <h2><strong>{c.packages.title}</strong></h2>
-    <p>{c.packages.description}</p>
+    <p class="eyebrow">
+      {c.packages.eyebrow}
+    </p>
+
+    <h2>
+      <strong>{c.packages.title}</strong>
+    </h2>
+
+    <p>
+      {c.packages.description}
+    </p>
   </div>
 
+
   <div class="package-grid">
+
+    <!-- COACHING PACKAGE -->
     <article
       class="package-card interactive-card"
       data-package-card
       data-kind="coaching"
     >
-      <h3><strong>{c.packages.coachingLabel}</strong></h3>
+      <h3>
+        <strong>{c.packages.coachingLabel}</strong>
+      </h3>
 
       <label>
-        <span>{lang === 'en' ? 'Number of sessions' : 'Liczba sesji'}</span>
+        <span>
+          {lang === 'en'
+            ? 'Number of sessions'
+            : 'Liczba sesji'}
+        </span>
+
         <select data-package-select>
-          {c.packages.coaching.map((item) => (
-            <option
-              value={item.count}
-              data-price={item.price}
-              data-href={packageHref('coaching', item.count)}
-            >
-              {item.count} {sessionCountLabel(item.count)}
-            </option>
-          ))}
+          {
+            c.packages.coaching.map((item) => (
+              <option
+                value={item.count}
+                data-price={item.price}
+                data-href={packageHref(
+                  'coaching',
+                  item.count
+                )}
+              >
+                {item.count}
+                {' '}
+                {sessionCountLabel(item.count)}
+              </option>
+            ))
+          }
         </select>
       </label>
 
       <p class="package-price">
-        <span data-package-price>{c.packages.coaching[0].price}</span> EUR
+        <span data-package-price>
+          {c.packages.coaching[0].price}
+        </span>
+        {' '}
+        EUR
       </p>
 
       <a
         class="button package-action"
         data-package-link
-        href={packageHref('coaching', c.packages.coaching[0].count)}
+        href={packageHref(
+          'coaching',
+          c.packages.coaching[0].count
+        )}
       >
         {c.packages.action}
       </a>
     </article>
 
+
+    <!-- MENTORING PACKAGE -->
     <article
       class="package-card interactive-card"
       data-package-card
       data-kind="mentoring"
     >
-      <h3><strong>{c.packages.mentoringLabel}</strong></h3>
+      <h3>
+        <strong>{c.packages.mentoringLabel}</strong>
+      </h3>
 
       <label>
-        <span>{lang === 'en' ? 'Number of sessions' : 'Liczba sesji'}</span>
+        <span>
+          {lang === 'en'
+            ? 'Number of sessions'
+            : 'Liczba sesji'}
+        </span>
+
         <select data-package-select>
-          {c.packages.mentoring.map((item) => (
-            <option
-              value={item.count}
-              data-price={item.price}
-              data-href={packageHref('mentoring', item.count)}
-            >
-              {item.count} {sessionCountLabel(item.count)}
-            </option>
-          ))}
+          {
+            c.packages.mentoring.map((item) => (
+              <option
+                value={item.count}
+                data-price={item.price}
+                data-href={packageHref(
+                  'mentoring',
+                  item.count
+                )}
+              >
+                {item.count}
+                {' '}
+                {sessionCountLabel(item.count)}
+              </option>
+            ))
+          }
         </select>
       </label>
 
       <p class="package-price">
-        <span data-package-price>{c.packages.mentoring[0].price}</span> EUR
+        <span data-package-price>
+          {c.packages.mentoring[0].price}
+        </span>
+        {' '}
+        EUR
       </p>
 
       <a
         class="button package-action"
         data-package-link
-        href={packageHref('mentoring', c.packages.mentoring[0].count)}
+        href={packageHref(
+          'mentoring',
+          c.packages.mentoring[0].count
+        )}
       >
         {c.packages.action}
       </a>
     </article>
+
   </div>
 </section>
 
+
 <script is:inline>
-  document.querySelectorAll('[data-package-card]').forEach((card) => {
-    const select = card.querySelector('[data-package-select]');
-    const price = card.querySelector('[data-package-price]');
-    const link = card.querySelector('[data-package-link]');
+  document
+    .querySelectorAll('[data-package-card]')
+    .forEach((card) => {
 
-    const updatePackage = () => {
-      const option = select?.selectedOptions?.[0];
+      const select =
+        card.querySelector('[data-package-select]');
 
-      if (price && option?.dataset.price) {
-        price.textContent = option.dataset.price;
-      }
+      const price =
+        card.querySelector('[data-package-price]');
 
-      if (link && option?.dataset.href) {
-        link.setAttribute('href', option.dataset.href);
-      }
-    };
+      const link =
+        card.querySelector('[data-package-link]');
 
-    select?.addEventListener('change', updatePackage);
-    updatePackage();
-  });
+      const updatePackage = () => {
+        const option =
+          select?.selectedOptions?.[0];
+
+        if (
+          price &&
+          option?.dataset.price
+        ) {
+          price.textContent =
+            option.dataset.price;
+        }
+
+        if (
+          link &&
+          option?.dataset.href
+        ) {
+          link.setAttribute(
+            'href',
+            option.dataset.href
+          );
+        }
+      };
+
+      select?.addEventListener(
+        'change',
+        updatePackage
+      );
+
+      updatePackage();
+    });
 </script>
+
 
 <style>
   .booking-anchor {
     scroll-margin-top: 96px;
   }
 
+
+  /* ==========================================================
+     MAIN SERVICE CARDS
+     ========================================================== */
+
   .booking-grid,
   .package-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
     gap: 14px;
   }
+
 
   .booking-card,
   .package-card {
     display: flex;
     flex-direction: column;
+
     padding: 24px;
+
     border: 1px solid var(--border);
     border-radius: var(--radius);
+
     background: var(--surface);
   }
+
 
   .booking-card {
     min-height: 420px;
   }
+
 
   .booking-card-content {
     display: flex;
@@ -206,99 +322,188 @@ const sessionCountLabel = (count: number) => {
     flex-direction: column;
   }
 
+
   .booking-number {
     margin: 0 0 24px;
+
     color: var(--brand-dark);
-    font-family: "Arial Narrow", "Aptos Narrow", sans-serif;
+
+    font-family:
+      "Arial Narrow",
+      "Aptos Narrow",
+      sans-serif;
+
     font-weight: 800;
     letter-spacing: .14em;
   }
 
+
   .booking-meta,
   .package-price {
     margin: 0 0 10px;
+
     color: var(--brand-dark);
+
     font-family: inherit;
     font-size: .82rem;
     font-weight: 600;
     line-height: 1.35;
   }
 
+
+  /*
+    Dzięki minimalnej wysokości wszystkie opisy
+    kart 01–06 zaczynają się na podobnym poziomie.
+  */
   .booking-card h2 {
-    min-height: clamp(4.8rem, 8vw, 6.8rem);
+    min-height:
+      clamp(4.8rem, 8vw, 6.8rem);
+
     margin-bottom: 16px;
-    font-size: clamp(1.3rem, 2vw, 1.7rem);
+
+    font-size:
+      clamp(1.3rem, 2vw, 1.7rem);
   }
+
 
   .booking-copy {
     flex: 1;
+
     margin: 0;
+
     color: var(--muted);
   }
 
+
   .booking-note {
     margin: 18px 0 0;
+
     color: var(--moss-dark);
+
     font-size: .78rem;
     font-weight: 500;
     line-height: 1.5;
   }
 
+
+  /*
+    Naturalna szerokość przycisku.
+    Nie rozciągamy go na szerokość kafelka.
+  */
   .booking-action {
     margin-top: 18px;
     align-self: flex-start;
+    width: auto;
   }
+
+
+
+  /* ==========================================================
+     PACKAGES
+     ========================================================== */
 
   .package-section {
     margin-top: 48px;
   }
 
+
   .package-intro {
     width: 100%;
     max-width: none;
+
     margin-bottom: 14px;
   }
+
 
   .package-intro p:last-child {
     margin-bottom: 0;
   }
+
+
+  /*
+    Nadal używamy siatki 3-kolumnowej,
+    aby pakiety miały dokładnie taką samą
+    szerokość jak kafelki 01–06.
+  */
+  .package-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
 
   .package-card {
     gap: 16px;
     min-height: 0;
   }
 
+
   .package-card label {
     display: grid;
     gap: 8px;
+
     color: var(--muted);
+
     font-size: .85rem;
   }
 
+
   .package-card select {
     width: 100%;
+
     padding: 10px 12px;
+
     border: 1px solid var(--border);
     border-radius: 4px;
+
     background: var(--bg);
     color: var(--text);
+
     font: inherit;
   }
+
 
   .package-price {
     margin-bottom: 0;
   }
 
+
+  /*
+    NAJWAŻNIEJSZA ZMIANA:
+
+    przycisk pakietu zachowuje dokładnie
+    tę samą naturalną szerokość co "Zapytaj"
+    w pojedynczych usługach.
+
+    Nie rozciąga się na całą kartę.
+  */
   .package-action {
-    margin-top: auto;
+    width: auto;
+    max-width: max-content;
+
+    margin-top: 2px;
+
+    align-self: flex-start;
   }
+
+
+
+  /* ==========================================================
+     TABLET
+     ========================================================== */
 
   @media (max-width: 900px) {
     .booking-grid,
     .package-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
     }
   }
+
+
+
+  /* ==========================================================
+     MOBILE
+     ========================================================== */
 
   @media (max-width: 700px) {
     .booking-grid,
@@ -306,9 +511,11 @@ const sessionCountLabel = (count: number) => {
       grid-template-columns: 1fr;
     }
 
+
     .booking-card {
       min-height: 0;
     }
+
 
     .booking-card h2 {
       min-height: 0;
