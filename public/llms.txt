@@ -1,1 +1,35 @@
-/    /en/    302!
+# IRMARO
+
+> Life & Career Coach · Mentor · Oulu & Online
+
+IRMARO is the website of Irma Rosenvik, a certified coach, mentor and HR professional based in Oulu, Finland.
+
+## English
+- /en/ — Home
+- /en/about/ — About Irma
+- /en/offer/ — Coaching, mentoring and career support
+- /en/book-a-session/ — Work with me
+- /en/perspectives/ — Perspectives and articles
+- /en/contact/ — Contact
+- /en/privacy-policy/ — Privacy Policy
+- /en/terms/ — Terms
+
+### English perspectives
+- /en/perspectives/what-coaching-means-to-me/
+- /en/perspectives/emotional-account/
+- /en/perspectives/wise-love/
+
+## Polish
+- /pl/ — Start
+- /pl/o-mnie/ — O mnie
+- /pl/oferta/ — Oferta
+- /pl/umow-sesje/ — Współpraca
+- /pl/perspektywy/ — Perspektywy
+- /pl/kontakt/ — Kontakt
+- /pl/polityka-prywatnosci/ — Polityka prywatności
+- /pl/regulamin/ — Regulamin
+
+### Polskie perspektywy
+- /pl/perspektywy/co-coaching-znaczy-dla-mnie/
+- /pl/perspektywy/konto-emocjonalne/
+- /pl/perspektywy/madra-milosc/

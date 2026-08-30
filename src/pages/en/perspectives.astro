@@ -1,14 +1,81 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PerspectiveCard from '../../components/PerspectiveCard.astro';
+import { perspectives } from '../../content/perspectives';
 ---
-<BaseLayout title="Perspectives | IRMARO" lang="en" pageKey="perspectives">
-  <section class="page-hero"><div class="container">
-    <p class="eyebrow">PERSPECTIVES</p>
-    <h1>Perspectives</h1>
-    <p class="lead">Reflections, ideas and observations on change, career, decisions and development.</p>
 
-    <div class="placeholder">
-      Articles will appear here.
+<BaseLayout
+  title="Perspectives | IRMARO"
+  description="Irma Rosenvik's reflections on coaching, relationships, change, love and the experiences that help us understand ourselves and others more deeply."
+  lang="en"
+  pageKey="perspectives"
+>
+  <section class="page-hero perspectives-hero">
+    <div class="container narrow-copy">
+      <p class="eyebrow">PERSPECTIVES</p>
+      <h1><strong>Thoughts worth pausing with for a moment.</strong></h1>
+      <p class="lead">
+        Reflections on change, relationships, coaching and everyday experiences
+        that can look different when we give ourselves enough space to really see them.
+      </p>
     </div>
-  </div></section>
+  </section>
+
+  <section class="section perspectives-section">
+    <div class="container perspectives-grid">
+      {perspectives.en.map((article) => (
+        <PerspectiveCard {...article} lang="en" />
+      ))}
+    </div>
+  </section>
+
+  <section class="section more-to-come">
+    <div class="container narrow-copy">
+      <p class="eyebrow">MORE TO COME</p>
+      <p class="continuation">
+        This space is only beginning. New pieces will appear whenever there is
+        something worth pausing with — a question, an experience, or a perspective
+        that invites a closer look.
+      </p>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .perspectives-hero .lead {
+    max-width: 760px;
+    color: var(--muted);
+    font-size: 1.08rem;
+  }
+
+  .perspectives-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .perspectives-section {
+    padding-top: 0;
+  }
+
+  .more-to-come {
+    padding: 26px 0 30px;
+    background: var(--moss-extra-light);
+  }
+
+  .more-to-come .narrow-copy {
+    max-width: 720px;
+  }
+
+  .continuation {
+    max-width: 680px;
+    margin: 0;
+    font-size: clamp(1rem, 1.8vw, 1.28rem);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 760px) {
+    .perspectives-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

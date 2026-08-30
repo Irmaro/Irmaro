@@ -8,7 +8,6 @@ export const bookingContent = {
         meta: '30 min · EUR 0',
         description: 'A calm 30-minute conversation where we can get to know each other, talk about what you need and see whether coaching or mentoring feels like the right form of support. No obligation — simply a chance to meet.',
         action: 'Enquire',
-        actionType: 'intro',
       },
       {
         key: 'coaching',
@@ -16,7 +15,6 @@ export const bookingContent = {
         meta: '60–80 min · EUR 95',
         description: 'Is there something that needs your attention right now? A one-off coaching session gives you space to pause, untangle your thoughts and listen more closely for your own answers.',
         action: 'Enquire',
-        actionType: 'session',
         note: 'I usually offer sessions on Mondays, Tuesdays and Fridays at 19:00, and on Saturdays at 9:00 and 16:00 (Finnish time). We can meet in person in Oulu — location to be agreed — online or by phone. Send me an enquiry through the form and we’ll find a suitable time.',
       },
       {
@@ -25,7 +23,6 @@ export const bookingContent = {
         meta: '60–80 min · EUR 115',
         description: 'Bring a topic where my experience and perspective may be useful. I will share knowledge, practical guidance and lessons from my own experience that may help you look at your situation differently.',
         action: 'Enquire',
-        actionType: 'mentoring',
         note: 'I usually offer sessions on Mondays, Tuesdays and Fridays at 19:00, and on Saturdays at 9:00 and 16:00 (Finnish time). We can meet in person in Oulu — location to be agreed — online or by phone. Send me an enquiry through the form and we’ll find a suitable time.',
       },
       {
@@ -34,7 +31,6 @@ export const bookingContent = {
         meta: 'EUR 50',
         description: 'Your CV is often your first meeting with a potential employer. Let’s make sure it tells your professional story well. I will review your documents from an HR perspective and show you how to communicate your experience, strengths and value more clearly.',
         action: 'Enquire',
-        actionType: 'contact',
       },
       {
         key: 'linkedin',
@@ -42,7 +38,6 @@ export const bookingContent = {
         meta: 'EUR 50',
         description: 'Your LinkedIn profile can be much more than an online business card. I will look at it through a recruiter’s eyes and suggest how to make it communicate more clearly who you are and what you can offer.',
         action: 'Enquire',
-        actionType: 'contact',
       },
       {
         key: 'interview',
@@ -50,7 +45,6 @@ export const bookingContent = {
         meta: '90–150 min · EUR 250',
         description: 'Have you got an interview coming up? Let’s prepare so that you can walk into it with more calm, confidence and awareness of your value. We will combine a coaching approach with my experience in HR and recruitment.',
         action: 'Enquire',
-        actionType: 'contact',
       },
     ],
     packages: {
@@ -85,7 +79,6 @@ export const bookingContent = {
         meta: '30 min · 0 EUR',
         description: '30 minut spokojnej rozmowy, podczas której poznam Twoje potrzeby i razem sprawdzimy, czy coaching lub mentoring będzie dla Ciebie odpowiednią formą wsparcia. Bez zobowiązań – po prostu poznajmy się.',
         action: 'Zapytaj',
-        actionType: 'intro',
       },
       {
         key: 'coaching',
@@ -93,7 +86,6 @@ export const bookingContent = {
         meta: '60–80 min · 95 EUR',
         description: 'Masz temat, który potrzebuje Twojej uwagi właśnie teraz? Umów pojedynczą, około 60-minutową sesję i daj sobie przestrzeń na zatrzymanie, uporządkowanie myśli i znalezienie własnych odpowiedzi.',
         action: 'Zapytaj',
-        actionType: 'session',
         note: 'Sesje zwykle prowadzę w poniedziałki, wtorki i piątki o 19:00 oraz w soboty o 9:00 i 16:00 (czas fiński). Możemy spotkać się stacjonarnie w Oulu — miejsce ustalimy indywidualnie — online albo telefonicznie. Wyślij zapytanie przez formularz, a wspólnie ustalimy dogodny termin.',
       },
       {
@@ -102,7 +94,6 @@ export const bookingContent = {
         meta: '60–80 min · 115 EUR',
         description: 'Skorzystaj z mojego doświadczenia i perspektywy w obszarze, który jest dla Ciebie ważny. Podzielę się wiedzą, praktycznymi wskazówkami i własnymi doświadczeniami, które mogą pomóc Ci spojrzeć na swoją sytuację z nowej strony.',
         action: 'Zapytaj',
-        actionType: 'mentoring',
         note: 'Sesje zwykle prowadzę w poniedziałki, wtorki i piątki o 19:00 oraz w soboty o 9:00 i 16:00 (czas fiński). Możemy spotkać się stacjonarnie w Oulu — miejsce ustalimy indywidualnie — online albo telefonicznie. Wyślij zapytanie przez formularz, a wspólnie ustalimy dogodny termin.',
       },
       {
@@ -111,7 +102,6 @@ export const bookingContent = {
         meta: '50 EUR',
         description: 'Twoje CV to pierwsze spotkanie z potencjalnym pracodawcą – zadbajmy o to, aby dobrze opowiadało Twoją historię. Przyjrzę się Twoim dokumentom z perspektywy HR i podpowiem, jak lepiej pokazać Twoje doświadczenie, kompetencje i wartość.',
         action: 'Zapytaj',
-        actionType: 'contact',
       },
       {
         key: 'linkedin',
@@ -119,7 +109,6 @@ export const bookingContent = {
         meta: '50 EUR',
         description: 'Twój profil na LinkedIn może być czymś więcej niż zawodową wizytówką. Pomogę Ci spojrzeć na niego oczami rekrutera i podpowiem, jak sprawić, aby lepiej pokazywał, kim jesteś i co możesz zaoferować.',
         action: 'Zapytaj',
-        actionType: 'contact',
       },
       {
         key: 'interview',
@@ -127,7 +116,6 @@ export const bookingContent = {
         meta: '90–150 min · 250 EUR',
         description: 'Masz przed sobą rozmowę kwalifikacyjną? Przygotujmy Cię tak, abyś mógł wejść na nią z większym spokojem, pewnością siebie i świadomością swojej wartości. Połączymy coachingowe wsparcie z moim doświadczeniem w HR i rekrutacji.',
         action: 'Zapytaj',
-        actionType: 'contact',
       },
     ],
     packages: {

@@ -122,3 +122,19 @@ Google Search Console
 Bing Webmaster Tools
 
 Additional functionality can be introduced later if required.
+
+## Update 2026-08-30
+
+This version is based on `irmaro-current-2026-08-30.zip`.
+
+Included:
+- Perspectives articles in PL/EN with Irma's supplied graphics.
+- Article-specific PL/EN language switching.
+- English titles `Emotional Account` and `Wise Love`.
+- Terms and Privacy Policy in PL/EN, without duplicate in-page language links.
+- Testimonials in PL/EN with confidentiality note and balanced five-card layout.
+- Work-with-me cards aligned so descriptions start at the same vertical position.
+- Homepage editorial text no longer uses framed panels; only Golden Thoughts remain framed.
+- Einstein quote and the moved "Some things need time..." Golden Thought on the homepage.
+- About and Offer editorial copy changed from boxed panels to open text sections.
+- Legacy Cal.com configuration and unused booking files removed.

@@ -1,0 +1,125 @@
+---
+interface Props {
+  lang: 'pl' | 'en';
+  title: string;
+  lead: string;
+  image: string;
+  imageAlt: string;
+}
+
+const { lang, title, lead, image, imageAlt } = Astro.props;
+
+const backLabel = lang === 'pl'
+  ? '← Wróć do Perspektyw'
+  : '← Back to Perspectives';
+
+const backHref = lang === 'pl'
+  ? '/pl/perspektywy/'
+  : '/en/perspectives/';
+---
+
+<article class="perspective-article">
+  <header class="article-hero">
+    <div class="container article-copy">
+      <p class="eyebrow">{lang === 'pl' ? 'PERSPEKTYWY' : 'PERSPECTIVES'}</p>
+      <h1><strong>{title}</strong></h1>
+      <p class="article-lead">{lead}</p>
+    </div>
+  </header>
+
+  <div class="container article-cover-wrap">
+    <img
+      class="article-cover"
+      src={image}
+      alt={imageAlt}
+      loading="eager"
+      decoding="async"
+    />
+  </div>
+
+  <div class="section article-section">
+    <div class="container article-copy article-body">
+      <slot />
+
+      <div class="article-footer">
+        <a href={backHref}>{backLabel}</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+  .article-hero {
+    padding: var(--space-page) 0 clamp(30px, 5vw, 52px);
+  }
+
+  .article-copy {
+    max-width: 800px;
+  }
+
+  .article-hero h1 {
+    max-width: 800px;
+    margin-bottom: 20px;
+  }
+
+  .article-lead {
+    max-width: 720px;
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(1.08rem, 2vw, 1.3rem);
+    line-height: 1.7;
+  }
+
+  .article-cover-wrap {
+    max-width: 1180px;
+  }
+
+  .article-cover {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border: 1px solid var(--border);
+  }
+
+  .article-section {
+    padding-top: clamp(34px, 5vw, 58px);
+  }
+
+  .article-body {
+    font-size: 1.04rem;
+  }
+
+  .article-body :global(p) {
+    margin: 0 0 24px;
+    line-height: 1.82;
+  }
+
+  .article-body :global(.article-opening) {
+    margin-bottom: 30px;
+    color: var(--text);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.4;
+  }
+
+  .article-body :global(.article-emphasis) {
+    margin: 42px 0;
+    padding: 26px 30px;
+    border-left: 3px solid var(--brand-dark);
+    background: var(--surface);
+    font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+    line-height: 1.55;
+  }
+
+  .article-footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .article-footer a {
+    color: var(--moss-dark) !important;
+    font-weight: 800;
+    text-decoration: none;
+  }
+</style>

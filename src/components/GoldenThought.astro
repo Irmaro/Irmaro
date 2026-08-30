@@ -2,13 +2,15 @@
 interface Props {
   text: string;
   tone?: 'green' | 'beige';
+  attribution?: string;
 }
 
-const { text, tone = 'green' } = Astro.props;
+const { text, tone = 'green', attribution } = Astro.props;
 ---
 
 <aside class:list={['golden-thought', `tone-${tone}`]}>
   <p><strong><em>{text}</em></strong></p>
+  {attribution && <footer>— {attribution}</footer>}
 </aside>
 
 <style>
@@ -41,6 +43,14 @@ const { text, tone = 'green' } = Astro.props;
     line-height: 1.6;
     text-align: left;
     text-wrap: balance;
+  }
+
+  .golden-thought footer {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: .86rem;
+    font-style: normal;
+    text-align: right;
   }
 
   @media (max-width: 600px) {

@@ -1,0 +1,131 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  lead: string;
+  href: string;
+  image: string;
+  imageAlt: string;
+  lang: 'pl' | 'en';
+}
+
+const { number, title, lead, href, image, imageAlt, lang } = Astro.props;
+const readMore = lang === 'pl' ? 'Czytaj dalej' : 'Read more';
+const label = lang === 'pl' ? 'PERSPEKTYWA' : 'PERSPECTIVE';
+---
+
+<article class="perspective-card">
+  <a class="perspective-image-link" href={href} aria-label={`${readMore}: ${title}`}>
+    <img
+      class="perspective-image"
+      src={image}
+      alt={imageAlt}
+      loading="lazy"
+      decoding="async"
+    />
+  </a>
+
+  <div class="perspective-content">
+    <div>
+      <p class="perspective-meta">{label} {number}</p>
+      <h2><a href={href}>{title}</a></h2>
+      <p class="perspective-lead">{lead}</p>
+    </div>
+
+    <a class="perspective-link" href={href}>
+      {readMore} <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</article>
+
+<style>
+  .perspective-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    transition:
+      background-color .18s ease,
+      border-color .18s ease,
+      transform .18s ease;
+  }
+
+  .perspective-card:hover {
+    border-color: var(--moss);
+    background: color-mix(in srgb, var(--moss-extra-light) 35%, var(--bg));
+  }
+
+  .perspective-image-link {
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .perspective-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform .25s ease;
+  }
+
+  .perspective-card:hover .perspective-image {
+    transform: scale(1.012);
+  }
+
+  .perspective-content {
+    display: flex;
+    min-height: 330px;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(24px, 3vw, 36px);
+  }
+
+  .perspective-meta {
+    margin: 0 0 24px;
+    color: var(--brand-dark);
+    font-family: "Arial Narrow", "Aptos Narrow", "Helvetica Neue", sans-serif;
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+  }
+
+  .perspective-card h2 {
+    margin-bottom: 20px;
+    font-size: clamp(1.65rem, 3vw, 2.35rem);
+    font-weight: 700;
+  }
+
+  .perspective-card h2 a {
+    color: var(--text) !important;
+    text-decoration: none;
+  }
+
+  .perspective-lead {
+    margin: 0;
+    color: var(--muted);
+    font-size: .98rem;
+    line-height: 1.7;
+  }
+
+  .perspective-link {
+    margin-top: 34px;
+    color: var(--moss-dark) !important;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .perspective-link span {
+    color: var(--brand-dark);
+  }
+
+  @media (max-width: 760px) {
+    .perspective-content {
+      min-height: 0;
+    }
+  }
+</style>

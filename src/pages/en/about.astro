@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import GoldenThought from '../../components/GoldenThought.astro';
 import Testimonials from '../../components/Testimonials.astro';
 import AboutPortrait from '../../components/AboutPortrait.astro';
 import LinkedInBanner from '../../components/LinkedInBanner.astro';
@@ -27,7 +26,7 @@ import { site } from '../../config/site';
 
         <p><em>These two parts of my professional life naturally belong together because, for me, the person always comes first — their story, needs, values, emotions and their right to build a life that feels true to who they are. I believe there is far more potential in us than we sometimes recognise. At certain moments, what we need most is a safe space, an attentive conversation and another person who can help us see what is already there.</em></p>
 
-        <div class="green-panel editorial-panel">
+        <div class="about-text-block">
           <p><em>My own path has been long, searching and, at times, very uneven. I grew up in a state of constant alertness and later came to understand my experience as an Adult Child of an Alcoholic (ACoA). I built my own family, raised my son — including what I jokingly call the most demanding extreme sport of all: parenting a teenager — and went through both individual and family therapy.</em></p>
         </div>
 
@@ -37,11 +36,9 @@ import { site } from '../../config/site';
       </div>
 
       <div class="source-copy about-rest">
-          <div class="green-panel editorial-panel">
+          <div class="about-text-block">
             <p><em>This is the perspective I bring to my work with clients. No judgement. No ready-made answers. Just curiosity, attention and a deep belief that you are the expert on your own life.</em></p>
           </div>
-
-          <GoldenThought text="Some things need time before their meaning can truly settle." tone="beige" />
 
           <p><em>If you would like to know me beyond my professional role, visit <strong><a href="/en/perspectives/">Perspectives</a></strong>, where I share more about how I see life and the values that guide me.</em></p>
 
@@ -85,15 +82,22 @@ import { site } from '../../config/site';
     gap: 28px;
   }
 
+  .about-text-block {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
   .about-intro-copy > p,
-  .about-intro-copy > .green-panel,
+  .about-intro-copy > .about-text-block,
   .about-rest > p,
-  .about-rest > .green-panel {
+  .about-rest > .about-text-block {
     margin: 0;
   }
 
-  .about-intro-copy .green-panel p,
-  .about-rest .green-panel p {
+  .about-intro-copy .about-text-block p,
+  .about-rest .about-text-block p {
     margin: 0;
   }
 

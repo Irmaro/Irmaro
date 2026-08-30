@@ -30,23 +30,35 @@ const personSchema = {
   pageKey="home"
   schema={personSchema}
 >
-  <section class="page-hero editorial-hero">
+  <section class="page-hero editorial-hero home-hero">
     <div class="container narrow-copy">
       <p class="eyebrow">LIFE &amp; CAREER COACH · MENTOR · OULU &amp; ONLINE</p>
 
-      <p class="editorial-lead">
-        <em>Sometimes you reach a point where you feel stuck. You may sense that you want something more, but not yet know how to name it. Your personal or professional goals can feel far away, and the idea of change seems to bring more questions than answers. Perhaps you are unsure where to begin, or simply need a little more trust in yourself and someone who can help you see your situation from a different perspective.</em>
-      </p>
-
-      <p><em>That is often when it helps to create some space — to pause, talk, and explore what genuinely matters to you.</em></p>
+      <GoldenThought
+        text="We cannot solve our problems with the same thinking we used when we created them."
+        attribution="Albert Einstein"
+        tone="beige"
+      />
     </div>
   </section>
 
-  <section class="section">
-    <div class="container narrow-copy">
-      <div class="green-panel editorial-panel">
-        <p><em>As a coach, I walk alongside you with attention, empathy and trust in your ability to find your own way forward. Through thoughtful conversation in a safe and supportive space, I help you listen more closely to yourself, name what may be holding you back, recognise your strengths and turn uncertainty into the first meaningful steps.</em></p>
-      </div>
+  <section class="section home-band home-band-light">
+    <div class="container narrow-copy home-copy">
+      <p>
+        <em>Sometimes you reach a point where you feel stuck. You may sense that you want something more, but not yet know how to name it. Your personal or professional goals can feel far away, and the idea of change seems to bring more questions than answers. Perhaps you are unsure where to begin, or simply need a little more trust in yourself and someone who can help you see your situation from a different perspective.</em>
+      </p>
+
+      <GoldenThought text="Some things need time before their meaning can truly settle." />
+
+      <p>
+        <em>That is often when it helps to create some space — to pause, talk, and explore what genuinely matters to you.</em>
+      </p>
+    </div>
+  </section>
+
+  <section class="section home-band home-band-deeper">
+    <div class="container narrow-copy home-copy">
+      <p><em>As a coach, I walk alongside you with attention, empathy and trust in your ability to find your own way forward. Through thoughtful conversation in a safe and supportive space, I help you listen more closely to yourself, name what may be holding you back, recognise your strengths and turn uncertainty into the first meaningful steps.</em></p>
 
       <p><em>Whether you are thinking about career growth, looking for more confidence in your decisions, seeking greater balance, or simply wanting to feel that you have a say in your own life again, I will offer you a calm and trusting space for change.</em></p>
 
@@ -60,7 +72,7 @@ const personSchema = {
     </div>
   </section>
 
-  <section class="section">
+  <section class="section home-explore">
     <div class="container">
       <div class="section-heading">
         <p class="eyebrow">EXPLORE</p>
@@ -95,3 +107,39 @@ const personSchema = {
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .home-hero {
+    padding-bottom: clamp(38px, 5vw, 56px);
+  }
+
+  .home-band,
+  .home-explore {
+    border-top: 0;
+  }
+
+  .home-band {
+    padding: clamp(54px, 7vw, 84px) 0;
+  }
+
+  .home-band-light {
+    background: var(--surface);
+  }
+
+  .home-band-deeper {
+    background: var(--bg);
+  }
+
+  .home-copy > p {
+    margin-bottom: 24px;
+    line-height: 1.72;
+  }
+
+  .home-copy :global(.golden-thought) {
+    margin: 34px 0;
+  }
+
+  .home-explore {
+    background: var(--surface);
+  }
+</style>

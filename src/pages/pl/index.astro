@@ -30,23 +30,35 @@ const personSchema = {
   pageKey="home"
   schema={personSchema}
 >
-  <section class="page-hero editorial-hero">
+  <section class="page-hero editorial-hero home-hero">
     <div class="container narrow-copy">
       <p class="eyebrow">LIFE &amp; CAREER COACHING · MENTORING · OULU &amp; ONLINE</p>
 
-      <p class="editorial-lead">
-        <em>Czasem przychodzi taki moment, kiedy czujesz, że stoisz w miejscu. Czasem w głębi serca wiesz, że pragniesz czegoś więcej, ale nawet nie umiesz tego nazwać. Twoje zawodowe lub osobiste cele wydają się odległe, a myśl o zmianie budzi więcej pytań niż odpowiedzi. Być może nie wiesz, od czego zacząć, albo potrzebujesz po prostu odrobiny wiary w siebie i kogoś, kto pomoże Ci spojrzeć na swoją sytuację z nowej perspektywy.</em>
-      </p>
-
-      <p><em>Właśnie wtedy warto dać sobie przestrzeń na zatrzymanie, rozmowę i odkrywanie tego, co naprawdę jest dla Ciebie ważne.</em></p>
+      <GoldenThought
+        text="Nasze myślenie tworzy problemy, których ten sam rodzaj myślenia nie może rozwiązać."
+        attribution="Albert Einstein"
+        tone="beige"
+      />
     </div>
   </section>
 
-  <section class="section">
-    <div class="container narrow-copy">
-      <div class="green-panel editorial-panel">
-        <p><em>Jako coach towarzyszę Ci w tej drodze z uważnością, empatią i wiarą w Twoje możliwości. Poprzez pogłębioną rozmowę, w bezpiecznej przestrzeni pełnej dobrej energii i wsparcia, pomagam Ci lepiej usłyszeć siebie, nazwać to, co Cię zatrzymuje, dostrzec Twoje mocne strony i zamienić niepewność w pierwsze, konkretne kroki.</em></p>
-      </div>
+  <section class="section home-band home-band-light">
+    <div class="container narrow-copy home-copy">
+      <p>
+        <em>Czasem przychodzi taki moment, kiedy czujesz, że stoisz w miejscu. Czasem w głębi serca wiesz, że pragniesz czegoś więcej, ale nawet nie umiesz tego nazwać. Twoje zawodowe lub osobiste cele wydają się odległe, a myśl o zmianie budzi więcej pytań niż odpowiedzi. Być może nie wiesz, od czego zacząć, albo potrzebujesz po prostu odrobiny wiary w siebie i kogoś, kto pomoże Ci spojrzeć na swoją sytuację z nowej perspektywy.</em>
+      </p>
+
+      <GoldenThought text="Niektóre wiadomości potrzebują czasu, żeby wybrzmieć." />
+
+      <p>
+        <em>Właśnie wtedy warto dać sobie przestrzeń na zatrzymanie, rozmowę i odkrywanie tego, co naprawdę jest dla Ciebie ważne.</em>
+      </p>
+    </div>
+  </section>
+
+  <section class="section home-band home-band-deeper">
+    <div class="container narrow-copy home-copy">
+      <p><em>Jako coach towarzyszę Ci w tej drodze z uważnością, empatią i wiarą w Twoje możliwości. Poprzez pogłębioną rozmowę, w bezpiecznej przestrzeni pełnej dobrej energii i wsparcia, pomagam Ci lepiej usłyszeć siebie, nazwać to, co Cię zatrzymuje, dostrzec Twoje mocne strony i zamienić niepewność w pierwsze, konkretne kroki.</em></p>
 
       <p><em>Niezależnie od tego, czy marzysz o rozwoju zawodowym, większej odwadze w podejmowaniu decyzji, życiowej równowadze czy po prostu chcesz poczuć, że znów masz wpływ na swoje życie – stworzę dla Ciebie bezpieczną i pełną zaufania przestrzeń do zmiany.</em></p>
 
@@ -60,7 +72,7 @@ const personSchema = {
     </div>
   </section>
 
-  <section class="section">
+  <section class="section home-explore">
     <div class="container">
       <div class="section-heading">
         <p class="eyebrow">ZOBACZ</p>
@@ -95,3 +107,39 @@ const personSchema = {
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .home-hero {
+    padding-bottom: clamp(38px, 5vw, 56px);
+  }
+
+  .home-band,
+  .home-explore {
+    border-top: 0;
+  }
+
+  .home-band {
+    padding: clamp(54px, 7vw, 84px) 0;
+  }
+
+  .home-band-light {
+    background: var(--surface);
+  }
+
+  .home-band-deeper {
+    background: var(--bg);
+  }
+
+  .home-copy > p {
+    margin-bottom: 24px;
+    line-height: 1.72;
+  }
+
+  .home-copy :global(.golden-thought) {
+    margin: 34px 0;
+  }
+
+  .home-explore {
+    background: var(--surface);
+  }
+</style>

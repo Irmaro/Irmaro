@@ -296,6 +296,12 @@ const sessionCountLabel = (count: number) => {
     gap: 14px;
   }
 
+  /* Keep both rows of service cards visually equal in height. */
+  .booking-grid {
+    grid-auto-rows: 1fr;
+    align-items: stretch;
+  }
+
 
   .booking-card,
   .package-card {
@@ -356,13 +362,19 @@ const sessionCountLabel = (count: number) => {
     kart 01–06 zaczynają się na podobnym poziomie.
   */
   .booking-card h2 {
-    min-height:
-      clamp(4.8rem, 8vw, 6.8rem);
-
+    min-height: 8.15rem;
     margin-bottom: 16px;
+    font-size: clamp(1.3rem, 2vw, 1.7rem);
+    line-height: 1.16;
+  }
 
-    font-size:
-      clamp(1.3rem, 2vw, 1.7rem);
+  /*
+    Cards 01–03 have shorter titles. They do not need the same title reserve
+    as card 06, so the copy can move up without losing alignment inside the row.
+  */
+  .booking-card:nth-child(-n + 3) h2 {
+    min-height: 4.15rem;
+    margin-bottom: 12px;
   }
 
 
@@ -496,6 +508,14 @@ const sessionCountLabel = (count: number) => {
     .package-grid {
       grid-template-columns:
         repeat(2, minmax(0, 1fr));
+    }
+
+    .booking-card h2 {
+      min-height: 7rem;
+    }
+
+    .booking-card:nth-child(-n + 3) h2 {
+      min-height: 4.15rem;
     }
   }
 

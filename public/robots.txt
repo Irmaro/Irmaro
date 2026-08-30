@@ -1,19 +1,4 @@
-# IRMARO
+User-agent: *
+Allow: /
 
-> Life & Career Coach & Mentor.
-
-## English
-- /en/
-- /en/about/
-- /en/offer/
-- /en/book-a-session/
-- /en/perspectives/
-- /en/contact/
-
-## Polish
-- /pl/
-- /pl/o-mnie/
-- /pl/oferta/
-- /pl/umow-sesje/
-- /pl/perspektywy/
-- /pl/kontakt/
+Sitemap: https://www.irmaro.com/sitemap.xml

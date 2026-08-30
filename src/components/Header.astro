@@ -12,9 +12,10 @@ type PageKey =
 interface Props {
   lang: 'en' | 'pl';
   pageKey: PageKey;
+  alternateHref?: string;
 }
 
-const { lang, pageKey } = Astro.props;
+const { lang, pageKey, alternateHref } = Astro.props;
 const isEn = lang === 'en';
 
 const routes: Record<PageKey, { en: string; pl: string }> = {
@@ -64,7 +65,8 @@ const offerItems = isEn
       { label: 'Przygotowanie do rozmowy rekrutacyjnej', href: '/pl/oferta/#interview-preparation' },
     ];
 
-const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
+const otherLangHref = alternateHref ?? (isEn ? routes[pageKey].pl : routes[pageKey].en);
+const currentHref = Astro.url.pathname;
 ---
 
 <header class="site-header">
@@ -133,7 +135,7 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
 
       <div class="language-switch" aria-label={isEn ? 'Language switcher' : 'Przełącznik języka'}>
         <a
-          href={isEn ? otherLangHref : routes[pageKey].pl}
+          href={isEn ? otherLangHref : currentHref}
           class:list={{ active: !isEn }}
           aria-current={!isEn ? 'page' : undefined}
           aria-label="Polski"
@@ -145,7 +147,7 @@ const otherLangHref = isEn ? routes[pageKey].pl : routes[pageKey].en;
         <span class="separator">/</span>
 
         <a
-          href={isEn ? routes[pageKey].en : otherLangHref}
+          href={isEn ? currentHref : otherLangHref}
           class:list={{ active: isEn }}
           aria-current={isEn ? 'page' : undefined}
           aria-label="English"
