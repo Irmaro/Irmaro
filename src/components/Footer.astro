@@ -237,15 +237,21 @@ const nav = isEn
   }
 
   @media (max-width: 560px) {
+    /*
+      Do not crop the logo on mobile.
+      The previous overflow:hidden wrapper could cut off
+      the top of the tree mark on some viewport sizes.
+    */
     .footer-logo-crop {
-      width: 113px;
-      height: 98px;
+      width: 124px;
+      height: 104px;
+      overflow: visible;
     }
 
     .footer-logo {
       width: 137px;
       left: -20px;
-      top: -3px;
+      top: 2px;
     }
   }
 </style>
