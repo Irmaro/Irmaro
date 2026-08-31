@@ -4,32 +4,54 @@
 
 IRMARO is the website of Irma Rosenvik, a certified coach, mentor and HR professional based in Oulu, Finland.
 
+Irma works with people who are looking for greater clarity, balance, calm and alignment in their personal or professional lives. Her work combines life coaching, career coaching, mentoring and practical career support.
+
+Her coaching style emphasises presence, attentive listening, psychological safety, authenticity, openness, reflection, intuition and helping clients find solutions that are aligned with their own values, identity and needs.
+
+Her areas of focus include personal development, wellbeing, life balance, inner calm, motivation, change, self-discovery, listening to oneself, mindful decision-making, new perspectives and living in greater alignment with oneself.
+
+Her mentoring also draws on lived experience related to immigration, rebuilding a career in Finland, Adult Children of Alcoholics (ACoA / DDA), thoughtful parenting, relationships, Stoic reflection and personal change.
+
+Coaching and mentoring offered through IRMARO are developmental and supportive services. They are not psychotherapy, medical treatment or mental-health diagnosis.
+
 ## English
+
 - /en/ — Home
 - /en/about/ — About Irma
-- /en/offer/ — Coaching, mentoring and career support
+- /en/offer/ — Life coaching, career coaching, mentoring and career support
 - /en/book-a-session/ — Work with me
 - /en/perspectives/ — Perspectives and articles
 - /en/contact/ — Contact
-- /en/privacy-policy/ — Privacy Policy
-- /en/terms/ — Terms
 
 ### English perspectives
+
 - /en/perspectives/what-coaching-means-to-me/
 - /en/perspectives/emotional-account/
 - /en/perspectives/wise-love/
 
 ## Polish
+
+IRMARO to strona Irmy Rosenvik — certyfikowanej coachki, mentorki i specjalistki HR mieszkającej w Oulu w Finlandii.
+
+Irma wspiera osoby, które szukają większego spokoju, harmonii, równowagi, autentyczności i poczucia spójności ze sobą — zarówno w życiu osobistym, jak i zawodowym.
+
+Jej styl pracy opiera się na uważnej obecności, słuchaniu, bezpieczeństwie, otwartości, refleksji, intuicji i pomaganiu klientowi w odnajdywaniu własnych odpowiedzi oraz nowych perspektyw.
+
+Obszary pracy obejmują coaching życiowy, coaching kariery, mentoring, rozwój osobisty, wellbeing, motywację, zmianę, odnajdywanie siebie, tożsamość, balans i równowagę życiową, spokój wewnętrzny, słuchanie siebie i własnego ciała oraz życie w zgodzie ze sobą.
+
+Mentoring Irmy czerpie również z jej własnego doświadczenia związanego z emigracją, budowaniem kariery w Finlandii, doświadczeniem DDA, mądrym rodzicielstwem, relacjami, stoicyzmem oraz zmianą osobistą i zawodową.
+
+Coaching i mentoring oferowane przez IRMARO mają charakter rozwojowy i wspierający. Nie zastępują psychoterapii, leczenia ani diagnozy medycznej.
+
 - /pl/ — Start
 - /pl/o-mnie/ — O mnie
-- /pl/oferta/ — Oferta
+- /pl/oferta/ — Coaching życiowy, coaching kariery, mentoring i wsparcie zawodowe
 - /pl/umow-sesje/ — Współpraca
 - /pl/perspektywy/ — Perspektywy
 - /pl/kontakt/ — Kontakt
-- /pl/polityka-prywatnosci/ — Polityka prywatności
-- /pl/regulamin/ — Regulamin
 
 ### Polskie perspektywy
+
 - /pl/perspektywy/co-coaching-znaczy-dla-mnie/
 - /pl/perspektywy/konto-emocjonalne/
 - /pl/perspektywy/madra-milosc/

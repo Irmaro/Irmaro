@@ -31,7 +31,320 @@ const {
   alternateHref,
 } = Astro.props;
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString();
+const normalizePath = (path: string) => {
+  if (path === '/') return '/';
+  return `${path.replace(/\/+$/, '')}/`;
+};
+
+const currentPath = normalizePath(Astro.url.pathname);
+const siteOrigin = new URL(Astro.site ?? Astro.url.origin).origin;
+const siteUrl = `${siteOrigin}/`;
+const canonicalUrl = new URL(currentPath, siteUrl).toString();
+
+/*
+  SEO metadata are intentionally kept here rather than in visible page copy.
+  They affect browser/search metadata, not the H1 or content displayed on page.
+*/
+const seoByPath: Record<string, { title: string; description: string }> = {
+  '/en/': {
+    title: 'Life & Career Coach in Oulu, Finland | IRMARO',
+    description:
+      'Life coaching, career coaching and mentoring in Oulu and online. Support with change, balance, self-discovery, career decisions and new perspectives.',
+  },
+  '/en/about/': {
+    title: 'Irma Rosenvik | Life & Career Coach and Mentor in Oulu',
+    description:
+      'Meet Irma Rosenvik, a certified coach, mentor and HR professional in Oulu. A coaching approach built on presence, authenticity, reflection and attentive listening.',
+  },
+  '/en/offer/': {
+    title: 'Life Coaching, Career Coaching & Mentoring | IRMARO',
+    description:
+      'Explore life coaching, career coaching, mentoring, career support, interview preparation and mentoring for immigrants in Finland — in Oulu and online.',
+  },
+  '/en/book-a-session/': {
+    title: 'Coaching & Mentoring Sessions in Oulu and Online | IRMARO',
+    description:
+      'Life coaching, career coaching and mentoring with Irma Rosenvik. Sessions in Oulu, online or by phone, with individual sessions and package options.',
+  },
+  '/en/perspectives/': {
+    title: 'Coaching, Personal Growth & New Perspectives | IRMARO',
+    description:
+      'Reflections on coaching, self-discovery, relationships, mindful change, personal growth, authenticity, thoughtful parenting, wellbeing and new perspectives.',
+  },
+  '/en/contact/': {
+    title: 'Contact Irma Rosenvik | Life & Career Coach | IRMARO',
+    description:
+      'Contact Irma Rosenvik about life coaching, career coaching, mentoring and career support in Oulu, Finland or online.',
+  },
+
+  '/pl/': {
+    title: 'Coaching życiowy i kariery w Oulu i online | IRMARO',
+    description:
+      'Coaching życiowy, coaching kariery i mentoring w Oulu i online. Wsparcie w zmianie, odnajdywaniu siebie, równowadze życiowej i nowych perspektywach.',
+  },
+  '/pl/o-mnie/': {
+    title: 'Irma Rosenvik | Coachka i mentorka w Oulu',
+    description:
+      'Poznaj Irmę Rosenvik — certyfikowaną coachkę, mentorkę i specjalistkę HR w Oulu. Uważność, autentyczność, refleksja, doświadczenie i dobra energia.',
+  },
+  '/pl/oferta/': {
+    title: 'Coaching życiowy, coaching kariery i mentoring | IRMARO',
+    description:
+      'Coaching życiowy i kariery, mentoring, wsparcie zawodowe i przygotowanie do rozmów rekrutacyjnych. Stacjonarnie w Oulu oraz online.',
+  },
+  '/pl/umow-sesje/': {
+    title: 'Sesje coachingowe i mentoringowe | Oulu i online | IRMARO',
+    description:
+      'Sesje coachingu życiowego, coachingu kariery i mentoringu z Irmą Rosenvik. Oulu, online lub telefonicznie — pojedyncze sesje i pakiety.',
+  },
+  '/pl/perspektywy/': {
+    title: 'Coaching, rozwój osobisty i nowe perspektywy | IRMARO',
+    description:
+      'Refleksje o coachingu, rozwoju osobistym, odnajdywaniu siebie, relacjach, mądrym rodzicielstwie, uważności, zmianie i życiu w zgodzie ze sobą.',
+  },
+  '/pl/kontakt/': {
+    title: 'Kontakt | Irma Rosenvik | Coaching i mentoring | IRMARO',
+    description:
+      'Skontaktuj się z Irmą Rosenvik w sprawie coachingu życiowego, coachingu kariery, mentoringu i wsparcia zawodowego w Oulu lub online.',
+  },
+};
+
+const seo = seoByPath[currentPath];
+const seoTitle = seo?.title ?? title;
+const seoDescription = seo?.description ?? description;
+
+/*
+  Exact reciprocal language pairs.
+  This also covers the three bilingual Perspective articles.
+*/
+const languagePairs: Record<string, string> = {
+  '/en/': '/pl/',
+  '/pl/': '/en/',
+
+  '/en/about/': '/pl/o-mnie/',
+  '/pl/o-mnie/': '/en/about/',
+
+  '/en/offer/': '/pl/oferta/',
+  '/pl/oferta/': '/en/offer/',
+
+  '/en/book-a-session/': '/pl/umow-sesje/',
+  '/pl/umow-sesje/': '/en/book-a-session/',
+
+  '/en/perspectives/': '/pl/perspektywy/',
+  '/pl/perspektywy/': '/en/perspectives/',
+
+  '/en/contact/': '/pl/kontakt/',
+  '/pl/kontakt/': '/en/contact/',
+
+  '/en/perspectives/what-coaching-means-to-me/':
+    '/pl/perspektywy/co-coaching-znaczy-dla-mnie/',
+  '/pl/perspektywy/co-coaching-znaczy-dla-mnie/':
+    '/en/perspectives/what-coaching-means-to-me/',
+
+  '/en/perspectives/emotional-account/':
+    '/pl/perspektywy/konto-emocjonalne/',
+  '/pl/perspektywy/konto-emocjonalne/':
+    '/en/perspectives/emotional-account/',
+
+  '/en/perspectives/wise-love/':
+    '/pl/perspektywy/madra-milosc/',
+  '/pl/perspektywy/madra-milosc/':
+    '/en/perspectives/wise-love/',
+};
+
+const pairedPath = languagePairs[currentPath] ?? alternateHref;
+const pairedUrl = pairedPath
+  ? new URL(normalizePath(pairedPath), siteUrl).toString()
+  : null;
+
+const englishUrl =
+  lang === 'en'
+    ? canonicalUrl
+    : pairedUrl;
+
+const polishUrl =
+  lang === 'pl'
+    ? canonicalUrl
+    : pairedUrl;
+
+/*
+  Legal pages remain public and linked from the footer,
+  but they are intentionally kept out of search indexes.
+*/
+const isIndexable = pageKey !== 'privacy' && pageKey !== 'terms';
+const robotsValue = isIndexable ? 'index,follow' : 'noindex,follow';
+
+/*
+  Structured data:
+  - WebSite describes IRMARO
+  - Person describes Irma and her areas of expertise
+  - WebPage describes the current page
+  - Service is added to Offer / Work with me pages
+  - Article is added to individual Perspective articles
+*/
+const websiteId = `${siteUrl}#website`;
+const personId = `${siteUrl}#irma-rosenvik`;
+
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': 'WebSite',
+    '@id': websiteId,
+    url: siteUrl,
+    name: 'IRMARO',
+    alternateName: 'Irma Rosenvik',
+    inLanguage: ['en', 'pl'],
+  },
+  {
+    '@type': 'Person',
+    '@id': personId,
+    name: 'Irma Rosenvik',
+    url: siteUrl,
+    jobTitle: 'Life & Career Coach and Mentor',
+    description:
+      'Certified life and career coach, mentor and HR professional based in Oulu, Finland, working in person and online.',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Oulu',
+      addressCountry: 'FI',
+    },
+    knowsAbout: [
+      'Life coaching',
+      'Career coaching',
+      'Coaching życiowy',
+      'Coaching kariery',
+      'Mentoring',
+      'Career mentoring',
+      'Personal development',
+      'Rozwój osobisty',
+      'Wellbeing',
+      'Life balance',
+      'Równowaga życiowa',
+      'Self-discovery',
+      'Odnajdywanie siebie',
+      'Authenticity',
+      'Autentyczność',
+      'Mindfulness',
+      'Uważność',
+      'Motivation',
+      'Career development',
+      'Career support for immigrants in Finland',
+      'Adult Children of Alcoholics (ACoA / DDA)',
+      'Thoughtful parenting',
+      'Mądre rodzicielstwo',
+      'Stoicism',
+      'Stoicyzm',
+      'Personal change',
+      'New perspectives',
+    ],
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonicalUrl}#webpage`,
+    url: canonicalUrl,
+    name: seoTitle,
+    description: seoDescription,
+    inLanguage: lang,
+    isPartOf: {
+      '@id': websiteId,
+    },
+    about: {
+      '@id': personId,
+    },
+  },
+];
+
+if (pageKey === 'offer' || pageKey === 'booking') {
+  graph.push(
+    {
+      '@type': 'Service',
+      '@id': `${siteUrl}#coaching-service`,
+      name: 'Life and Career Coaching',
+      alternateName: 'Coaching życiowy i coaching kariery',
+      serviceType: [
+        'Life coaching',
+        'Career coaching',
+        'Wellbeing coaching',
+        'Coaching życiowy',
+        'Coaching kariery',
+      ],
+      provider: {
+        '@id': personId,
+      },
+      areaServed: [
+        {
+          '@type': 'City',
+          name: 'Oulu',
+        },
+        {
+          '@type': 'Country',
+          name: 'Finland',
+        },
+        'Online',
+      ],
+      url: `${siteUrl}en/offer/`,
+    },
+    {
+      '@type': 'Service',
+      '@id': `${siteUrl}#mentoring-service`,
+      name: 'Career and Life Mentoring',
+      alternateName: 'Mentoring kariery i mentoring życia',
+      serviceType: [
+        'Career mentoring',
+        'Life mentoring',
+        'Career support',
+        'Mentoring',
+      ],
+      provider: {
+        '@id': personId,
+      },
+      areaServed: [
+        {
+          '@type': 'City',
+          name: 'Oulu',
+        },
+        {
+          '@type': 'Country',
+          name: 'Finland',
+        },
+        'Online',
+      ],
+      url: `${siteUrl}en/offer/`,
+    }
+  );
+}
+
+const isPerspectiveArticle =
+  currentPath.startsWith('/en/perspectives/') && currentPath !== '/en/perspectives/'
+  || currentPath.startsWith('/pl/perspektywy/') && currentPath !== '/pl/perspektywy/';
+
+if (isPerspectiveArticle) {
+  graph.push({
+    '@type': 'Article',
+    '@id': `${canonicalUrl}#article`,
+    headline: title.split('|')[0].trim(),
+    description,
+    inLanguage: lang,
+    author: {
+      '@id': personId,
+    },
+    mainEntityOfPage: {
+      '@id': `${canonicalUrl}#webpage`,
+    },
+  });
+}
+
+/*
+  Keep compatibility with any future page-level custom schema.
+  Current Home Person schema is superseded by the richer Person above.
+*/
+if (schema && pageKey !== 'home') {
+  graph.push(schema);
+}
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': graph,
+};
 ---
 
 <!doctype html>
@@ -39,27 +352,43 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content={description} />
-    <meta name="robots" content="index,follow" />
+
+    <title>{seoTitle}</title>
+    <meta name="description" content={seoDescription} />
+    <meta name="robots" content={robotsValue} />
+
     <link rel="canonical" href={canonicalUrl} />
-    <!-- IRMARO tree mark used as browser-tab icon. -->
+
+    {pairedUrl && englishUrl && polishUrl && (
+      <>
+        <link rel="alternate" hreflang="en" href={englishUrl} />
+        <link rel="alternate" hreflang="pl" href={polishUrl} />
+        <link rel="alternate" hreflang="x-default" href={englishUrl} />
+      </>
+    )}
+
     <link rel="icon" type="image/png" href="/images/logo_tree_no_bg.png?v=1" />
     <link rel="shortcut icon" type="image/png" href="/images/logo_tree_no_bg.png?v=1" />
     <link rel="apple-touch-icon" href="/images/logo_tree_no_bg.png?v=1" />
 
-<meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="IRMARO" />
+    <meta property="og:title" content={seoTitle} />
+    <meta property="og:description" content={seoDescription} />
     <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={lang === 'pl' ? 'pl_PL' : 'en_US'} />
 
-    <title>{title}</title>
-
-    {schema && (
-      <script
-        type="application/ld+json"
-        set:html={JSON.stringify(schema)}
+    {pairedUrl && (
+      <meta
+        property="og:locale:alternate"
+        content={lang === 'pl' ? 'en_US' : 'pl_PL'}
       />
     )}
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
   </head>
 
   <body>

@@ -15,30 +15,109 @@ const c = isEn
       title: 'A few words from people I have worked with',
       confidentiality:
         'To respect confidentiality, I do not publish the names of people who have shared these reflections.',
+      previous: 'Previous testimonials',
+      next: 'Next testimonials',
     }
   : {
       eyebrow: 'OPINIE O MNIE',
       title: 'Kilka słów od osób, z którymi pracowałam',
       confidentiality:
         'Z uwagi na zasadę poufności nie podaję imion osób, które udzieliły poniższych opinii.',
+      previous: 'Poprzednie opinie',
+      next: 'Następne opinie',
     };
 ---
 
-<section class="testimonials-section" aria-labelledby={`testimonials-title-${lang}`}>
+<section
+  class="testimonials-section"
+  aria-labelledby={`testimonials-title-${lang}`}
+  data-testimonials-carousel
+>
   <div class="testimonials-heading">
     <p class="eyebrow">{c.eyebrow}</p>
     <h2 id={`testimonials-title-${lang}`}>{c.title}</h2>
     <p class="testimonials-confidentiality">{c.confidentiality}</p>
   </div>
 
-  <div class="testimonial-grid">
-    {items.map((item) => (
-      <blockquote class="testimonial-card">
-        <p class="testimonial-quote">“{item.quote}”</p>
-      </blockquote>
-    ))}
+  <div class="testimonial-viewport" data-testimonial-viewport>
+    <div class="testimonial-track">
+      {items.map((item) => (
+        <blockquote class="testimonial-card">
+          <p class="testimonial-quote">“{item.quote}”</p>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+
+  <div class="testimonial-controls" aria-label={isEn ? 'Testimonials navigation' : 'Nawigacja opinii'}>
+    <button
+      class="testimonial-arrow"
+      type="button"
+      data-testimonial-prev
+      aria-label={c.previous}
+    >
+      <span aria-hidden="true">←</span>
+    </button>
+
+    <button
+      class="testimonial-arrow"
+      type="button"
+      data-testimonial-next
+      aria-label={c.next}
+    >
+      <span aria-hidden="true">→</span>
+    </button>
   </div>
 </section>
+
+<script is:inline>
+  document.querySelectorAll('[data-testimonials-carousel]').forEach((carousel) => {
+    const viewport = carousel.querySelector('[data-testimonial-viewport]');
+    const prev = carousel.querySelector('[data-testimonial-prev]');
+    const next = carousel.querySelector('[data-testimonial-next]');
+
+    if (!viewport || !prev || !next) return;
+
+    const getStep = () => {
+      const firstCard = viewport.querySelector('.testimonial-card');
+      const track = viewport.querySelector('.testimonial-track');
+
+      if (!firstCard || !track) return viewport.clientWidth;
+
+      const styles = window.getComputedStyle(track);
+      const gap = parseFloat(styles.columnGap || styles.gap || '0');
+
+      return firstCard.getBoundingClientRect().width + gap;
+    };
+
+    const updateControls = () => {
+      const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+      const tolerance = 4;
+
+      prev.disabled = viewport.scrollLeft <= tolerance;
+      next.disabled = viewport.scrollLeft >= maxScroll - tolerance;
+    };
+
+    prev.addEventListener('click', () => {
+      viewport.scrollBy({
+        left: -getStep(),
+        behavior: 'smooth',
+      });
+    });
+
+    next.addEventListener('click', () => {
+      viewport.scrollBy({
+        left: getStep(),
+        behavior: 'smooth',
+      });
+    });
+
+    viewport.addEventListener('scroll', updateControls, { passive: true });
+    window.addEventListener('resize', updateControls);
+
+    updateControls();
+  });
+</script>
 
 <style>
   .testimonials-section {
@@ -63,30 +142,58 @@ const c = isEn
     line-height: 1.55;
   }
 
-  .testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+  /*
+    The viewport hides the next card completely.
+    Desktop: exactly 2 complete testimonials.
+    Mobile: exactly 1 complete testimonial.
+  */
+  .testimonial-viewport {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .testimonial-viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .testimonial-track {
+    display: flex;
     gap: 14px;
+    width: max-content;
   }
 
   .testimonial-card {
-    grid-column: span 2;
-  }
-
-  .testimonial-card:nth-child(4) {
-    grid-column: 2 / span 2;
-  }
-
-  .testimonial-card:nth-child(5) {
-    grid-column: 4 / span 2;
-  }
-
-  .testimonial-card {
+    flex: 0 0 calc((min(100vw, var(--container)) - 14px) / 2);
+    width: calc((min(100vw, var(--container)) - 14px) / 2);
+    min-height: 170px;
     margin: 0;
-    padding: 24px;
+    padding: 18px;
     border: 1px solid color-mix(in srgb, var(--moss) 34%, var(--border));
     border-radius: var(--radius);
     background: var(--moss-extra-light);
+    scroll-snap-align: start;
+    box-sizing: border-box;
+  }
+
+  /*
+    The component itself usually sits inside a container,
+    so percentage sizing is safer than viewport sizing there.
+  */
+  @supports (width: 1cqw) {
+    .testimonial-viewport {
+      container-type: inline-size;
+    }
+
+    .testimonial-card {
+      flex-basis: calc((100cqw - 14px) / 2);
+      width: calc((100cqw - 14px) / 2);
+    }
   }
 
   .testimonial-quote {
@@ -94,20 +201,62 @@ const c = isEn
     line-height: 1.68;
   }
 
+  .testimonial-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .testimonial-arrow {
+    display: inline-grid;
+    place-items: center;
+    width: 42px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--brand);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+      background-color .18s ease,
+      border-color .18s ease,
+      opacity .18s ease;
+  }
+
+  .testimonial-arrow:hover:not(:disabled) {
+    background: var(--surface);
+    border-color: var(--brand-dark);
+  }
+
+  .testimonial-arrow:focus-visible {
+    outline: 2px solid var(--brand-dark);
+    outline-offset: 3px;
+  }
+
+  .testimonial-arrow:disabled {
+    opacity: .28;
+    cursor: default;
+  }
+
   @media (max-width: 760px) {
-    .testimonial-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .testimonial-card,
-    .testimonial-card:nth-child(4),
-    .testimonial-card:nth-child(5) {
-      grid-column: auto;
-    }
-
     .testimonials-section {
       margin-top: 46px;
       padding-top: 20px;
+    }
+
+    .testimonial-card {
+      flex-basis: 100%;
+      width: 100%;
+      min-height: 0;
+    }
+
+    .testimonial-controls {
+      justify-content: space-between;
     }
   }
 </style>
