@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.irmaro.com/en/</loc></url>
-  <url><loc>https://www.irmaro.com/en/about/</loc></url>
-  <url><loc>https://www.irmaro.com/en/offer/</loc></url>
-  <url><loc>https://www.irmaro.com/en/book-a-session/</loc></url>
-  <url><loc>https://www.irmaro.com/en/perspectives/</loc></url>
-  <url><loc>https://www.irmaro.com/en/perspectives/what-coaching-means-to-me/</loc></url>
-  <url><loc>https://www.irmaro.com/en/perspectives/emotional-account/</loc></url>
-  <url><loc>https://www.irmaro.com/en/perspectives/wise-love/</loc></url>
-  <url><loc>https://www.irmaro.com/en/contact/</loc></url>
-
-  <url><loc>https://www.irmaro.com/pl/</loc></url>
-  <url><loc>https://www.irmaro.com/pl/o-mnie/</loc></url>
-  <url><loc>https://www.irmaro.com/pl/oferta/</loc></url>
-  <url><loc>https://www.irmaro.com/pl/umow-sesje/</loc></url>
-  <url><loc>https://www.irmaro.com/pl/perspektywy/</loc></url>
-  <url><loc>https://www.irmaro.com/pl/perspektywy/co-coaching-znaczy-dla-mnie/</loc></url>
-  <url><loc>https://www.irmaro.com/pl/perspektywy/konto-emocjonalne/</loc></url>
-  <url><loc>https://www.irmaro.com/pl/perspektywy/madra-milosc/</loc></url>
-  <url><loc>https://www.irmaro.com/pl/kontakt/</loc></url>
+  <url>
+    <loc>https://www.irmaro.com/en/</loc>
+  </url>
+  <url>
+    <loc>https://www.irmaro.com/pl/</loc>
+  </url>
 </urlset>

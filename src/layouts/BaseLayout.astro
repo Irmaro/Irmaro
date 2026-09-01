@@ -171,7 +171,10 @@ const polishUrl =
   Legal pages remain public and linked from the footer,
   but they are intentionally kept out of search indexes.
 */
-const isIndexable = pageKey !== 'privacy' && pageKey !== 'terms';
+const isIndexable =
+  currentPath === '/en/' ||
+  currentPath === '/pl/';
+  
 const robotsValue = isIndexable ? 'index,follow' : 'noindex,follow';
 
 /*

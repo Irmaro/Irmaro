@@ -55,14 +55,14 @@ const offerItems = isEn
   ? [
       { label: 'Coaching', href: '/en/offer/#coaching' },
       { label: 'Career mentoring', href: '/en/offer/#career-mentoring' },
-      { label: 'Life mentoring', href: '/en/offer/#life-mentoring' },
       { label: 'Interview preparation', href: '/en/offer/#interview-preparation' },
+      { label: 'Life mentoring', href: '/en/offer/#life-mentoring' },
     ]
   : [
       { label: 'Coaching', href: '/pl/oferta/#coaching' },
       { label: 'Mentoring kariery zawodowej', href: '/pl/oferta/#career-mentoring' },
-      { label: 'Mentoring życia', href: '/pl/oferta/#life-mentoring' },
       { label: 'Przygotowanie do rozmowy rekrutacyjnej', href: '/pl/oferta/#interview-preparation' },
+      { label: 'Mentoring życia', href: '/pl/oferta/#life-mentoring' },
     ];
 
 const otherLangHref = alternateHref ?? (isEn ? routes[pageKey].pl : routes[pageKey].en);
