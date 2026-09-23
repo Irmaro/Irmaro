@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Coaching | Oulu i online | IRMARO"
+  description="Coaching z Irmą Rosenvik: rozmowa wstępna i indywidualna sesja coachingowa online, telefonicznie lub stacjonarnie w Oulu."
+  lang="pl"
+  pageKey="offer"
+  alternateHref="/en/offer/coaching/"
+>
+  <section class="page-hero offer-detail-hero">
+    <div class="container narrow-copy">
+      <p class="eyebrow">OFERTA · COACHING</p>
+      <h1><strong>Coaching</strong></h1>
+      <p class="offer-opening">Ty wybierasz kierunek. Ja pomagam Ci zobaczyć drogę.</p>
+      <p>Coaching to spotkanie człowieka z człowiekiem. To bezpieczna przestrzeń, w której możesz zatrzymać się na chwilę, przyjrzeć się temu, co naprawdę jest dla Ciebie ważne, zmienić perspektywę i z większą uważnością poszukać własnej drogi.</p>
+      <p>Jako coachka towarzyszę Ci w odkrywaniu Twojego potencjału, porządkowaniu myśli, nazywaniu potrzeb i przekładaniu tego, co ważne, na konkretne decyzje i działania. Nie daję gotowych recept i nie mówię Ci, jak masz żyć. Pomagam Ci znaleźć własne odpowiedzi.</p>
+      <div class="actions">
+        <a class="button coaching-main-cta" href="/pl/kontakt/#contact-form">Zapytaj o sesję coachingową</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow-copy">
+      <div class="service-box">
+        <h2>Rozmowa wstępna</h2>
+        <p>Zanim zdecydujemy się na pierwszą sesję, zapraszam Cię na 30-minutową, niezobowiązującą rozmowę.</p>
+        <p>To czas, żeby spokojnie się poznać, porozmawiać o tym, z czym przychodzisz i sprawdzić, czego potrzebujesz. Dla mnie ważne jest również to, abyśmy oboje poczuli, że ta forma współpracy jest dla Ciebie odpowiednia.</p>
+        <p>Nie musisz mieć jasno określonego celu ani gotowego planu. Możesz po prostu przyjść z tym, co jest.</p>
+        <a class="button service-cta" href="/pl/kontakt/#contact-form">Umów rozmowę wstępną</a>
+      </div>
+
+      <div class="service-box">
+        <h2>Sesja coachingowa</h2>
+        <p>Sesja trwa około 60 minut i może odbywać się online, stacjonarnie w Oulu lub telefonicznie – wybierzemy formę, która będzie dla Ciebie najbardziej komfortowa i dostępna.</p>
+        <p>Każde spotkanie jest inne, bo każda osoba i jej historia są inne. Rozmawiamy o tym, co Ty uznasz w danym momencie za ważne. O zmianie zawodowej, relacjach, decyzjach, poczuciu własnej wartości, potrzebie zmiany, trudnościach, marzeniach albo o czymś, co trudno jeszcze nazwać.</p>
+        <p>Nie ma tematów ważnych i ważniejszych. Jeśli coś jest ważne dla Ciebie, jest również ważne dla mnie.</p>
+        <p>Chcę, żebyś podczas naszych spotkań czuł, że możesz być naprawdę sobą – bez oceniania, bez presji i bez potrzeby udowadniania czegokolwiek. Z uważnością przyjrzymy się temu, gdzie jesteś dzisiaj i dokąd chcesz pójść.</p>
+        <a class="button service-cta" href="/pl/kontakt/#contact-form">Umów sesję coachingową</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .offer-detail-hero {
+    padding-bottom: 30px !important;
+  }
+
+  .offer-detail-hero p:not(.eyebrow) {
+    line-height: 1.75;
+  }
+
+  .offer-opening {
+    margin: 8px 0 22px;
+    font-size: clamp(1.28rem, 2.5vw, 1.72rem);
+    font-weight: 600;
+    line-height: 1.5 !important;
+  }
+
+  .coaching-main-cta,
+  .service-cta {
+    border-color: var(--moss-dark) !important;
+  }
+
+  .service-box {
+    margin: 0 0 18px;
+    padding: clamp(24px, 4vw, 34px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  .service-box p {
+    line-height: 1.75;
+  }
+
+  .service-box .button {
+    margin-top: 8px;
+  }
+</style>

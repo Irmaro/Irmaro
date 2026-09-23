@@ -1,4 +1,5 @@
 ---
+import '../styles/irma-refresh.css';
 type PageKey =
   | 'home'
   | 'about'
@@ -29,40 +30,34 @@ const routes: Record<PageKey, { en: string; pl: string }> = {
   terms: { en: '/en/terms/', pl: '/pl/regulamin/' },
 };
 
-const navBeforeOffer = isEn
+const perspectiveItems = isEn
   ? [
-      { key: 'home' as PageKey, label: 'Home' },
-      { key: 'about' as PageKey, label: 'About' },
+      { label: 'What Coaching Means to Me', href: '/en/perspectives/what-coaching-means-to-me/' },
+      { label: 'Emotional Account', href: '/en/perspectives/emotional-account/' },
+      { label: 'Wise Love', href: '/en/perspectives/wise-love/' },
+      { label: 'Parenting Against Nature', href: '/en/perspectives/unnatural-parenting/' },
+      { label: 'Change', href: '/en/perspectives/change/' },
+      { label: 'Sleepwalking Through Life', href: '/en/perspectives/sleepwalking-through-life/' },
+      { label: 'Friendship in Expat Life', href: '/en/perspectives/friendship-in-expat-life/' },
     ]
   : [
-      { key: 'home' as PageKey, label: 'Start' },
-      { key: 'about' as PageKey, label: 'O mnie' },
-    ];
-
-const navAfterOffer = isEn
-  ? [
-      { key: 'booking' as PageKey, label: 'Work with me' },
-      { key: 'perspectives' as PageKey, label: 'Perspectives' },
-      { key: 'contact' as PageKey, label: 'Contact' },
-    ]
-  : [
-      { key: 'booking' as PageKey, label: 'Współpraca' },
-      { key: 'perspectives' as PageKey, label: 'Perspektywy' },
-      { key: 'contact' as PageKey, label: 'Kontakt' },
+      { label: 'Co coaching znaczy dla mnie', href: '/pl/perspektywy/co-coaching-znaczy-dla-mnie/' },
+      { label: 'Konto emocjonalne', href: '/pl/perspektywy/konto-emocjonalne/' },
+      { label: 'Mądra miłość', href: '/pl/perspektywy/madra-milosc/' },
+      { label: 'Wynaturzone rodzicielstwo', href: '/pl/perspektywy/wynaturzone-rodzicielstwo/' },
+      { label: 'Zmiany', href: '/pl/perspektywy/zmiany/' },
+      { label: 'Uśpienie', href: '/pl/perspektywy/uspienie/' },
+      { label: 'Przyjaźń emigracyjna', href: '/pl/perspektywy/przyjazn-emigracyjna/' },
     ];
 
 const offerItems = isEn
   ? [
-      { label: 'Coaching', href: '/en/offer/#coaching' },
-      { label: 'Career mentoring', href: '/en/offer/#career-mentoring' },
-      { label: 'Interview preparation', href: '/en/offer/#interview-preparation' },
-      { label: 'Life mentoring', href: '/en/offer/#life-mentoring' },
+      { label: 'Coaching', href: '/en/offer/coaching/' },
+      { label: 'Mentoring', href: '/en/offer/mentoring/' },
     ]
   : [
-      { label: 'Coaching', href: '/pl/oferta/#coaching' },
-      { label: 'Mentoring kariery zawodowej', href: '/pl/oferta/#career-mentoring' },
-      { label: 'Przygotowanie do rozmowy rekrutacyjnej', href: '/pl/oferta/#interview-preparation' },
-      { label: 'Mentoring życia', href: '/pl/oferta/#life-mentoring' },
+      { label: 'Coaching', href: '/pl/oferta/coaching/' },
+      { label: 'Mentoring', href: '/pl/oferta/mentoring/' },
     ];
 
 const otherLangHref = alternateHref ?? (isEn ? routes[pageKey].pl : routes[pageKey].en);
@@ -78,20 +73,51 @@ const currentHref = Astro.url.pathname;
 
     <div class="right">
       <nav class="nav" data-nav aria-label={isEn ? 'Main navigation' : 'Główna nawigacja'}>
-        {
-          navBeforeOffer.map((item) => (
-            <a
-              href={routes[item.key][lang]}
-              class:list={{ active: item.key === pageKey }}
-              aria-current={item.key === pageKey ? 'page' : undefined}
-            >
-              {item.label}
-            </a>
-          ))
-        }
+        <a
+          href={routes.home[lang]}
+          class:list={{ active: pageKey === 'home' }}
+          aria-current={pageKey === 'home' ? 'page' : undefined}
+        >
+          {isEn ? 'Home' : 'Start'}
+        </a>
 
-        <div class:list={['nav-offer', { active: pageKey === 'offer' }]} data-offer-menu>
-          <div class="offer-trigger">
+        <a
+          href={routes.about[lang]}
+          class:list={{ active: pageKey === 'about' }}
+          aria-current={pageKey === 'about' ? 'page' : undefined}
+        >
+          {isEn ? 'About' : 'O mnie'}
+        </a>
+
+        <div class:list={['nav-dropdown', { active: pageKey === 'perspectives' }]} data-dropdown>
+          <div class="dropdown-trigger">
+            <a
+              href={routes.perspectives[lang]}
+              class:list={{ active: pageKey === 'perspectives' }}
+              aria-current={pageKey === 'perspectives' ? 'page' : undefined}
+            >
+              {isEn ? 'Perspectives' : 'Perspektywy'}
+            </a>
+            <button
+              class="dropdown-toggle"
+              type="button"
+              aria-label={isEn ? 'Show Perspective articles' : 'Pokaż wpisy Perspektyw'}
+              aria-expanded="false"
+              data-dropdown-toggle
+            >
+              <span class="dropdown-indicator" aria-hidden="true"><i></i><b></b></span>
+            </button>
+          </div>
+
+          <div class="dropdown-submenu">
+            {perspectiveItems.map((item) => (
+              <a href={item.href}>{item.label}</a>
+            ))}
+          </div>
+        </div>
+
+        <div class:list={['nav-dropdown', { active: pageKey === 'offer' }]} data-dropdown>
+          <div class="dropdown-trigger">
             <a
               href={routes.offer[lang]}
               class:list={{ active: pageKey === 'offer' }}
@@ -99,38 +125,39 @@ const currentHref = Astro.url.pathname;
             >
               {isEn ? 'Offer' : 'Oferta'}
             </a>
-
             <button
-              class="offer-toggle"
+              class="dropdown-toggle"
               type="button"
               aria-label={isEn ? 'Show Offer sections' : 'Pokaż sekcje Oferty'}
               aria-expanded="false"
-              data-offer-toggle
+              data-dropdown-toggle
             >
-              <span aria-hidden="true">⌄</span>
+              <span class="dropdown-indicator" aria-hidden="true"><i></i><b></b></span>
             </button>
           </div>
 
-          <div class="offer-submenu" data-offer-submenu>
-            {
-              offerItems.map((item) => (
-                <a href={item.href}>{item.label}</a>
-              ))
-            }
+          <div class="dropdown-submenu">
+            {offerItems.map((item) => (
+              <a href={item.href}>{item.label}</a>
+            ))}
           </div>
         </div>
 
-        {
-          navAfterOffer.map((item) => (
-            <a
-              href={routes[item.key][lang]}
-              class:list={{ active: item.key === pageKey }}
-              aria-current={item.key === pageKey ? 'page' : undefined}
-            >
-              {item.label}
-            </a>
-          ))
-        }
+        <a
+          href={routes.booking[lang]}
+          class:list={{ active: pageKey === 'booking' }}
+          aria-current={pageKey === 'booking' ? 'page' : undefined}
+        >
+          {isEn ? 'Pricing' : 'Cennik'}
+        </a>
+
+        <a
+          href={routes.contact[lang]}
+          class:list={{ active: pageKey === 'contact' }}
+          aria-current={pageKey === 'contact' ? 'page' : undefined}
+        >
+          {isEn ? 'Contact' : 'Kontakt'}
+        </a>
       </nav>
 
       <div class="language-switch" aria-label={isEn ? 'Language switcher' : 'Przełącznik języka'}>
@@ -173,20 +200,64 @@ const currentHref = Astro.url.pathname;
 <script is:inline>
   const menuButton = document.querySelector('[data-menu-button]');
   const nav = document.querySelector('[data-nav]');
-  const offerToggle = document.querySelector('[data-offer-toggle]');
-  const offerMenu = document.querySelector('[data-offer-menu]');
 
   menuButton?.addEventListener('click', () => {
     const isOpen = nav?.classList.toggle('open');
     menuButton.setAttribute('aria-expanded', String(Boolean(isOpen)));
   });
 
-  offerToggle?.addEventListener('click', (event) => {
-    event.preventDefault();
-    event.stopPropagation();
+  document.querySelectorAll('[data-dropdown]').forEach((dropdown) => {
+    const toggle = dropdown.querySelector('[data-dropdown-toggle]');
 
-    const isOpen = offerMenu?.classList.toggle('submenu-open');
-    offerToggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+    const closeDropdown = () => {
+      dropdown.classList.remove('submenu-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    };
+
+    toggle?.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      document.querySelectorAll('[data-dropdown].submenu-open').forEach((openDropdown) => {
+        if (openDropdown !== dropdown) {
+          openDropdown.classList.remove('submenu-open');
+          openDropdown.querySelector('[data-dropdown-toggle]')?.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      const isOpen = dropdown.classList.toggle('submenu-open');
+      toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+    });
+
+    dropdown.addEventListener('mouseleave', () => {
+      if (window.matchMedia('(min-width: 1081px)').matches) {
+        closeDropdown();
+      }
+    });
+
+    dropdown.querySelectorAll('.dropdown-submenu a').forEach((link) => {
+      link.addEventListener('click', closeDropdown);
+    });
+  });
+
+  document.addEventListener('pointerdown', (event) => {
+    if (!(event.target instanceof Node)) return;
+
+    document.querySelectorAll('[data-dropdown].submenu-open').forEach((dropdown) => {
+      if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove('submenu-open');
+        dropdown.querySelector('[data-dropdown-toggle]')?.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+
+    document.querySelectorAll('[data-dropdown].submenu-open').forEach((dropdown) => {
+      dropdown.classList.remove('submenu-open');
+      dropdown.querySelector('[data-dropdown-toggle]')?.setAttribute('aria-expanded', 'false');
+    });
   });
 </script>
 
@@ -239,11 +310,11 @@ const currentHref = Astro.url.pathname;
   .nav {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 15px;
   }
 
   .nav > a,
-  .offer-trigger > a {
+  .dropdown-trigger > a {
     position: relative;
     padding: 23px 0 20px;
     color: var(--muted) !important;
@@ -253,7 +324,7 @@ const currentHref = Astro.url.pathname;
   }
 
   .nav > a::after,
-  .offer-trigger > a::after {
+  .dropdown-trigger > a::after {
     content: "";
     position: absolute;
     left: 0;
@@ -265,89 +336,92 @@ const currentHref = Astro.url.pathname;
 
   .nav > a:hover,
   .nav > a.active,
-  .offer-trigger > a:hover,
-  .offer-trigger > a.active {
+  .dropdown-trigger > a:hover,
+  .dropdown-trigger > a.active {
     color: var(--text) !important;
   }
 
   .nav > a.active::after,
   .nav > a[aria-current="page"]::after,
-  .offer-trigger > a.active::after,
-  .offer-trigger > a[aria-current="page"]::after {
+  .dropdown-trigger > a.active::after,
+  .dropdown-trigger > a[aria-current="page"]::after {
     background: var(--brand-dark) !important;
   }
 
-  .nav-offer {
+  .nav-dropdown {
     position: relative;
   }
 
-  .offer-trigger {
+  .dropdown-trigger {
     display: flex;
     align-items: center;
     gap: 4px;
   }
 
-  .offer-toggle {
-    display: inline-flex;
-    width: 20px;
-    height: 28px;
+  .dropdown-toggle {
+    display: inline-grid;
+    width: 24px;
+    height: 30px;
     padding: 0;
-    align-items: center;
-    justify-content: center;
+    place-items: center;
     border: 0;
     background: transparent;
-    color: var(--brand-dark);
+    color: var(--muted);
     cursor: pointer;
-    font: inherit;
-    font-size: .9rem;
-    line-height: 1;
   }
 
-  .offer-submenu {
-    display: none;
+  .nav-dropdown:hover .dropdown-toggle,
+  .nav-dropdown.active .dropdown-toggle {
+    color: var(--text);
+  }
+
+  .dropdown-submenu {
     position: absolute;
     top: calc(100% - 7px);
-    left: -14px;
+    left: -18px;
     z-index: 30;
     width: max-content;
-    min-width: 260px;
+    min-width: 210px;
+    max-width: min(340px, 82vw);
     padding: 8px;
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 8px;
     background: var(--bg);
-    box-shadow: 0 12px 30px rgba(39,35,28,.09);
+    box-shadow: 0 16px 38px rgba(39, 35, 28, .1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition:
+      opacity .16s ease,
+      transform .16s ease,
+      visibility .16s ease;
   }
 
-  .offer-submenu a {
+  .dropdown-submenu a {
     display: block;
-    padding: 7px 10px;
-    border-radius: 4px;
-    color: var(--muted) !important;
+    padding: 9px 10px;
+    color: var(--text) !important;
     text-decoration: none !important;
     font-size: .82rem;
-    line-height: 1.25;
+    line-height: 1.35;
   }
 
-  .offer-submenu a:hover,
-  .offer-submenu a:focus-visible {
+  .dropdown-submenu a:hover {
     background: var(--moss-extra-light);
-    color: var(--moss-dark) !important;
   }
 
-  @media (min-width: 981px) {
-    .nav-offer:hover .offer-submenu,
-    .nav-offer:focus-within .offer-submenu,
-    .nav-offer.submenu-open .offer-submenu {
-      display: block;
-    }
+  .nav-dropdown.submenu-open .dropdown-submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
   .language-switch {
     display: flex;
     align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-    font-size: .78rem;
+    gap: 7px;
+    color: var(--muted);
+    font-size: .72rem;
   }
 
   .language-switch a {
@@ -358,60 +432,55 @@ const currentHref = Astro.url.pathname;
     text-decoration: none !important;
   }
 
-  .language-switch img {
-    width: 18px;
-    height: 12px;
-    object-fit: cover;
-    border: 1px solid rgba(39,35,28,.12);
-    border-radius: 1px;
-  }
-
   .language-switch a.active {
     color: var(--text) !important;
     font-weight: 800;
-    text-decoration: underline !important;
-    text-decoration-color: var(--brand-dark) !important;
-    text-underline-offset: 4px;
   }
 
-  .language-switch a:hover {
-    color: var(--brand-dark) !important;
+  .language-switch img {
+    width: 16px;
+    height: 11px;
+    object-fit: cover;
+    border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
   }
 
   .separator {
-    color: var(--border);
+    opacity: .55;
   }
 
   .menu-button {
     display: none;
-    padding: 7px 11px;
+    min-height: 38px;
+    padding: 0 12px;
     border: 1px solid var(--border);
     border-radius: 4px;
     background: transparent;
     color: var(--text);
     font: inherit;
     font-size: .82rem;
+    font-weight: 700;
   }
 
-  @media (max-width: 980px) {
+  @media (max-width: 1080px) {
     .menu-button {
       display: inline-flex;
+      align-items: center;
     }
 
     .nav {
-      display: none;
       position: absolute;
-      top: 68px;
+      top: calc(100% + 1px);
       left: 16px;
       right: 16px;
+      display: none;
+      padding: 10px;
       flex-direction: column;
       align-items: stretch;
-      gap: 0;
-      padding: 5px 14px;
+      gap: 2px;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: 8px;
       background: var(--bg);
-      box-shadow: 0 12px 30px rgba(39,35,28,.08);
+      box-shadow: 0 18px 36px rgba(39, 35, 28, .09);
     }
 
     .nav.open {
@@ -419,74 +488,63 @@ const currentHref = Astro.url.pathname;
     }
 
     .nav > a,
-    .offer-trigger > a {
-      padding: 3px 0;
+    .dropdown-trigger > a {
+      padding: 11px 10px;
     }
 
     .nav > a::after,
-    .offer-trigger > a::after {
-      bottom: 0;
-    }
-
-    .nav-offer {
-      width: 100%;
-    }
-
-    .offer-trigger {
-      justify-content: space-between;
-    }
-
-    .offer-toggle {
-      width: 32px;
-      height: 26px;
-    }
-
-    .offer-submenu {
-      position: static;
-      width: 100%;
-      min-width: 0;
-      margin: 2px 0 3px;
-      padding: 2px 0 2px 12px;
-      border: 0;
-      border-left: 1px solid var(--brand-light);
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
-    }
-
-    .nav-offer.submenu-open .offer-submenu {
-      display: block;
-    }
-
-    .offer-submenu a {
-      padding: 3px 0;
-      font-size: .79rem;
-    }
-
-    .offer-submenu a:hover,
-    .offer-submenu a:focus-visible {
-      background: transparent;
-      color: var(--moss-dark) !important;
-    }
-  }
-
-  @media (max-width: 560px) {
-    .brand span {
+    .dropdown-trigger > a::after {
       display: none;
     }
 
+    .dropdown-trigger {
+      justify-content: space-between;
+    }
+
+    .dropdown-trigger > a {
+      flex: 1;
+    }
+
+    .dropdown-toggle {
+      width: 42px;
+      height: 42px;
+    }
+
+    .dropdown-submenu {
+      position: static;
+      display: none;
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      padding: 0 0 8px 14px;
+      border: 0;
+      box-shadow: none;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      background: transparent;
+    }
+
+    .nav-dropdown.submenu-open .dropdown-submenu {
+      display: block;
+    }
+
+    .dropdown-submenu a {
+      padding: 8px 10px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .brand span {
+      max-width: 180px;
+    }
+
     .right {
-      gap: 9px;
+      gap: 10px;
     }
 
-    .language-switch {
-      gap: 4px;
-      font-size: .74rem;
-    }
-
-    .language-switch img {
-      width: 16px;
-      height: 11px;
+    .language-switch span:not(.separator) {
+      display: none;
     }
   }
 </style>

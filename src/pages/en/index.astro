@@ -1,145 +1,96 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import GoldenThought from '../../components/GoldenThought.astro';
+import NatureDivider from '../../components/NatureDivider.astro';
 
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Irma Rosenvik',
   jobTitle: 'Life & Career Coach & Mentor',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Oulu',
-    addressCountry: 'FI',
-  },
-  knowsAbout: [
-    'Life Coaching',
-    'Career Coaching',
-    'Mentoring',
-    'Career Mentoring',
-    'Interview Preparation',
-    'Career Development',
-  ],
+  address: { '@type': 'PostalAddress', addressLocality: 'Oulu', addressCountry: 'FI' },
+  knowsAbout: ['Life Coaching','Career Coaching','Mentoring','Career Mentoring','Interview Preparation','Career Development'],
 };
 ---
 
 <BaseLayout
   title="Irma Rosenvik | Life & Career Coach & Mentor | Oulu"
-  description="Life coaching, career coaching and mentoring for change, decisions and personal growth. Online and in person in Oulu."
+  description="Life and career coaching, mentoring and support through change. Online and in person in Oulu."
   lang="en"
   pageKey="home"
   schema={personSchema}
 >
-  <section class="page-hero editorial-hero home-hero">
+  <section class="page-hero home-hero">
     <div class="container narrow-copy">
-      <p class="eyebrow">LIFE &amp; CAREER COACH · MENTOR · OULU &amp; ONLINE</p>
-
-      <GoldenThought
-        text="We cannot solve our problems with the same thinking we used when we created them."
-        attribution="Albert Einstein"
-        tone="beige"
-      />
+      <p class="eyebrow">LIFE &amp; CAREER COACHING · MENTORING · OULU &amp; ONLINE</p>
+      <blockquote class="home-quote">
+        <p>We cannot solve our problems with the same thinking we used when we created them.</p>
+        <footer>— Albert Einstein</footer>
+      </blockquote>
     </div>
   </section>
 
-  <section class="section home-band home-band-light">
+  <section class="section home-copy-section">
     <div class="container narrow-copy home-copy">
-      <p>
-        <em>Sometimes you reach a point where you feel stuck. You may sense that you want something more, but not yet know how to name it. Your personal or professional goals can feel far away, and the idea of change seems to bring more questions than answers. Perhaps you are unsure where to begin, or simply need a little more trust in yourself and someone who can help you see your situation from a different perspective.</em>
-      </p>
-
-      <GoldenThought text="Some things need time before their meaning can truly settle." />
-
-      <p>
-        <em>That is often when it helps to create some space — to pause, talk, and explore what genuinely matters to you.</em>
-      </p>
+      <p>Sometimes you reach a point where you feel stuck. Somewhere inside, you know you want something more, even if you cannot yet put it into words. Your personal or professional goals may feel far away, and the thought of change can raise more questions than answers. Perhaps you do not know where to begin. Or perhaps what you need is a little more trust in yourself — and someone who can help you look at your situation from a different perspective.</p>
+      <NatureDivider compact={true} />
     </div>
   </section>
 
-  <section class="section home-band home-band-deeper">
+  <section class="home-highlight home-highlight-first">
+    <div class="container narrow-copy">
+      <p>That is often the moment to give yourself space to pause, talk, and discover what truly matters to you.</p>
+    </div>
+  </section>
+
+  <section class="section home-copy-section">
     <div class="container narrow-copy home-copy">
-      <p><em>As a coach, I walk alongside you with attention, empathy and trust in your ability to find your own way forward. Through thoughtful conversation in a safe and supportive space, I help you listen more closely to yourself, name what may be holding you back, recognise your strengths and turn uncertainty into the first meaningful steps.</em></p>
+      <p>As a coach, I walk alongside you with attention, empathy and trust in your abilities. Through thoughtful conversation in a safe, supportive space, I help you listen to yourself more closely, name what may be holding you back, recognise your strengths and turn uncertainty into the first concrete steps forward.</p>
+      <p>Whether you are thinking about career growth, want to feel more confident in your decisions, are looking for greater balance, or simply want to feel that you have a say in your own life again, I will create a safe and trusting space for change.</p>
+      <NatureDivider flip={true} compact={true} />
+    </div>
+  </section>
 
-      <p><em>Whether you are thinking about career growth, looking for more confidence in your decisions, seeking greater balance, or simply wanting to feel that you have a say in your own life again, I will offer you a calm and trusting space for change.</em></p>
+  <section class="home-highlight home-highlight-second">
+    <div class="container narrow-copy">
+      <p>You do not need to know all the answers. You do not need to know exactly where you are heading from the start. You only need to be willing to take the first step.</p>
+      <p><strong>This is your path. Your time. And you are the person who knows best what you need.</strong></p>
+    </div>
+  </section>
 
-      <p><em>You do not need to know all the answers. You do not need to know exactly where you are going. You only need to be willing to take the first step.</em></p>
-
-      <GoldenThought text="This is your path. Your time. And you are the person who knows your needs best." />
-
-      <p><em>You are welcome to book a coaching session — at your pace, with space for what matters to you. Sometimes one first step is enough to begin a meaningful change.</em></p>
-
-      <GoldenThought text="Sometimes a new path appears only after you take the first step." tone="beige" />
+  <section class="section home-copy-section home-last-copy">
+    <div class="container narrow-copy home-copy">
+      <p>You are welcome to join me for a coaching session — calmly, at your own pace, with space for what matters to you. Perhaps that first step will become the beginning of a meaningful change.</p>
     </div>
   </section>
 
   <section class="section home-explore">
     <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">EXPLORE</p>
-        <h2>Choose where you would like to begin.</h2>
-      </div>
-
-      <div class="link-grid">
-        <a class="link-card interactive-card" href="/en/about/">
-          <div>
-            <p class="eyebrow">01</p>
-            <h3>Meet me</h3>
-          </div>
-          <span class="arrow">→</span>
-        </a>
-
-        <a class="link-card interactive-card" href="/en/offer/">
-          <div>
-            <p class="eyebrow">02</p>
-            <h3>Explore how I can support you</h3>
-          </div>
-          <span class="arrow">→</span>
-        </a>
-
-        <a class="link-card interactive-card" href="/en/contact/">
-          <div>
-            <p class="eyebrow">03</p>
-            <h3>Get in touch</h3>
-          </div>
-          <span class="arrow">→</span>
-        </a>
+      <div class="section-heading"><h2>Where would you like to begin?</h2></div>
+      <div class="link-grid home-link-grid">
+        <a class="link-card interactive-card" href="/en/about/"><h3>Meet me</h3><span class="arrow">→</span></a>
+        <a class="link-card interactive-card" href="/en/offer/"><h3>See how I can support you</h3><span class="arrow">→</span></a>
+        <a class="link-card interactive-card" href="/en/contact/"><h3>Get in touch</h3><span class="arrow">→</span></a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .home-hero {
-    padding-bottom: clamp(38px, 5vw, 56px);
-  }
-
-  .home-band,
-  .home-explore {
-    border-top: 0;
-  }
-
-  .home-band {
-    padding: clamp(54px, 7vw, 84px) 0;
-  }
-
-  .home-band-light {
-    background: var(--surface);
-  }
-
-  .home-band-deeper {
-    background: var(--bg);
-  }
-
-  .home-copy > p {
-    margin-bottom: 24px;
-    line-height: 1.72;
-  }
-
-  .home-copy :global(.golden-thought) {
-    margin: 34px 0;
-  }
-
-  .home-explore {
-    background: var(--surface);
-  }
+  .home-hero { padding-bottom: clamp(26px, 4vw, 42px) !important; }
+  .home-quote { max-width: 690px; margin: 28px 0 0 clamp(10px, 4vw, 54px); padding-left: clamp(18px, 3vw, 34px); border-left: 1px solid var(--brand); }
+  .home-quote p { margin: 0; font-family: "Aptos","Candara","Segoe UI",sans-serif; font-size: clamp(1.3rem, 2.7vw, 1.95rem); line-height: 1.45; }
+  .home-quote footer { margin-top: 12px; color: var(--muted); font-size: .9rem; }
+  .home-copy-section { border-top: 0; padding: clamp(28px, 4vw, 44px) 0; }
+  .home-copy > p { margin-bottom: 20px; line-height: 1.78; }
+  .home-highlight { padding: clamp(14px, 3vw, 26px) 0; background: transparent; }
+  .home-highlight .narrow-copy { padding-left: clamp(20px, 3vw, 34px); border-left: 1px solid var(--brand); }
+  .home-highlight p { margin: 0; font-size: clamp(1.22rem, 2.5vw, 1.72rem); line-height: 1.5; }
+  .home-highlight p + p { margin-top: 14px; }
+  .home-highlight-second p { font-family: inherit; }
+  .home-last-copy { padding-bottom: clamp(34px, 5vw, 54px); }
+  .home-explore { border-top: 0; background: var(--surface); padding: clamp(36px, 5vw, 54px) 0; }
+  .home-explore .section-heading { margin-bottom: 18px; }
+  .home-explore .section-heading h2 { margin-bottom: 0; }
+  .home-link-grid .link-card { min-height: 88px !important; padding: 14px 18px !important; }
+  .home-link-grid h3 { margin: 0; font-size: 1.08rem; }
 </style>

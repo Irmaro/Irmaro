@@ -3,155 +3,86 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Testimonials from '../../components/Testimonials.astro';
 import AboutPortrait from '../../components/AboutPortrait.astro';
 import LinkedInBanner from '../../components/LinkedInBanner.astro';
+import NatureDivider from '../../components/NatureDivider.astro';
 import { site } from '../../config/site';
 ---
 
 <BaseLayout
   title="About Irma Rosenvik | Coach, Mentor & HR Professional"
-  description="Meet Irma Rosenvik, a certified coach, mentor and HR professional based in Finland."
+  description="Meet Irma Rosenvik — a certified coach, mentor and HR professional based in Finland."
   lang="en"
   pageKey="about"
 >
   <section class="page-hero">
     <div class="container narrow-copy">
       <p class="eyebrow">ABOUT</p>
-      <h1><strong><em>I know what change feels like — and I know how much good can unfold along the way.</em></strong></h1>
+      <h1><strong>I know what change feels like — and I know how much good can unfold along the way.</strong></h1>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section about-section">
     <div class="container about-layout">
-      <div class="source-copy about-intro-copy">
-        <p><em>My name is Irma and I am a certified coach. I completed my coach training at Meritum Coaching School through a programme accredited by the International Coaching Federation (ICF). I also work as an HR professional.</em></p>
+      <div class="source-copy about-copy">
+        <p>My name is Irma and I am a certified coach. I completed my coach training at Meritum Coaching School through a programme accredited by the International Coaching Federation (ICF). I am currently continuing to develop my practice through postgraduate studies in Professional Coaching at Kozminski University, in a programme accredited under the EMCC EQA framework (European Mentoring and Coaching Council), one of the most widely recognised quality standards in the coaching profession.</p>
+        <p>I also work as an HR professional, which allows me to combine an understanding of organisational development with a practical coaching approach.</p>
 
-        <p><em>These two parts of my professional life naturally belong together because, for me, the person always comes first — their story, needs, values, emotions and their right to build a life that feels true to who they are. I believe there is far more potential in us than we sometimes recognise. At certain moments, what we need most is a safe space, an attentive conversation and another person who can help us see what is already there.</em></p>
-
-        <div class="about-text-block">
-          <p><em>My own path has been long, searching and, at times, very uneven. I grew up in a state of constant alertness and later came to understand my experience as an Adult Child of an Alcoholic (ACoA). I built my own family, raised my son — including what I jokingly call the most demanding extreme sport of all: parenting a teenager — and went through both individual and family therapy.</em></p>
+        <div class="about-highlight">
+          <p>What connects these two areas of my work is what matters most to me: <strong>the person</strong> — together with their story, needs, values, emotions and their right to live in a way that feels true to who they are. I believe that every one of us carries enormous potential, even if there are moments when we need a safe space, an attentive conversation and another person who can help us see it.</p>
         </div>
 
-        <p><em>There was also emigration: learning to live in a new reality and rebuilding my career from the ground up in another country. There were moments of doubt, exhaustion and having to begin again. There was sweat, there were tears and there was depression. But there was also strength, rediscovering myself, learning to treat myself with more kindness and finding a deeper sense of inner balance.</em></p>
+        <NatureDivider variant="about" compact={true} />
 
-        <p><em>Today I know how to celebrate life — not because it is perfect, but because I know how much can happen along the way. That is one of the reasons I genuinely love change.</em></p>
-      </div>
+        <p>My own path towards finding myself — and rebuilding myself — has been long and at times very uneven. It has taken me from a childhood and adolescence lived in a constant state of alertness, through my experience as an Adult Child of an Alcoholic (ACoA), building my own family and raising my son — including what I jokingly call the most demanding extreme sport of all, parenting a teenager — to my own individual and family therapy.</p>
+        <p>There was also emigration: learning to live in a new reality and rebuilding my career from the ground up in another country. There were moments of doubt, exhaustion and having to begin again. There was sweat, there were tears and, at one point, there was depression. But there was also immense strength, rediscovering myself, learning to treat myself with greater kindness and finding a deeper sense of inner balance.</p>
 
-      <div class="source-copy about-rest">
-          <div class="about-text-block">
-            <p><em>This is the perspective I bring to my work with clients. No judgement. No ready-made answers. Just curiosity, attention and a deep belief that you are the expert on your own life.</em></p>
-          </div>
+        <div class="about-highlight">
+          <p>Today I am in a place where I can celebrate life — not because it is perfect, but because I know how much can happen along the way. That is why I genuinely love change, and why I wholeheartedly encourage others not to be afraid of it.</p>
+        </div>
 
-          <p><em>If you would like to know me beyond my professional role, visit <strong><a href="/en/perspectives/">Perspectives</a></strong>, where I share more about how I see life and the values that guide me.</em></p>
+        <NatureDivider variant="about" flip={true} compact={true} />
 
-          <p><em>If you would like to learn more about my professional background, you are also welcome to visit my <strong><a href={site.linkedInUrl} target="_blank" rel="noopener noreferrer">LinkedIn profile</a></strong>.</em></p>
+        <p>This is the perspective I bring to my work with clients. No judgement. No ready-made answers. Curiosity, attention, and a deep belief that <strong>you are the expert on your own life</strong>.</p>
+        <p>If you would like to get to know me beyond my professional role, visit <strong><a href="/en/perspectives/">Perspectives</a></strong> to see how I look at life and the values that guide me.</p>
+        <p>If you would like to know more about my professional background, you are also very welcome to visit my <strong><a href={site.linkedInUrl} target="_blank" rel="noopener noreferrer">LinkedIn profile</a></strong>.</p>
 
         <div class="about-media-row">
           <LinkedInBanner lang="en" />
-
-          <div class="about-photo">
-            <AboutPortrait lang="en" />
-          </div>
+          <div class="about-photo"><AboutPortrait lang="en" /></div>
         </div>
 
         <Testimonials lang="en" />
       </div>
     </div>
   </section>
+
+  <section class="section about-more">
+    <div class="container">
+      <div class="section-heading"><h2>Would you like to know more?</h2></div>
+      <div class="link-grid about-more-grid">
+        <a class="link-card interactive-card" href="/en/perspectives/"><h3>My perspectives</h3><span class="arrow">→</span></a>
+        <a class="link-card interactive-card" href="/en/offer/"><h3>How I can support you</h3><span class="arrow">→</span></a>
+        <a class="link-card interactive-card" href="/en/contact/"><h3>Get in touch</h3><span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-  .about-layout {
-    max-width: var(--copy);
-    display: flex;
-    flex-direction: column;
-    gap: 38px;
-  }
-
-  .about-intro-copy,
-  .about-rest {
-    min-width: 0;
-    max-width: none;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .about-intro-copy {
-    gap: 22px;
-  }
-
-  .about-rest {
-    gap: 28px;
-  }
-
-  .about-text-block {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    background: transparent;
-  }
-
-  .about-intro-copy > p,
-  .about-intro-copy > .about-text-block,
-  .about-rest > p,
-  .about-rest > .about-text-block {
-    margin: 0;
-  }
-
-  .about-intro-copy .about-text-block p,
-  .about-rest .about-text-block p {
-    margin: 0;
-  }
-
-  .about-rest :global(.golden-thought) {
-    width: 100%;
-    max-width: none;
-    margin: 10px 0;
-  }
-
-  /*
-    Text always keeps the full About width.
-    Only the media row at the bottom splits into banner + portrait.
-  */
-  .about-media-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 210px;
-    gap: clamp(24px, 3vw, 36px);
-    align-items: center;
-    margin-top: 2px;
-  }
-
-  .about-media-row :global(.linkedin-banner) {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-  }
-
-  .about-photo {
-    width: 210px;
-    max-width: 100%;
-    justify-self: end;
-  }
-
-  .about-rest :global(.testimonials-section) {
-    margin-top: 34px;
-  }
-
+  .about-section { padding-top: 28px !important; }
+  .about-layout { max-width: var(--copy); }
+  .about-copy { max-width: none; }
+  .about-copy > p { margin-bottom: 22px; }
+  .about-highlight { margin: 30px 0 30px clamp(8px, 3vw, 38px); padding: 4px 0 4px clamp(20px, 3vw, 34px); border-left: 1px solid var(--brand); background: transparent; }
+  .about-highlight p { margin: 0; font-size: clamp(1.18rem, 2.35vw, 1.58rem); line-height: 1.55; }
+  .about-media-row { display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: clamp(24px, 3vw, 36px); align-items: center; margin-top: 34px; }
+  .about-media-row :global(.linkedin-banner) { width: 100%; max-width: none; margin: 0; }
+  .about-photo { width: 210px; max-width: 100%; justify-self: end; }
+  .about-more { background: var(--surface); }
+  .about-more .section-heading { margin-bottom: 18px; }
+  .about-more-grid .link-card { min-height: 88px !important; padding: 14px 18px !important; }
+  .about-more-grid h3 { margin: 0; font-size: 1.08rem; }
   @media (max-width: 820px) {
-    .about-layout {
-      gap: 30px;
-    }
-
-    .about-rest {
-      gap: 24px;
-    }
-
-    .about-media-row {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-
-    .about-photo {
-      width: 190px;
-      justify-self: center;
-    }
+    .about-media-row { grid-template-columns: 1fr; }
+    .about-photo { width: min(280px, 100%); justify-self: start; }
   }
 </style>

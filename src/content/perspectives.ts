@@ -1,61 +1,20 @@
 export const perspectives = {
   pl: [
-    {
-      number: '01',
-      title: 'Co coaching znaczy dla mnie',
-      href: '/pl/perspektywy/co-coaching-znaczy-dla-mnie/',
-      image: '/images/perspectives/perspective-coaching-pl.webp',
-      imageAlt: 'Co coaching znaczy dla mnie',
-      lead:
-        'Dla mnie coaching to nie zestaw technik ani gotowych recept. To uważna obecność, pytania prowadzące do źródła i wiara, że człowiek jest ekspertem od własnego życia.',
-    },
-    {
-      number: '02',
-      title: 'Konto emocjonalne',
-      href: '/pl/perspektywy/konto-emocjonalne/',
-      image: '/images/perspectives/perspective-emotional-account-pl.webp',
-      imageAlt: 'Konto emocjonalne',
-      lead:
-        'Każda relacja ma swój bilans. To, co dla jednej osoby jest wielką wpłatą, dla drugiej może nie mieć znaczenia. Jak więc budować dodatnie saldo?',
-    },
-    {
-      number: '03',
-      title: 'Mądra miłość',
-      href: '/pl/perspektywy/madra-milosc/',
-      image: '/images/perspectives/perspective-wise-love-pl.webp',
-      imageAlt: 'Mądra miłość',
-      lead:
-        'O miłości do siebie, akceptacji zmiany i rezygnacji z potrzeby „naprawiania” drugiego człowieka — także tego, którego widzimy w lustrze.',
-    },
+    { title:'Co coaching znaczy dla mnie', href:'/pl/perspektywy/co-coaching-znaczy-dla-mnie/', image:'/images/perspectives/perspective-coaching-pl.webp', imageAlt:'Co coaching znaczy dla mnie', lead:'Dla mnie coaching to nie zestaw technik ani gotowych recept. To uważna obecność, pytania prowadzące do źródła i wiara, że człowiek jest ekspertem od własnego życia.' },
+    { title:'Konto emocjonalne', href:'/pl/perspektywy/konto-emocjonalne/', image:'/images/perspectives/perspective-emotional-account-pl.webp', imageAlt:'Konto emocjonalne', lead:'Każda relacja ma swój bilans. To, co dla jednej osoby jest wielką wpłatą, dla drugiej może nie mieć znaczenia. Jak więc budować dodatnie saldo?' },
+    { title:'Mądra miłość', href:'/pl/perspektywy/madra-milosc/', image:'/images/perspectives/perspective-wise-love-pl.webp', imageAlt:'Mądra miłość', lead:'O miłości do siebie, akceptacji zmiany i rezygnacji z potrzeby „naprawiania” drugiego człowieka — także tego, którego widzimy w lustrze.' },
+    { title:'Wynaturzone rodzicielstwo', href:'/pl/perspektywy/wynaturzone-rodzicielstwo/', image:'/images/perspectives/perspective-distorted-parenting-pl.webp', imageAlt:'Małpa z młodym', lead:'Czyż ludzkie rodzicielstwo nie jest sprzeczne z naturą? Zwierzęta żyjące w zgodzie z naturą wychowują dzieci zupełnie inaczej, niż ludzie.' },
+    { title:'Zmiany', href:'/pl/perspektywy/zmiany/', image:'/images/perspectives/perspective-change-pl.webp', imageAlt:'Górska droga wśród ośnieżonych szczytów', lead:'Ile razy w życiu słyszeliśmy słowa typu: „Starych drzew się nie przesadza…” lub „Ludzie się nie zmieniają...”?'},
+    { title:'Uśpienie', href:'/pl/perspektywy/uspienie/', image:'/images/perspectives/perspective-sleep-pl.webp', imageAlt:'Szklana kula balansująca na kamieniach', lead:'Ludzie z natury są wygodni. Począwszy od wygód dnia codziennego, na tak zwanych przekonaniach i wierze skończywszy.' },
+    { title:'Przyjaźń emigracyjna', href:'/pl/perspektywy/przyjazn-emigracyjna/', image:'/images/perspectives/perspective-expat-friendship-pl.webp', imageAlt:'Dwóch mężczyzn rozmawiających przed domem', lead:'To, czemu trzeba stawić czoła na emigracji, to samotność. Budowanie prawdziwych relacji satysfakcjonujących wszystkie strony trwa lata całe.' },
   ],
-
   en: [
-    {
-      number: '01',
-      title: 'What Coaching Means to Me',
-      href: '/en/perspectives/what-coaching-means-to-me/',
-      image: '/images/perspectives/perspective-coaching-en.webp',
-      imageAlt: 'What Coaching Means to Me',
-      lead:
-        'To me, coaching is not a collection of techniques or ready-made answers. It is attentive presence, questions that take us closer to what matters, and trust that people are the experts on their own lives.',
-    },
-    {
-      number: '02',
-      title: 'Emotional Account',
-      href: '/en/perspectives/emotional-account/',
-      image: '/images/perspectives/perspective-emotional-account-en.webp',
-      imageAlt: 'Emotional Account',
-      lead:
-        'Every relationship has a balance. What feels like a generous deposit to one person may mean very little to another. So how do we build a relationship that stays in credit?',
-    },
-    {
-      number: '03',
-      title: 'Wise Love',
-      href: '/en/perspectives/wise-love/',
-      image: '/images/perspectives/perspective-wise-love-en.webp',
-      imageAlt: 'Wise Love',
-      lead:
-        'A reflection on self-love, accepting change, and letting go of the urge to “fix” another person — including the person we see in the mirror.',
-    },
+    { title:'What Coaching Means to Me', href:'/en/perspectives/what-coaching-means-to-me/', image:'/images/perspectives/perspective-coaching-pl.webp', imageAlt:'A tree canopy seen from below', lead:'To me, coaching is not a collection of techniques or ready-made answers. It is attentive presence, questions that take us closer to what matters, and trust that people are the experts on their own lives.' },
+    { title:'Emotional Account', href:'/en/perspectives/emotional-account/', image:'/images/perspectives/perspective-emotional-account-pl.webp', imageAlt:'A glass sphere balanced on smooth stones', lead:'Every relationship has a balance. What feels like a generous deposit to one person may mean very little to another. So how do we build a relationship that stays in credit?' },
+    { title:'Wise Love', href:'/en/perspectives/wise-love/', image:'/images/perspectives/perspective-wise-love-pl.webp', imageAlt:'A person walking by the sea', lead:'A reflection on self-love, accepting change, and letting go of the urge to “fix” another person — including the person we see in the mirror.' },
+    { title:'Parenting Against Nature', href:'/en/perspectives/unnatural-parenting/', image:'/images/perspectives/perspective-distorted-parenting-pl.webp', imageAlt:'A monkey holding its young', lead:'What if the way humans parent sometimes works against nature? Animals let go when their young are ready. Why is that so difficult for us?' },
+    { title:'Change', href:'/en/perspectives/change/', image:'/images/perspectives/perspective-change-pl.webp', imageAlt:'A mountain road among snow-covered peaks', lead:'How many times have we heard that people do not change, that old trees should not be replanted, or that we are too old to start again?' },
+    { title:'Sleepwalking Through Life', href:'/en/perspectives/sleepwalking-through-life/', image:'/images/perspectives/perspective-sleep-pl.webp', imageAlt:'A glass sphere balanced on stones', lead:'Comfort can be physical, emotional and intellectual. Sometimes the beliefs we carry simply remain there because examining them would be uncomfortable.' },
+    { title:'Friendship in Expat Life', href:'/en/perspectives/friendship-in-expat-life/', image:'/images/perspectives/perspective-expat-friendship-pl.webp', imageAlt:'Two men talking outside a mountain house', lead:'One of the realities of emigration is loneliness. But the space it creates can also bring reflection, freedom and a clearer sense of which relationships truly matter.' },
   ],
 } as const;

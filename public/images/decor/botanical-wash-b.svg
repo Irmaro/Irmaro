@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 420">
+  <defs>
+    <filter id="blurB" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <radialGradient id="washB">
+      <stop offset="0" stop-color="#F1EDE5" stop-opacity=".72"/>
+      <stop offset=".65" stop-color="#E7DAC6" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#F8F6F1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="208" cy="182" rx="170" ry="115" fill="url(#washB)" filter="url(#blurB)"/>
+  <ellipse cx="330" cy="282" rx="110" ry="68" fill="#DDE0D4" opacity=".16" filter="url(#blurB)"/>
+  <g fill="none" stroke="#68705A" stroke-opacity=".34" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M72 327 C118 279 156 233 190 181 C220 136 257 101 312 77"/>
+    <path d="M121 272 C95 255 82 231 84 204"/>
+    <path d="M165 216 C139 196 129 167 136 138"/>
+    <path d="M208 157 C193 133 193 107 208 85"/>
+    <path d="M253 112 C256 86 272 67 296 57"/>
+  </g>
+  <g fill="#68705A" fill-opacity=".07" stroke="#68705A" stroke-opacity=".28" stroke-width=".9">
+    <path d="M84 204 C56 195 38 207 29 231 C54 236 74 225 84 204Z"/>
+    <path d="M136 138 C109 123 87 130 74 153 C98 159 122 155 136 138Z"/>
+    <path d="M208 85 C186 64 164 65 146 82 C166 95 190 97 208 85Z"/>
+    <path d="M296 57 C282 34 260 28 239 39 C254 60 275 66 296 57Z"/>
+    <path d="M190 181 C213 162 237 163 256 177 C239 195 215 198 190 181Z"/>
+  </g>
+</svg>

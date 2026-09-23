@@ -1,0 +1,112 @@
+/*
+  IRMARO September refresh.
+  Deliberately isolated from global.css so the current production stylesheet
+  and any later manual fixes remain intact.
+*/
+
+body {
+  font-family:
+    "Aptos",
+    "Candara",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+  font-weight: 400;
+  letter-spacing: .002em;
+}
+
+html {
+  scroll-padding-top: 88px;
+}
+
+/* Green is reserved for interaction. Existing non-interactive green panels become beige. */
+.green-panel {
+  border-color: var(--border) !important;
+  background: var(--surface) !important;
+}
+
+.link-card:hover,
+.interactive-card:hover {
+  border-color: var(--moss-dark) !important;
+  background: var(--moss-light) !important;
+}
+
+.button:hover,
+.button:active,
+a.button:hover,
+a.button:active,
+.button.primary:hover,
+.button.primary:active {
+  border-color: var(--moss-dark) !important;
+  background: var(--moss-dark) !important;
+  color: #fff !important;
+}
+
+/* Seed cue for the two click-to-expand menus. The leaves appear only when opened. */
+.dropdown-indicator {
+  position: relative;
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  color: var(--brand-dark);
+  opacity: .8;
+}
+
+.dropdown-indicator::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  width: 6px;
+  height: 7px;
+  border-radius: 65% 35% 60% 40%;
+  background: currentColor;
+  transform: rotate(35deg);
+}
+
+.dropdown-indicator i,
+.dropdown-indicator b {
+  position: absolute;
+  display: block;
+  width: 6px;
+  height: 4px;
+  border-radius: 90% 10% 90% 10%;
+  background: currentColor;
+  opacity: 0;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+.dropdown-indicator i {
+  left: 2px;
+  top: 3px;
+  transform: rotate(-65deg) scale(.3);
+}
+
+.dropdown-indicator b {
+  left: 8px;
+  top: 2px;
+  transform: rotate(20deg) scale(.3);
+}
+
+.nav-dropdown.submenu-open .dropdown-indicator,
+.dropdown-toggle[aria-expanded="true"] .dropdown-indicator {
+  opacity: 1;
+}
+
+.nav-dropdown.submenu-open .dropdown-indicator i,
+.dropdown-toggle[aria-expanded="true"] .dropdown-indicator i {
+  transform: rotate(-65deg) scale(1);
+  opacity: 1;
+}
+
+.nav-dropdown.submenu-open .dropdown-indicator b,
+.dropdown-toggle[aria-expanded="true"] .dropdown-indicator b {
+  transform: rotate(20deg) scale(1);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dropdown-indicator i,
+  .dropdown-indicator b { transition: none; }
+}

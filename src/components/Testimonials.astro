@@ -17,6 +17,8 @@ const c = isEn
         'To respect confidentiality, I do not publish the names of people who have shared these reflections.',
       previous: 'Previous testimonials',
       next: 'Next testimonials',
+      expand: 'See more',
+      collapse: 'See less',
     }
   : {
       eyebrow: 'OPINIE O MNIE',
@@ -25,13 +27,16 @@ const c = isEn
         'Z uwagi na zasadę poufności nie podaję imion osób, które udzieliły poniższych opinii.',
       previous: 'Poprzednie opinie',
       next: 'Następne opinie',
+      expand: 'Rozwiń',
+      collapse: 'Zwiń',
     };
 ---
 
 <section
-  class="testimonials-section"
+  class:list={['testimonials-section', { 'testimonials-pl': !isEn }]}
   aria-labelledby={`testimonials-title-${lang}`}
-  data-testimonials-carousel
+  data-testimonials-carousel={isEn ? '' : undefined}
+  data-testimonials-expand={!isEn ? '' : undefined}
 >
   <div class="testimonials-heading">
     <p class="eyebrow">{c.eyebrow}</p>
@@ -39,35 +44,45 @@ const c = isEn
     <p class="testimonials-confidentiality">{c.confidentiality}</p>
   </div>
 
-  <div class="testimonial-viewport" data-testimonial-viewport>
-    <div class="testimonial-track">
+  {isEn ? (
+    <>
+      <div class="testimonial-viewport" data-testimonial-viewport>
+        <div class="testimonial-track">
+          {items.map((item) => (
+            <blockquote class="testimonial-card">
+              <p class="testimonial-quote">“{item.quote}”</p>
+            </blockquote>
+          ))}
+        </div>
+      </div>
+
+      <div class="testimonial-controls" aria-label="Testimonials navigation">
+        <button class="testimonial-arrow" type="button" data-testimonial-prev aria-label={c.previous}>
+          <span aria-hidden="true">←</span>
+        </button>
+        <button class="testimonial-arrow" type="button" data-testimonial-next aria-label={c.next}>
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </>
+  ) : (
+    <div class="testimonial-grid">
       {items.map((item) => (
-        <blockquote class="testimonial-card">
-          <p class="testimonial-quote">“{item.quote}”</p>
+        <blockquote class="testimonial-card testimonial-card-small" data-expand-card>
+          <p class="testimonial-quote testimonial-quote-clamped" data-expand-text>“{item.quote}”</p>
+          <button
+            class="testimonial-expand"
+            type="button"
+            data-expand-button
+            data-expand-label={c.expand}
+            data-collapse-label={c.collapse}
+          >
+            {c.expand}
+          </button>
         </blockquote>
       ))}
     </div>
-  </div>
-
-  <div class="testimonial-controls" aria-label={isEn ? 'Testimonials navigation' : 'Nawigacja opinii'}>
-    <button
-      class="testimonial-arrow"
-      type="button"
-      data-testimonial-prev
-      aria-label={c.previous}
-    >
-      <span aria-hidden="true">←</span>
-    </button>
-
-    <button
-      class="testimonial-arrow"
-      type="button"
-      data-testimonial-next
-      aria-label={c.next}
-    >
-      <span aria-hidden="true">→</span>
-    </button>
-  </div>
+  )}
 </section>
 
 <script is:inline>
@@ -81,58 +96,57 @@ const c = isEn
     const getStep = () => {
       const firstCard = viewport.querySelector('.testimonial-card');
       const track = viewport.querySelector('.testimonial-track');
-
       if (!firstCard || !track) return viewport.clientWidth;
-
       const styles = window.getComputedStyle(track);
       const gap = parseFloat(styles.columnGap || styles.gap || '0');
-
       return firstCard.getBoundingClientRect().width + gap;
     };
 
     const updateControls = () => {
       const maxScroll = viewport.scrollWidth - viewport.clientWidth;
       const tolerance = 4;
-
       prev.disabled = viewport.scrollLeft <= tolerance;
       next.disabled = viewport.scrollLeft >= maxScroll - tolerance;
     };
 
-    prev.addEventListener('click', () => {
-      viewport.scrollBy({
-        left: -getStep(),
-        behavior: 'smooth',
-      });
-    });
-
-    next.addEventListener('click', () => {
-      viewport.scrollBy({
-        left: getStep(),
-        behavior: 'smooth',
-      });
-    });
-
+    prev.addEventListener('click', () => viewport.scrollBy({ left: -getStep(), behavior: 'smooth' }));
+    next.addEventListener('click', () => viewport.scrollBy({ left: getStep(), behavior: 'smooth' }));
     viewport.addEventListener('scroll', updateControls, { passive: true });
     window.addEventListener('resize', updateControls);
-
     updateControls();
+  });
+
+  document.querySelectorAll('[data-testimonials-expand]').forEach((section) => {
+    section.querySelectorAll('[data-expand-card]').forEach((card) => {
+      const text = card.querySelector('[data-expand-text]');
+      const button = card.querySelector('[data-expand-button]');
+      if (!text || !button) return;
+
+      button.addEventListener('click', () => {
+        const expanded = card.classList.toggle('expanded');
+        button.textContent = expanded ? button.dataset.collapseLabel : button.dataset.expandLabel;
+        button.setAttribute('aria-expanded', String(expanded));
+      });
+
+      button.setAttribute('aria-expanded', 'false');
+    });
   });
 </script>
 
 <style>
   .testimonials-section {
-    margin-top: 64px;
+    margin-top: 52px;
     padding-top: 24px;
     border-top: 1px solid var(--border);
   }
 
   .testimonials-heading {
     max-width: 720px;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
   }
 
   .testimonials-heading h2 {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .testimonials-confidentiality {
@@ -142,11 +156,62 @@ const c = isEn
     line-height: 1.55;
   }
 
-  /*
-    The viewport hides the next card completely.
-    Desktop: exactly 2 complete testimonials.
-    Mobile: exactly 1 complete testimonial.
-  */
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .testimonial-card {
+    margin: 0;
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-sizing: border-box;
+  }
+
+  .testimonial-card-small {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .testimonial-quote {
+    margin: 0;
+    line-height: 1.62;
+  }
+
+  .testimonial-quote-clamped {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+
+  .testimonial-card-small.expanded .testimonial-quote-clamped {
+    display: block;
+    overflow: visible;
+  }
+
+  .testimonial-expand {
+    margin-top: auto;
+    padding: 8px 0 0;
+    border: 0;
+    background: transparent;
+    color: var(--moss-dark);
+    font: inherit;
+    font-size: .82rem;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .testimonial-expand:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   .testimonial-viewport {
     width: 100%;
     overflow-x: auto;
@@ -168,37 +233,22 @@ const c = isEn
     width: max-content;
   }
 
-  .testimonial-card {
+  .testimonial-track .testimonial-card {
     flex: 0 0 calc((min(100vw, var(--container)) - 14px) / 2);
     width: calc((min(100vw, var(--container)) - 14px) / 2);
-    min-height: 170px;
-    margin: 0;
-    padding: 18px;
-    border: 1px solid color-mix(in srgb, var(--moss) 34%, var(--border));
-    border-radius: var(--radius);
-    background: var(--moss-extra-light);
+    min-height: 190px;
     scroll-snap-align: start;
-    box-sizing: border-box;
   }
 
-  /*
-    The component itself usually sits inside a container,
-    so percentage sizing is safer than viewport sizing there.
-  */
   @supports (width: 1cqw) {
     .testimonial-viewport {
       container-type: inline-size;
     }
 
-    .testimonial-card {
+    .testimonial-track .testimonial-card {
       flex-basis: calc((100cqw - 14px) / 2);
       width: calc((100cqw - 14px) / 2);
     }
-  }
-
-  .testimonial-quote {
-    margin: 0;
-    line-height: 1.68;
   }
 
   .testimonial-controls {
@@ -214,7 +264,7 @@ const c = isEn
     width: 42px;
     height: 38px;
     padding: 0;
-    border: 1px solid var(--brand);
+    border: 1px solid var(--moss-dark);
     border-radius: 4px;
     background: transparent;
     color: var(--text);
@@ -222,20 +272,10 @@ const c = isEn
     font-size: 1.15rem;
     line-height: 1;
     cursor: pointer;
-    transition:
-      background-color .18s ease,
-      border-color .18s ease,
-      opacity .18s ease;
   }
 
   .testimonial-arrow:hover:not(:disabled) {
-    background: var(--surface);
-    border-color: var(--brand-dark);
-  }
-
-  .testimonial-arrow:focus-visible {
-    outline: 2px solid var(--brand-dark);
-    outline-offset: 3px;
+    background: var(--moss-light);
   }
 
   .testimonial-arrow:disabled {
@@ -244,12 +284,11 @@ const c = isEn
   }
 
   @media (max-width: 760px) {
-    .testimonials-section {
-      margin-top: 46px;
-      padding-top: 20px;
+    .testimonial-grid {
+      grid-template-columns: 1fr;
     }
 
-    .testimonial-card {
+    .testimonial-track .testimonial-card {
       flex-basis: 100%;
       width: 100%;
       min-height: 0;

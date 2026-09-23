@@ -1,0 +1,50 @@
+---
+interface Props {
+  flip?: boolean;
+  compact?: boolean;
+  variant?: 'home' | 'about';
+}
+
+const { flip = false, compact = false, variant = 'home' } = Astro.props;
+
+const image = variant === 'about'
+  ? '/images/decor/botanical-about-v2.png'
+  : '/images/decor/botanical-home-v2.png';
+---
+
+<div
+  class:list={['nature-divider', `variant-${variant}`, { flip, compact }]}
+  aria-hidden="true"
+>
+  <img src={image} alt="" loading="lazy" decoding="async" />
+</div>
+
+<style>
+  .nature-divider {
+    width: min(230px, 52vw);
+    margin: 28px auto;
+    opacity: .62;
+  }
+
+  .nature-divider.compact {
+    width: min(190px, 45vw);
+    margin-block: 20px;
+  }
+
+  .nature-divider.variant-about {
+    width: min(112px, 28vw);
+    opacity: .54;
+  }
+
+  .nature-divider.flip {
+    transform: scaleX(-1);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 142px;
+    object-fit: contain;
+  }
+</style>

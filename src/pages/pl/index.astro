@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import GoldenThought from '../../components/GoldenThought.astro';
+import NatureDivider from '../../components/NatureDivider.astro';
 
 const personSchema = {
   '@context': 'https://schema.org',
@@ -30,77 +30,75 @@ const personSchema = {
   pageKey="home"
   schema={personSchema}
 >
-  <section class="page-hero editorial-hero home-hero">
+  <section class="page-hero home-hero">
     <div class="container narrow-copy">
       <p class="eyebrow">LIFE &amp; CAREER COACHING · MENTORING · OULU &amp; ONLINE</p>
 
-      <GoldenThought
-        text="Nasze myślenie tworzy problemy, których ten sam rodzaj myślenia nie może rozwiązać."
-        attribution="Albert Einstein"
-        tone="beige"
-      />
+      <blockquote class="home-quote">
+        <p>Nasze myślenie tworzy problemy, których ten sam rodzaj myślenia nie może rozwiązać.</p>
+        <footer>— Albert Einstein</footer>
+      </blockquote>
     </div>
   </section>
 
-  <section class="section home-band home-band-light">
+  <section class="section home-copy-section">
     <div class="container narrow-copy home-copy">
       <p>
-        <em>Czasem przychodzi taki moment, kiedy czujesz, że stoisz w miejscu. Czasem w głębi serca wiesz, że pragniesz czegoś więcej, ale nawet nie umiesz tego nazwać. Twoje zawodowe lub osobiste cele wydają się odległe, a myśl o zmianie budzi więcej pytań niż odpowiedzi. Być może nie wiesz, od czego zacząć, albo potrzebujesz po prostu odrobiny wiary w siebie i kogoś, kto pomoże Ci spojrzeć na swoją sytuację z nowej perspektywy.</em>
+        Czasem przychodzi taki moment, kiedy czujesz, że stoisz w miejscu. Czasem w głębi serca wiesz, że pragniesz czegoś więcej, ale nawet nie umiesz tego nazwać. Twoje zawodowe lub osobiste cele wydają się odległe, a myśl o zmianie budzi więcej pytań niż odpowiedzi. Być może nie wiesz, od czego zacząć, albo potrzebujesz po prostu odrobiny wiary w siebie i kogoś, kto pomoże Ci spojrzeć na swoją sytuację z nowej perspektywy.
       </p>
 
-      <GoldenThought text="Niektóre wiadomości potrzebują czasu, żeby wybrzmieć." />
-
-      <p>
-        <em>Właśnie wtedy warto dać sobie przestrzeń na zatrzymanie, rozmowę i odkrywanie tego, co naprawdę jest dla Ciebie ważne.</em>
-      </p>
+      <NatureDivider compact={true} />
     </div>
   </section>
 
-  <section class="section home-band home-band-deeper">
+  <section class="home-highlight home-highlight-first">
+    <div class="container narrow-copy">
+      <p>Właśnie wtedy warto dać sobie przestrzeń na zatrzymanie, rozmowę i odkrywanie tego, co naprawdę jest dla Ciebie ważne.</p>
+    </div>
+  </section>
+
+  <section class="section home-copy-section">
     <div class="container narrow-copy home-copy">
-      <p><em>Jako coach towarzyszę Ci w tej drodze z uważnością, empatią i wiarą w Twoje możliwości. Poprzez pogłębioną rozmowę, w bezpiecznej przestrzeni pełnej dobrej energii i wsparcia, pomagam Ci lepiej usłyszeć siebie, nazwać to, co Cię zatrzymuje, dostrzec Twoje mocne strony i zamienić niepewność w pierwsze, konkretne kroki.</em></p>
+      <p>Jako coach towarzyszę Ci w tej drodze z uważnością, empatią i wiarą w Twoje możliwości. Poprzez pogłębioną rozmowę, w bezpiecznej przestrzeni pełnej dobrej energii i wsparcia, pomagam Ci lepiej usłyszeć siebie, nazwać to, co Cię zatrzymuje, dostrzec Twoje mocne strony i zamienić niepewność w pierwsze, konkretne kroki.</p>
 
-      <p><em>Niezależnie od tego, czy marzysz o rozwoju zawodowym, większej odwadze w podejmowaniu decyzji, życiowej równowadze czy po prostu chcesz poczuć, że znów masz wpływ na swoje życie – stworzę dla Ciebie bezpieczną i pełną zaufania przestrzeń do zmiany.</em></p>
+      <p>Niezależnie od tego, czy marzysz o rozwoju zawodowym, większej odwadze w podejmowaniu decyzji, życiowej równowadze czy po prostu chcesz poczuć, że znów masz wpływ na swoje życie – stworzę dla Ciebie bezpieczną i pełną zaufania przestrzeń do zmiany.</p>
 
-      <p><em>Nie musisz znać wszystkich odpowiedzi. Nie musisz od razu wiedzieć, dokąd dokładnie zmierzasz. Wystarczy gotowość, by zrobić pierwszy krok.</em></p>
+      <NatureDivider flip={true} compact={true} />
+    </div>
+  </section>
 
-      <GoldenThought text="To Twoja droga. To Twój czas. I to Ty najlepiej wiesz, czego potrzebujesz." />
+  <section class="home-highlight home-highlight-second">
+    <div class="container narrow-copy">
+      <p>Nie musisz znać wszystkich odpowiedzi. Nie musisz od razu wiedzieć, dokąd dokładnie zmierzasz. Wystarczy gotowość, by zrobić pierwszy krok.</p>
+      <p><strong>To Twoja droga. To Twój czas. I to Ty najlepiej wiesz, czego potrzebujesz.</strong></p>
+    </div>
+  </section>
 
-      <p><em>Zapraszam Cię na sesję coachingową – spokojnie, w Twoim tempie, z uważnością na to, co dla Ciebie ważne. Być może właśnie ten pierwszy krok okaże się początkiem pięknej zmiany.</em></p>
-
-      <GoldenThought text="Tylko ten, kto wędruje, znajduje nowe drogi." tone="beige" />
+  <section class="section home-copy-section home-last-copy">
+    <div class="container narrow-copy home-copy">
+      <p>Zapraszam Cię na sesję coachingową – spokojnie, w Twoim tempie, z uważnością na to, co dla Ciebie ważne. Być może właśnie ten pierwszy krok okaże się początkiem pięknej zmiany.</p>
     </div>
   </section>
 
   <section class="section home-explore">
     <div class="container">
       <div class="section-heading">
-        <p class="eyebrow">ZOBACZ</p>
-        <h2>Wybierz miejsce, od którego chcesz zacząć.</h2>
+        <h2>Od czego chcesz zacząć?</h2>
       </div>
 
-      <div class="link-grid">
+      <div class="link-grid home-link-grid">
         <a class="link-card interactive-card" href="/pl/o-mnie/">
-          <div>
-            <p class="eyebrow">01</p>
-            <h3>Poznaj mnie</h3>
-          </div>
+          <h3>Poznaj mnie</h3>
           <span class="arrow">→</span>
         </a>
 
         <a class="link-card interactive-card" href="/pl/oferta/">
-          <div>
-            <p class="eyebrow">02</p>
-            <h3>Co jeszcze mogę Ci zaoferować</h3>
-          </div>
+          <h3>Co jeszcze mogę Ci zaoferować</h3>
           <span class="arrow">→</span>
         </a>
 
         <a class="link-card interactive-card" href="/pl/kontakt/">
-          <div>
-            <p class="eyebrow">03</p>
-            <h3>Skontaktuj się ze mną</h3>
-          </div>
+          <h3>Skontaktuj się ze mną</h3>
           <span class="arrow">→</span>
         </a>
       </div>
@@ -110,36 +108,92 @@ const personSchema = {
 
 <style>
   .home-hero {
-    padding-bottom: clamp(38px, 5vw, 56px);
+    padding-bottom: clamp(26px, 4vw, 42px) !important;
   }
 
-  .home-band,
-  .home-explore {
+  .home-quote {
+    max-width: 690px;
+    margin: 28px 0 0 clamp(10px, 4vw, 54px);
+    padding-left: clamp(18px, 3vw, 34px);
+    border-left: 1px solid var(--brand);
+  }
+
+  .home-quote p {
+    margin: 0;
+    font-family: "Aptos", "Candara", "Segoe UI", sans-serif;
+    font-size: clamp(1.3rem, 2.7vw, 1.95rem);
+    line-height: 1.45;
+  }
+
+  .home-quote footer {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: .9rem;
+  }
+
+  .home-copy-section {
     border-top: 0;
-  }
-
-  .home-band {
-    padding: clamp(54px, 7vw, 84px) 0;
-  }
-
-  .home-band-light {
-    background: var(--surface);
-  }
-
-  .home-band-deeper {
-    background: var(--bg);
+    padding: clamp(28px, 4vw, 44px) 0;
   }
 
   .home-copy > p {
-    margin-bottom: 24px;
-    line-height: 1.72;
+    margin-bottom: 20px;
+    line-height: 1.78;
   }
 
-  .home-copy :global(.golden-thought) {
-    margin: 34px 0;
+  .home-highlight {
+    padding: clamp(14px, 3vw, 26px) 0;
+  }
+
+  .home-highlight .narrow-copy {
+    padding-left: clamp(20px, 3vw, 34px);
+    border-left: 1px solid var(--brand);
+  }
+
+  .home-highlight p {
+    margin: 0;
+    font-size: clamp(1.22rem, 2.5vw, 1.72rem);
+    line-height: 1.5;
+  }
+
+  .home-highlight p + p {
+    margin-top: 14px;
+  }
+
+  .home-highlight-first,
+  .home-highlight-second {
+    background: transparent;
+  }
+
+  .home-highlight-second p {
+    font-family: inherit;
+  }
+
+  .home-last-copy {
+    padding-bottom: clamp(34px, 5vw, 54px);
   }
 
   .home-explore {
+    border-top: 0;
     background: var(--surface);
+    padding: clamp(36px, 5vw, 54px) 0;
+  }
+
+  .home-explore .section-heading {
+    margin-bottom: 18px;
+  }
+
+  .home-explore .section-heading h2 {
+    margin-bottom: 0;
+  }
+
+  .home-link-grid .link-card {
+    min-height: 88px !important;
+    padding: 14px 18px !important;
+  }
+
+  .home-link-grid h3 {
+    margin: 0;
+    font-size: 1.08rem;
   }
 </style>

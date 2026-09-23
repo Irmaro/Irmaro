@@ -1,6 +1,6 @@
 ---
 interface Props {
-  number: string;
+  number?: string;
   title: string;
   lead: string;
   href: string;
@@ -9,9 +9,8 @@ interface Props {
   lang: 'pl' | 'en';
 }
 
-const { number, title, lead, href, image, imageAlt, lang } = Astro.props;
+const { title, lead, href, image, imageAlt, lang } = Astro.props;
 const readMore = lang === 'pl' ? 'Czytaj dalej' : 'Read more';
-const label = lang === 'pl' ? 'PERSPEKTYWA' : 'PERSPECTIVE';
 ---
 
 <article class="perspective-card">
@@ -27,7 +26,6 @@ const label = lang === 'pl' ? 'PERSPEKTYWA' : 'PERSPECTIVE';
 
   <div class="perspective-content">
     <div>
-      <p class="perspective-meta">{label} {number}</p>
       <h2><a href={href}>{title}</a></h2>
       <p class="perspective-lead">{lead}</p>
     </div>
@@ -45,6 +43,7 @@ const label = lang === 'pl' ? 'PERSPEKTYWA' : 'PERSPECTIVE';
     flex-direction: column;
     overflow: hidden;
     border: 1px solid var(--border);
+    border-radius: 8px;
     background: var(--bg);
     transition:
       background-color .18s ease,
@@ -54,7 +53,8 @@ const label = lang === 'pl' ? 'PERSPEKTYWA' : 'PERSPECTIVE';
 
   .perspective-card:hover {
     border-color: var(--moss);
-    background: color-mix(in srgb, var(--moss-extra-light) 35%, var(--bg));
+    background: color-mix(in srgb, var(--moss-extra-light) 28%, var(--bg));
+    transform: translateY(-2px);
   }
 
   .perspective-image-link {
@@ -73,30 +73,21 @@ const label = lang === 'pl' ? 'PERSPEKTYWA' : 'PERSPECTIVE';
   }
 
   .perspective-card:hover .perspective-image {
-    transform: scale(1.012);
+    transform: scale(1.015);
   }
 
   .perspective-content {
     display: flex;
-    min-height: 330px;
+    min-height: 250px;
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
-    padding: clamp(24px, 3vw, 36px);
-  }
-
-  .perspective-meta {
-    margin: 0 0 24px;
-    color: var(--brand-dark);
-    font-family: "Arial Narrow", "Aptos Narrow", "Helvetica Neue", sans-serif;
-    font-size: .76rem;
-    font-weight: 700;
-    letter-spacing: .16em;
+    padding: 20px;
   }
 
   .perspective-card h2 {
-    margin-bottom: 20px;
-    font-size: clamp(1.65rem, 3vw, 2.35rem);
+    margin-bottom: 12px;
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
     font-weight: 700;
   }
 
@@ -108,15 +99,16 @@ const label = lang === 'pl' ? 'PERSPEKTYWA' : 'PERSPECTIVE';
   .perspective-lead {
     margin: 0;
     color: var(--muted);
-    font-size: .98rem;
-    line-height: 1.7;
+    font-size: .9rem;
+    line-height: 1.62;
   }
 
   .perspective-link {
-    margin-top: 34px;
+    margin-top: 20px;
     color: var(--moss-dark) !important;
     font-weight: 800;
     text-decoration: none;
+    font-size: .9rem;
   }
 
   .perspective-link span {

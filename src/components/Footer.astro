@@ -10,17 +10,19 @@ const isEn = lang === 'en';
 
 const nav = isEn
   ? [
+      { label: 'Home', href: '/en/' },
       { label: 'About', href: '/en/about/' },
-      { label: 'Offer', href: '/en/offer/' },
-      { label: 'Work with me', href: '/en/book-a-session/' },
       { label: 'Perspectives', href: '/en/perspectives/' },
+      { label: 'Offer', href: '/en/offer/' },
+      { label: 'Pricing', href: '/en/book-a-session/' },
       { label: 'Contact', href: '/en/contact/' },
     ]
   : [
+      { label: 'Start', href: '/pl/' },
       { label: 'O mnie', href: '/pl/o-mnie/' },
-      { label: 'Oferta', href: '/pl/oferta/' },
-      { label: 'Współpraca', href: '/pl/umow-sesje/' },
       { label: 'Perspektywy', href: '/pl/perspektywy/' },
+      { label: 'Oferta', href: '/pl/oferta/' },
+      { label: 'Cennik', href: '/pl/umow-sesje/' },
       { label: 'Kontakt', href: '/pl/kontakt/' },
     ];
 ---

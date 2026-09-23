@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Coaching | Oulu & Online | IRMARO" description="Coaching with Irma Rosenvik: an introductory conversation and individual coaching sessions online, by phone or in person in Oulu." lang="en" pageKey="offer"
+  alternateHref="/pl/oferta/coaching/">
+  <section class="page-hero offer-detail-hero">
+    <div class="container narrow-copy">
+      <p class="eyebrow">OFFER · COACHING</p>
+      <h1><strong>Coaching</strong></h1>
+      <p class="offer-opening">You choose the direction. I help you see the path.</p>
+      <p>Coaching is, above all, a meeting between two people. It is a safe space where you can pause, look more closely at what truly matters to you, shift perspective and explore your own way forward with greater awareness.</p>
+      <p>As a coach, I support you in discovering your potential, organising your thoughts, naming your needs and turning what matters into concrete decisions and action. I do not hand you ready-made solutions or tell you how to live. I help you find your own answers.</p>
+      <div class="actions"><a class="button main-cta" href="/en/contact/#contact-form">Ask about a coaching session</a></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow-copy">
+      <div class="service-box">
+        <h2>Introductory conversation</h2>
+        <p>Before you decide whether to book a first session, I invite you to a 30-minute, no-obligation conversation.</p>
+        <p>It is time for us to get to know each other, talk calmly about what brings you here and explore what you may need. It also matters to me that we both have a sense that this way of working is right for you.</p>
+        <p>You do not need a clearly defined goal or a ready-made plan. You can simply come with whatever is present for you right now.</p>
+        <a class="button service-cta" href="/en/contact/#contact-form">Book an introductory conversation</a>
+      </div>
+
+      <div class="service-box">
+        <h2>Coaching session</h2>
+        <p>A session lasts around 60 minutes and can take place online, in person in Oulu or by phone. We will choose the format that feels most comfortable and accessible to you.</p>
+        <p>Every session is different because every person and every story is different. We talk about whatever you decide matters at that moment: a career change, relationships, decisions, self-confidence, a need for change, difficulties, dreams, or something you cannot quite name yet.</p>
+        <p>There are no important topics and unimportant topics. If something matters to you, it matters to me too.</p>
+        <p>I want our conversations to be a place where you can be fully yourself — without judgement, pressure or the need to prove anything. Together, with care and attention, we will look at where you are today and where you would like to go next.</p>
+        <a class="button service-cta" href="/en/contact/#contact-form">Book a coaching session</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .offer-detail-hero { padding-bottom: 30px !important; }
+  .offer-detail-hero p:not(.eyebrow) { line-height: 1.75; }
+  .offer-opening { margin: 8px 0 22px; font-size: clamp(1.28rem, 2.5vw, 1.72rem); font-weight: 600; line-height: 1.5 !important; }
+  .service-cta, .main-cta { border-color: var(--moss-dark) !important; }
+  .service-box { margin: 0 0 18px; padding: clamp(24px, 4vw, 34px); border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+  .service-box p { line-height: 1.75; }
+  .service-box .button { margin-top: 8px; }
+</style>

@@ -50,16 +50,12 @@ const sessionCountLabel = (count: number) => {
 
 <div class="booking-grid">
   {
-    c.cards.map((card, index) => (
+    c.cards.map((card) => (
       <article
         class="booking-card interactive-card booking-anchor"
         id={`booking-${card.key}`}
       >
         <div class="booking-card-content">
-          <p class="booking-number">
-            {String(index + 1).padStart(2, '0')}
-          </p>
-
           <p class="booking-meta">
             {card.meta}
           </p>
@@ -72,11 +68,6 @@ const sessionCountLabel = (count: number) => {
             {card.description}
           </p>
 
-          {'note' in card && card.note && (
-            <p class="booking-note">
-              {card.note}
-            </p>
-          )}
         </div>
 
         <a
@@ -318,7 +309,7 @@ const sessionCountLabel = (count: number) => {
 
 
   .booking-card {
-    min-height: 420px;
+    min-height: 350px;
   }
 
 
@@ -326,21 +317,6 @@ const sessionCountLabel = (count: number) => {
     display: flex;
     flex: 1;
     flex-direction: column;
-  }
-
-
-  .booking-number {
-    margin: 0 0 24px;
-
-    color: var(--brand-dark);
-
-    font-family:
-      "Arial Narrow",
-      "Aptos Narrow",
-      sans-serif;
-
-    font-weight: 800;
-    letter-spacing: .14em;
   }
 
 
@@ -357,23 +333,15 @@ const sessionCountLabel = (count: number) => {
   }
 
 
-  /*
-    Dzięki minimalnej wysokości wszystkie opisy
-    kart 01–06 zaczynają się na podobnym poziomie.
-  */
   .booking-card h2 {
-    min-height: 8.15rem;
+    min-height: 6.3rem;
     margin-bottom: 16px;
     font-size: clamp(1.3rem, 2vw, 1.7rem);
     line-height: 1.16;
   }
 
-  /*
-    Cards 01–03 have shorter titles. They do not need the same title reserve
-    as card 06, so the copy can move up without losing alignment inside the row.
-  */
   .booking-card:nth-child(-n + 3) h2 {
-    min-height: 4.15rem;
+    min-height: 3.7rem;
     margin-bottom: 12px;
   }
 
@@ -384,17 +352,6 @@ const sessionCountLabel = (count: number) => {
     margin: 0;
 
     color: var(--muted);
-  }
-
-
-  .booking-note {
-    margin: 18px 0 0;
-
-    color: var(--moss-dark);
-
-    font-size: .78rem;
-    font-weight: 500;
-    line-height: 1.5;
   }
 
 
