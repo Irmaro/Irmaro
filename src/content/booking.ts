@@ -40,7 +40,7 @@ export const bookingContent = {
       {
         key: 'interview',
         title: 'Individual interview preparation',
-        meta: '90–150 min · EUR 250',
+        meta: '90–150 min · EUR 150',
         description: 'Have you got an interview coming up? Let’s prepare so that you can walk into it with more calm, confidence and awareness of your value. We will combine a coaching approach with my experience in HR and recruitment.',
         action: 'Enquire',
       },
@@ -109,7 +109,7 @@ export const bookingContent = {
       {
         key: 'interview',
         title: 'Indywidualne przygotowanie do rozmowy kwalifikacyjnej',
-        meta: '90–150 min · 250 EUR',
+        meta: '90–150 min · 150 EUR',
         description: 'Masz przed sobą rozmowę kwalifikacyjną? Przygotujmy Cię tak, abyś mógł wejść na nią z większym spokojem, pewnością siebie i świadomością swojej wartości. Połączymy coachingowe wsparcie z moim doświadczeniem w HR i rekrutacji.',
         action: 'Zapytaj',
       },

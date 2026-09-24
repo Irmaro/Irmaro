@@ -39,7 +39,7 @@ const normalizePath = (path: string) => {
 const currentPath = normalizePath(Astro.url.pathname);
 const siteOrigin = new URL(Astro.site ?? Astro.url.origin).origin;
 const siteUrl = `${siteOrigin}/`;
-const canonicalUrl = new URL(currentPath === '/' ? '/en/' : currentPath, siteUrl).toString();
+const canonicalUrl = new URL(currentPath, siteUrl).toString();
 
 /*
   SEO metadata are intentionally kept here rather than in visible page copy.
@@ -153,8 +153,9 @@ const languagePairs: Record<string, string> = {
 };
 
 const pairedPath = languagePairs[currentPath] ?? alternateHref;
-const pairedUrl = null;
-
+const pairedUrl = pairedPath
+  ? new URL(normalizePath(pairedPath), siteUrl).toString()
+  : null;
 
 const englishUrl =
   lang === 'en'
@@ -194,7 +195,7 @@ const graph: Record<string, unknown>[] = [
     url: siteUrl,
     name: 'IRMARO',
     alternateName: 'Irma Rosenvik',
-    inLanguage: 'en',
+    inLanguage: ['en', 'pl'],
   },
   {
     '@type': 'Person',

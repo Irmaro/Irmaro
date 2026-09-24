@@ -160,8 +160,7 @@ const currentHref = Astro.url.pathname;
         </a>
       </nav>
 
-      {false && (
-<div class="language-switch" aria-label={isEn ? 'Language switcher' : 'Przełącznik języka'}>
+      <div class="language-switch" aria-label={isEn ? 'Language switcher' : 'Przełącznik języka'}>
         <a
           href={isEn ? otherLangHref : currentHref}
           class:list={{ active: !isEn }}
@@ -184,7 +183,6 @@ const currentHref = Astro.url.pathname;
           <span>EN</span>
         </a>
       </div>
-      )}
 
       <button
         class="menu-button"

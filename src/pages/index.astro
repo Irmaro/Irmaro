@@ -1,19 +1,4 @@
 ---
-const destination = '/en/';
+import EnglishHome from './en/index.astro';
 ---
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content={`0; url=${destination}`} />
-    <meta name="robots" content="noindex" />
-    <title>IRMARO</title>
-    <script is:inline>
-      window.location.replace('/en/');
-    </script>
-  </head>
-  <body>
-    <p>Redirecting to <a href="/en/">English version</a>…</p>
-  </body>
-</html>
+<EnglishHome />

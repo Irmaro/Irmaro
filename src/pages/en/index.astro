@@ -38,7 +38,9 @@ const personSchema = {
 
   <section class="home-highlight home-highlight-first">
     <div class="container narrow-copy">
-      <p>That is often the moment to give yourself space to pause, talk, and discover what truly matters to you.</p>
+      <div class="home-highlight-copy">
+        <p>That is often the moment to give yourself space to pause, talk, and discover what truly matters to you.</p>
+      </div>
     </div>
   </section>
 
@@ -52,8 +54,10 @@ const personSchema = {
 
   <section class="home-highlight home-highlight-second">
     <div class="container narrow-copy">
-      <p>You do not need to know all the answers. You do not need to know exactly where you are heading from the start. You only need to be willing to take the first step.</p>
-      <p><strong>This is your path. Your time. And you are the person who knows best what you need.</strong></p>
+      <div class="home-highlight-copy">
+        <p>You do not need to know all the answers. You do not need to know exactly where you are heading from the start. You only need to be willing to take the first step.</p>
+        <p><strong>This is your path. Your time. And you are the person who knows best what you need.</strong></p>
+      </div>
     </div>
   </section>
 
@@ -83,10 +87,9 @@ const personSchema = {
   .home-copy-section { border-top: 0; padding: clamp(28px, 4vw, 44px) 0; }
   .home-copy > p { margin-bottom: 20px; line-height: 1.78; }
   .home-highlight { padding: clamp(14px, 3vw, 26px) 0; background: transparent; }
-  .home-highlight .narrow-copy { padding-left: clamp(20px, 3vw, 34px); border-left: 1px solid var(--brand); }
-  .home-highlight p { margin: 0; font-size: clamp(1.22rem, 2.5vw, 1.72rem); line-height: 1.5; }
+  .home-highlight .home-highlight-copy { max-width: 690px; margin-left: clamp(10px, 4vw, 54px); padding-left: clamp(18px, 3vw, 34px); border-left: 1px solid var(--brand); }
+  .home-highlight p { margin: 0; font-family: "Aptos", "Candara", "Segoe UI", sans-serif; font-size: clamp(1.3rem, 2.7vw, 1.95rem); line-height: 1.45; }
   .home-highlight p + p { margin-top: 14px; }
-  .home-highlight-second p { font-family: inherit; }
   .home-last-copy { padding-bottom: clamp(34px, 5vw, 54px); }
   .home-explore { border-top: 0; background: var(--surface); padding: clamp(36px, 5vw, 54px) 0; }
   .home-explore .section-heading { margin-bottom: 18px; }

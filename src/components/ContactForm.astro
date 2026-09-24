@@ -236,6 +236,23 @@ const topicOptions = [
 
   restoreContext();
 
+  // Native fragment scrolling may happen before fonts and layout settle.
+  const alignFormDeepLink = () => {
+    if (window.location.hash !== '#contact-form' || !form) return;
+    requestAnimationFrame(() => {
+      const header = document.querySelector('.site-header');
+      const headerHeight = header?.getBoundingClientRect().height ?? 68;
+      const targetTop = window.scrollY + form.getBoundingClientRect().top - headerHeight - 24;
+      window.scrollTo({ top: Math.max(0, targetTop), behavior: 'auto' });
+    });
+  };
+
+  if (document.readyState === 'complete') alignFormDeepLink();
+  else window.addEventListener('load', alignFormDeepLink, { once: true });
+  document.fonts?.ready.then(alignFormDeepLink);
+  window.addEventListener('hashchange', alignFormDeepLink);
+  window.addEventListener('pageshow', alignFormDeepLink);
+
   form?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -302,7 +319,7 @@ const topicOptions = [
   }
 
   .contact-form {
-    scroll-margin-top: 96px;
+    scroll-margin-top: 120px;
     width: 100%;
     padding: clamp(24px, 3vw, 36px);
     border: 1px solid var(--border);

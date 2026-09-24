@@ -53,7 +53,9 @@ const personSchema = {
 
   <section class="home-highlight home-highlight-first">
     <div class="container narrow-copy">
-      <p>Właśnie wtedy warto dać sobie przestrzeń na zatrzymanie, rozmowę i odkrywanie tego, co naprawdę jest dla Ciebie ważne.</p>
+      <div class="home-highlight-copy">
+        <p>Właśnie wtedy warto dać sobie przestrzeń na zatrzymanie, rozmowę i odkrywanie tego, co naprawdę jest dla Ciebie ważne.</p>
+      </div>
     </div>
   </section>
 
@@ -69,8 +71,10 @@ const personSchema = {
 
   <section class="home-highlight home-highlight-second">
     <div class="container narrow-copy">
-      <p>Nie musisz znać wszystkich odpowiedzi. Nie musisz od razu wiedzieć, dokąd dokładnie zmierzasz. Wystarczy gotowość, by zrobić pierwszy krok.</p>
-      <p><strong>To Twoja droga. To Twój czas. I to Ty najlepiej wiesz, czego potrzebujesz.</strong></p>
+      <div class="home-highlight-copy">
+        <p>Nie musisz znać wszystkich odpowiedzi. Nie musisz od razu wiedzieć, dokąd dokładnie zmierzasz. Wystarczy gotowość, by zrobić pierwszy krok.</p>
+        <p><strong>To Twoja droga. To Twój czas. I to Ty najlepiej wiesz, czego potrzebujesz.</strong></p>
+      </div>
     </div>
   </section>
 
@@ -145,15 +149,18 @@ const personSchema = {
     padding: clamp(14px, 3vw, 26px) 0;
   }
 
-  .home-highlight .narrow-copy {
-    padding-left: clamp(20px, 3vw, 34px);
+  .home-highlight .home-highlight-copy {
+    max-width: 690px;
+    margin-left: clamp(10px, 4vw, 54px);
+    padding-left: clamp(18px, 3vw, 34px);
     border-left: 1px solid var(--brand);
   }
 
   .home-highlight p {
     margin: 0;
-    font-size: clamp(1.22rem, 2.5vw, 1.72rem);
-    line-height: 1.5;
+    font-family: "Aptos", "Candara", "Segoe UI", sans-serif;
+    font-size: clamp(1.3rem, 2.7vw, 1.95rem);
+    line-height: 1.45;
   }
 
   .home-highlight p + p {
@@ -163,10 +170,6 @@ const personSchema = {
   .home-highlight-first,
   .home-highlight-second {
     background: transparent;
-  }
-
-  .home-highlight-second p {
-    font-family: inherit;
   }
 
   .home-last-copy {

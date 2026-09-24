@@ -33,10 +33,9 @@ const c = isEn
 ---
 
 <section
-  class:list={['testimonials-section', { 'testimonials-pl': !isEn }]}
+  class="testimonials-section"
   aria-labelledby={`testimonials-title-${lang}`}
-  data-testimonials-carousel={isEn ? '' : undefined}
-  data-testimonials-expand={!isEn ? '' : undefined}
+  data-testimonials-expand
 >
   <div class="testimonials-heading">
     <p class="eyebrow">{c.eyebrow}</p>
@@ -44,78 +43,26 @@ const c = isEn
     <p class="testimonials-confidentiality">{c.confidentiality}</p>
   </div>
 
-  {isEn ? (
-    <>
-      <div class="testimonial-viewport" data-testimonial-viewport>
-        <div class="testimonial-track">
-          {items.map((item) => (
-            <blockquote class="testimonial-card">
-              <p class="testimonial-quote">“{item.quote}”</p>
-            </blockquote>
-          ))}
-        </div>
-      </div>
-
-      <div class="testimonial-controls" aria-label="Testimonials navigation">
-        <button class="testimonial-arrow" type="button" data-testimonial-prev aria-label={c.previous}>
-          <span aria-hidden="true">←</span>
+  <div class="testimonial-grid">
+    {items.map((item) => (
+      <blockquote class="testimonial-card testimonial-card-small" data-expand-card>
+        <p class="testimonial-quote testimonial-quote-clamped" data-expand-text>“{item.quote}”</p>
+        <button
+          class="testimonial-expand"
+          type="button"
+          data-expand-button
+          data-expand-label={c.expand}
+          data-collapse-label={c.collapse}
+          aria-expanded="false"
+        >
+          {c.expand}
         </button>
-        <button class="testimonial-arrow" type="button" data-testimonial-next aria-label={c.next}>
-          <span aria-hidden="true">→</span>
-        </button>
-      </div>
-    </>
-  ) : (
-    <div class="testimonial-grid">
-      {items.map((item) => (
-        <blockquote class="testimonial-card testimonial-card-small" data-expand-card>
-          <p class="testimonial-quote testimonial-quote-clamped" data-expand-text>“{item.quote}”</p>
-          <button
-            class="testimonial-expand"
-            type="button"
-            data-expand-button
-            data-expand-label={c.expand}
-            data-collapse-label={c.collapse}
-          >
-            {c.expand}
-          </button>
-        </blockquote>
-      ))}
-    </div>
-  )}
+      </blockquote>
+    ))}
+  </div>
 </section>
 
 <script is:inline>
-  document.querySelectorAll('[data-testimonials-carousel]').forEach((carousel) => {
-    const viewport = carousel.querySelector('[data-testimonial-viewport]');
-    const prev = carousel.querySelector('[data-testimonial-prev]');
-    const next = carousel.querySelector('[data-testimonial-next]');
-
-    if (!viewport || !prev || !next) return;
-
-    const getStep = () => {
-      const firstCard = viewport.querySelector('.testimonial-card');
-      const track = viewport.querySelector('.testimonial-track');
-      if (!firstCard || !track) return viewport.clientWidth;
-      const styles = window.getComputedStyle(track);
-      const gap = parseFloat(styles.columnGap || styles.gap || '0');
-      return firstCard.getBoundingClientRect().width + gap;
-    };
-
-    const updateControls = () => {
-      const maxScroll = viewport.scrollWidth - viewport.clientWidth;
-      const tolerance = 4;
-      prev.disabled = viewport.scrollLeft <= tolerance;
-      next.disabled = viewport.scrollLeft >= maxScroll - tolerance;
-    };
-
-    prev.addEventListener('click', () => viewport.scrollBy({ left: -getStep(), behavior: 'smooth' }));
-    next.addEventListener('click', () => viewport.scrollBy({ left: getStep(), behavior: 'smooth' }));
-    viewport.addEventListener('scroll', updateControls, { passive: true });
-    window.addEventListener('resize', updateControls);
-    updateControls();
-  });
-
   document.querySelectorAll('[data-testimonials-expand]').forEach((section) => {
     section.querySelectorAll('[data-expand-card]').forEach((card) => {
       const text = card.querySelector('[data-expand-text]');
@@ -212,90 +159,10 @@ const c = isEn
     text-underline-offset: 3px;
   }
 
-  .testimonial-viewport {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .testimonial-viewport::-webkit-scrollbar {
-    display: none;
-  }
-
-  .testimonial-track {
-    display: flex;
-    gap: 14px;
-    width: max-content;
-  }
-
-  .testimonial-track .testimonial-card {
-    flex: 0 0 calc((min(100vw, var(--container)) - 14px) / 2);
-    width: calc((min(100vw, var(--container)) - 14px) / 2);
-    min-height: 190px;
-    scroll-snap-align: start;
-  }
-
-  @supports (width: 1cqw) {
-    .testimonial-viewport {
-      container-type: inline-size;
-    }
-
-    .testimonial-track .testimonial-card {
-      flex-basis: calc((100cqw - 14px) / 2);
-      width: calc((100cqw - 14px) / 2);
-    }
-  }
-
-  .testimonial-controls {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-    margin-top: 14px;
-  }
-
-  .testimonial-arrow {
-    display: inline-grid;
-    place-items: center;
-    width: 42px;
-    height: 38px;
-    padding: 0;
-    border: 1px solid var(--moss-dark);
-    border-radius: 4px;
-    background: transparent;
-    color: var(--text);
-    font: inherit;
-    font-size: 1.15rem;
-    line-height: 1;
-    cursor: pointer;
-  }
-
-  .testimonial-arrow:hover:not(:disabled) {
-    background: var(--moss-light);
-  }
-
-  .testimonial-arrow:disabled {
-    opacity: .28;
-    cursor: default;
-  }
-
   @media (max-width: 760px) {
     .testimonial-grid {
       grid-template-columns: 1fr;
     }
 
-    .testimonial-track .testimonial-card {
-      flex-basis: 100%;
-      width: 100%;
-      min-height: 0;
-    }
-
-    .testimonial-controls {
-      justify-content: space-between;
-    }
   }
 </style>
