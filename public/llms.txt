@@ -19,7 +19,7 @@ Coaching and mentoring offered through IRMARO are developmental and supportive s
 - /en/ — Home
 - /en/about/ — About Irma
 - /en/offer/ — Life coaching, career coaching, mentoring and career support
-- /en/book-a-session/ — Work with me
+- /pricing/ — Work with me
 - /en/perspectives/ — Perspectives and articles
 - /en/contact/ — Contact
 
