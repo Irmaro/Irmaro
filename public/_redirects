@@ -1,2 +1,30 @@
-/en/perspectives/the-emotional-bank-account/    /en/perspectives/emotional-account/    301!
-/en/perspectives/loving-wisely/    /en/perspectives/wise-love/    301!
+# Old English URLs → clean URLs
+
+/en/    /    301!
+/en/about/    /about/    301!
+/en/contact/    /contact/    301!
+/en/offer/    /offer/    301!
+/en/offer/*    /offer/:splat    301!
+/en/privacy-policy/    /privacy-policy/    301!
+/en/terms/    /terms/    301!
+
+# Old Perspectives URLs that were renamed
+
+/en/perspectives/the-emotional-bank-account/    /perspectives/emotional-account/    301!
+/en/perspectives/loving-wisely/    /perspectives/wise-love/    301!
+
+# Other old Perspectives URLs → clean URLs
+
+/en/perspectives/    /perspectives/    301!
+/en/perspectives/*    /perspectives/:splat    301!
+
+# Clean URLs → existing English pages
+
+/about/    /en/about/    200
+/contact/    /en/contact/    200
+/offer/    /en/offer/    200
+/offer/*    /en/offer/:splat    200
+/perspectives/    /en/perspectives/    200
+/perspectives/*    /en/perspectives/:splat    200
+/privacy-policy/    /en/privacy-policy/    200
+/terms/    /en/terms/    200
