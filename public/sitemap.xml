@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.irmaro.com/en/</loc>
-  </url>
-  
+  <url><loc>https://www.irmaro.com/</loc></url>
+  <url><loc>https://www.irmaro.com/about/</loc></url>
+  <url><loc>https://www.irmaro.com/offer/</loc></url>
+  <url><loc>https://www.irmaro.com/offer/coaching/</loc></url>
+  <url><loc>https://www.irmaro.com/offer/mentoring/</loc></url>
+  <url><loc>https://www.irmaro.com/pricing/</loc></url>
+  <url><loc>https://www.irmaro.com/perspectives/</loc></url>
+  <url><loc>https://www.irmaro.com/perspectives/what-coaching-means-to-me/</loc></url>
+  <url><loc>https://www.irmaro.com/perspectives/emotional-account/</loc></url>
+  <url><loc>https://www.irmaro.com/perspectives/wise-love/</loc></url>
+  <url><loc>https://www.irmaro.com/perspectives/unnatural-parenting/</loc></url>
+  <url><loc>https://www.irmaro.com/perspectives/change/</loc></url>
+  <url><loc>https://www.irmaro.com/perspectives/sleepwalking-through-life/</loc></url>
+  <url><loc>https://www.irmaro.com/perspectives/friendship-in-expat-life/</loc></url>
+  <url><loc>https://www.irmaro.com/contact/</loc></url>
 </urlset>
