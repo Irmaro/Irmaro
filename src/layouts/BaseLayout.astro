@@ -39,7 +39,8 @@ const normalizePath = (path: string) => {
 const currentPath = normalizePath(Astro.url.pathname);
 const siteOrigin = new URL(Astro.site ?? Astro.url.origin).origin;
 const siteUrl = `${siteOrigin}/`;
-const canonicalUrl = new URL(currentPath === '/' ? '/en/' : currentPath, siteUrl).toString();
+const cleanPath = currentPath.replace(/^\/en(?=\/|$)/, '') || '/';
+const canonicalUrl = new URL(cleanPath, siteUrl).toString();
 
 /*
   SEO metadata are intentionally kept here rather than in visible page copy.
@@ -170,9 +171,7 @@ const polishUrl =
   Legal pages remain public and linked from the footer,
   but they are intentionally kept out of search indexes.
 */
-const isIndexable =
-  currentPath === '/en/' ||
-  currentPath === '/pl/';
+const isIndexable = currentPath !== '/404/';
   
 const robotsValue = isIndexable ? 'index,follow' : 'noindex,follow';
 
