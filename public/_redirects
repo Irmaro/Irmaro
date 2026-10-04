@@ -1,5 +1,5 @@
 # Old English URLs → clean URLs
-
+/en/book-a-session/    /pricing/    301!
 /en/    /    301!
 /en/about/    /about/    301!
 /en/contact/    /contact/    301!
