@@ -16,18 +16,24 @@ Coaching and mentoring offered through IRMARO are developmental and supportive s
 
 ## English
 
-- /en/ — Home
-- /en/about/ — About Irma
-- /en/offer/ — Life coaching, career coaching, mentoring and career support
+- / — Home
+- /about/ — About Irma
+- /offer/ — Life coaching, career coaching, mentoring and career support
+- /offer/coaching/ — Coaching
+- /offer/mentoring/ — Mentoring
 - /pricing/ — Work with me
-- /en/perspectives/ — Perspectives and articles
-- /en/contact/ — Contact
+- /perspectives/ — Perspectives and articles
+- /contact/ — Contact
 
 ### English perspectives
 
-- /en/perspectives/what-coaching-means-to-me/
-- /en/perspectives/emotional-account/
-- /en/perspectives/wise-love/
+- /perspectives/what-coaching-means-to-me/
+- /perspectives/emotional-account/
+- /perspectives/wise-love/
+- /perspectives/unnatural-parenting/
+- /perspectives/change/
+- /perspectives/sleepwalking-through-life/
+- /perspectives/friendship-in-expat-life/
 
 ## Polish
 
