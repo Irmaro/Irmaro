@@ -21,7 +21,6 @@ Coaching and mentoring offered through IRMARO are developmental and supportive s
 - /offer/ — Life coaching, career coaching, mentoring and career support
 - /offer/coaching/ — Coaching
 - /offer/mentoring/ — Mentoring
-- /pricing/ — Work with me
 - /perspectives/ — Perspectives and articles
 - /contact/ — Contact
 
