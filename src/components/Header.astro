@@ -144,14 +144,6 @@ const currentHref = Astro.url.pathname;
         </div>
 
         <a
-          href={routes.booking[lang]}
-          class:list={{ active: pageKey === 'booking' }}
-          aria-current={pageKey === 'booking' ? 'page' : undefined}
-        >
-          {isEn ? 'Pricing' : 'Cennik'}
-        </a>
-
-        <a
           href={routes.contact[lang]}
           class:list={{ active: pageKey === 'contact' }}
           aria-current={pageKey === 'contact' ? 'page' : undefined}
